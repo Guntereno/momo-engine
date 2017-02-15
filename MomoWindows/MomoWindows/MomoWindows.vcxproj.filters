@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="MomoWindows">
+      <UniqueIdentifier>{3656f7ae-f994-43b7-9862-cdabb7e5e4ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MomoWindows\Include">
+      <UniqueIdentifier>{ed5e85d0-cb1c-4a82-90c6-9d011ad75f34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MomoWindows\Source">
+      <UniqueIdentifier>{9f369888-965d-4bb1-93c3-2ef6ff510c02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo">
+      <UniqueIdentifier>{6d908b09-6a7d-46d8-8f72-5bc41bc139ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Include">
+      <UniqueIdentifier>{50c7f47e-5df7-4c95-a213-4211203cbd33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Source">
+      <UniqueIdentifier>{53410ffa-bdeb-4dda-be7c-bd9af6d0a991}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Include\Graphics">
+      <UniqueIdentifier>{7941c40c-f8e5-4df4-90c6-1747b01de7f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Include\Input">
+      <UniqueIdentifier>{49de7006-99ce-4a4b-b737-12bf71ec21db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Include\Io">
+      <UniqueIdentifier>{4e4b3aa2-0c89-438c-83cb-55b1aa5e6210}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Include\Memory">
+      <UniqueIdentifier>{acf95641-fabe-421c-9106-f811bf6de2b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Include\Util">
+      <UniqueIdentifier>{4410ed94-6477-496f-9e0f-83104c9c5829}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Include\Text">
+      <UniqueIdentifier>{20cd5ad8-5d46-4fe9-81c8-75873e2bd4d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Include\Ui">
+      <UniqueIdentifier>{9b4c4ab1-eb7a-4ce0-ac4c-34ccc46c4e3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Source\Graphics">
+      <UniqueIdentifier>{03223c96-df0e-4620-9a0f-f0c11a630a2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Source\Input">
+      <UniqueIdentifier>{df059231-3537-4bbf-8364-93e80c8ae86e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Source\Io">
+      <UniqueIdentifier>{2612d351-4e9e-46b0-9274-c6262c8b0cff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Source\Memory">
+      <UniqueIdentifier>{ea81c23d-0596-4381-9632-c3cb5c2fb20e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Source\Util">
+      <UniqueIdentifier>{2ce5748a-4393-4313-97d6-151d4444c6a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Source\Text">
+      <UniqueIdentifier>{4536a916-b454-4230-9c48-1049b10e44fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Source\Ui">
+      <UniqueIdentifier>{53672bbf-5a58-45d9-bdb7-590594f7f2f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{86983fb0-6555-42c1-a502-caad5ba82b1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Include">
+      <UniqueIdentifier>{fe1ff672-113b-42f8-8b95-b234208b0f3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Source">
+      <UniqueIdentifier>{261bc5e2-ad51-4c16-a8a8-ed330395cd58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Include\Tests">
+      <UniqueIdentifier>{a1ec58d2-3829-4680-b9a2-516f6e7ffadd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Source\Tests">
+      <UniqueIdentifier>{f32ceb73-7534-4e47-8610-cfad314a1e0a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\esUtil.h">
+      <Filter>MomoWindows\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\esUtil_win.h">
+      <Filter>MomoWindows\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Main.h">
+      <Filter>MomoWindows\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Graphics\LineBatch.h">
+      <Filter>Momo\Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Graphics\Program.h">
+      <Filter>Momo\Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Graphics\SpriteBatch.h">
+      <Filter>Momo\Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Graphics\Targa.h">
+      <Filter>Momo\Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Graphics\Texture.h">
+      <Filter>Momo\Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Graphics\Utils.h">
+      <Filter>Momo\Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Input\InputEvent.h">
+      <Filter>Momo\Include\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Input\InputQueue.h">
+      <Filter>Momo\Include\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Input\TouchHandler.h">
+      <Filter>Momo\Include\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Io\File.h">
+      <Filter>Momo\Include\Io</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Io\FileInMemory.h">
+      <Filter>Momo\Include\Io</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Memory\DefaultHeap.h">
+      <Filter>Momo\Include\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Memory\Heap.h">
+      <Filter>Momo\Include\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Memory\MemoryTests.h">
+      <Filter>Momo\Include\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Memory\StackHeap.h">
+      <Filter>Momo\Include\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Text\Alignment.h">
+      <Filter>Momo\Include\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Text\C99Printf.h">
+      <Filter>Momo\Include\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Text\Font.h">
+      <Filter>Momo\Include\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Text\FontLoader.h">
+      <Filter>Momo\Include\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Text\TextWrapper.h">
+      <Filter>Momo\Include\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Ui\ButtonView.h">
+      <Filter>Momo\Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Ui\Drawable.h">
+      <Filter>Momo\Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Ui\ICallback.h">
+      <Filter>Momo\Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Ui\ImageDrawable.h">
+      <Filter>Momo\Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Ui\NinePatchDrawable.h">
+      <Filter>Momo\Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Ui\States.h">
+      <Filter>Momo\Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Ui\TextBoxView.h">
+      <Filter>Momo\Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Ui\View.h">
+      <Filter>Momo\Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Util\Crc32.h">
+      <Filter>Momo\Include\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Util\State.h">
+      <Filter>Momo\Include\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Util\StateMachine.h">
+      <Filter>Momo\Include\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\ApplicationTimer.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\AssertBreak.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Color.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Common.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\ForwardDeclares.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\GameBase.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\GameTime.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\IdString.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Logger.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Matrix.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Momo.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Offset.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Point.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Game\Include\Character.h">
+      <Filter>Game\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Game\Include\Game.h">
+      <Filter>Game\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Game\Include\MushroomCallback.h">
+      <Filter>Game\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Game\Include\TestView.h">
+      <Filter>Game\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Game\Include\Tests\Tests.h">
+      <Filter>Game\Include\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Rectangle.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Vector.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Types.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\esUtil.c">
+      <Filter>MomoWindows\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\esUtil_win32.c">
+      <Filter>MomoWindows\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Main.cpp">
+      <Filter>MomoWindows\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Graphics\LineBatch.cpp">
+      <Filter>Momo\Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Graphics\Program.cpp">
+      <Filter>Momo\Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Graphics\SpriteBatch.cpp">
+      <Filter>Momo\Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Graphics\Targa.cpp">
+      <Filter>Momo\Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Graphics\Texture.cpp">
+      <Filter>Momo\Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Input\InputQueue.cpp">
+      <Filter>Momo\Source\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Input\TouchHandler.Android.cpp">
+      <Filter>Momo\Source\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Io\File.Android.cpp">
+      <Filter>Momo\Source\Io</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Io\File.Win32.cpp">
+      <Filter>Momo\Source\Io</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Io\FileInMemory.cpp">
+      <Filter>Momo\Source\Io</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Memory\DefaultHeap.cpp">
+      <Filter>Momo\Source\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Memory\MemoryTests.cpp">
+      <Filter>Momo\Source\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Memory\StackHeap.cpp">
+      <Filter>Momo\Source\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Text\Font.cpp">
+      <Filter>Momo\Source\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Text\FontLoader.cpp">
+      <Filter>Momo\Source\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Text\TextWrapper.cpp">
+      <Filter>Momo\Source\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Ui\ButtonView.cpp">
+      <Filter>Momo\Source\Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Ui\ImageDrawable.cpp">
+      <Filter>Momo\Source\Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Ui\TextBoxView.cpp">
+      <Filter>Momo\Source\Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Ui\NinePatchDrawable.cpp">
+      <Filter>Momo\Source\Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Ui\View.cpp">
+      <Filter>Momo\Source\Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Util\Crc32.cpp">
+      <Filter>Momo\Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Util\State.cpp">
+      <Filter>Momo\Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Util\StateMachine.cpp">
+      <Filter>Momo\Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Game\Source\Character.cpp">
+      <Filter>Game\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Game\Source\Game.cpp">
+      <Filter>Game\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Game\Source\MushroomCallback.cpp">
+      <Filter>Game\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Game\Source\TestView.cpp">
+      <Filter>Game\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Game\Source\Tests\Tests.cpp">
+      <Filter>Game\Source\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\ApplicationTimer.cpp">
+      <Filter>Momo</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\AssertBreak.cpp">
+      <Filter>Momo</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\GameBase.cpp">
+      <Filter>Momo</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\GameTime.cpp">
+      <Filter>Momo</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\IdString.cpp">
+      <Filter>Momo</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Logger.cpp">
+      <Filter>Momo</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Vector.cpp">
+      <Filter>Momo</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

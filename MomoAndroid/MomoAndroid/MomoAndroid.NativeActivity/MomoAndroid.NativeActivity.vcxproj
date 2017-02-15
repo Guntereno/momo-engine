@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{d6bc5b06-5213-4479-a011-1e0cba7f76cd}</ProjectGuid>
+    <Keyword>Android</Keyword>
+    <RootNamespace>MomoAndroid</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <ApplicationType>Android</ApplicationType>
+    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_3_6</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_3_6</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_3_6</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_3_6</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <ReferencePath>
+    </ReferencePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <AdditionalIncludeDirectories>$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories);$(SolutionDir)..\Momo\Include;$(SolutionDir)..\Game\Include;</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ANDROID;MOMO_DEBUG</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>%(LibraryDependencies);EGL;GLESv2;</LibraryDependencies>
+      <AdditionalDependencies>-lm</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <AdditionalIncludeDirectories>$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories);$(SolutionDir)..\Momo\Include;$(SolutionDir)..\Game\Include;</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions);ANDROID</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>%(LibraryDependencies);EGL;GLESv2;</LibraryDependencies>
+      <AdditionalDependencies>-lm</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\Momo\Include;$(SolutionDir)..\Game\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <CompileAs>CompileAsCpp</CompileAs>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Game\Include\Character.h" />
+    <ClInclude Include="..\..\..\Game\Include\Game.h" />
+    <ClInclude Include="..\..\..\Game\Include\MushroomCallback.h" />
+    <ClInclude Include="..\..\..\Game\Include\Tests\Tests.h" />
+    <ClInclude Include="..\..\..\Game\Include\TestView.h" />
+    <ClInclude Include="..\..\..\Momo\Include\ApplicationTimer.h" />
+    <ClInclude Include="..\..\..\Momo\Include\AssertBreak.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Color.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Common.h" />
+    <ClInclude Include="..\..\..\Momo\Include\ForwardDeclares.h" />
+    <ClInclude Include="..\..\..\Momo\Include\GameBase.h" />
+    <ClInclude Include="..\..\..\Momo\Include\GameTime.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Graphics\LineBatch.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Graphics\Program.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Graphics\SpriteBatch.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Graphics\Targa.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Graphics\Texture.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Graphics\Utils.h" />
+    <ClInclude Include="..\..\..\Momo\Include\IdString.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Input\InputEvent.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Input\InputQueue.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Input\TouchHandler.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Io\File.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Io\FileInMemory.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Logger.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Matrix.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Memory\DefaultHeap.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Memory\Heap.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Memory\MemoryTests.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Memory\StackHeap.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Momo.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Offset.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Point.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Rectangle.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Text\Alignment.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Text\C99Printf.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Text\Font.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Text\FontLoader.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Text\TextWrapper.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Types.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Ui\ButtonView.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Ui\Drawable.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Ui\ICallback.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Ui\ImageDrawable.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Ui\NinePatchDrawable.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Ui\States.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Ui\TextBoxView.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Ui\View.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Util\Crc32.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Util\State.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Util\StateMachine.h" />
+    <ClInclude Include="..\..\..\Momo\Include\Vector.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="android_native_app_glue.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Game\Source\Character.cpp" />
+    <ClCompile Include="..\..\..\Game\Source\Game.cpp" />
+    <ClCompile Include="..\..\..\Game\Source\MushroomCallback.cpp" />
+    <ClCompile Include="..\..\..\Game\Source\Tests\Tests.cpp" />
+    <ClCompile Include="..\..\..\Game\Source\TestView.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\ApplicationTimer.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\AssertBreak.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\GameBase.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\GameTime.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Graphics\LineBatch.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Graphics\Program.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Graphics\SpriteBatch.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Graphics\Targa.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Graphics\Texture.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\IdString.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Input\InputQueue.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Input\TouchHandler.Android.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Io\File.Android.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Io\File.Win32.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Io\FileInMemory.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Logger.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Memory\DefaultHeap.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Memory\MemoryTests.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Memory\StackHeap.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Text\Font.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Text\FontLoader.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Text\TextWrapper.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Ui\ButtonView.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Ui\ImageDrawable.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Ui\NinePatchDrawable.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Ui\TextBoxView.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Ui\View.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Util\Crc32.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Util\State.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Util\StateMachine.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\Vector.cpp" />
+    <ClCompile Include="android_native_app_glue.c" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

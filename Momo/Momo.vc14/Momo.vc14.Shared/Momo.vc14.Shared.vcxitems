@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{D893AD22-D49E-40BA-98EB-F6D96500E195}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\ApplicationTimer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\AssertBreak.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\GameBase.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\GameTime.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Graphics\LineBatch.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Graphics\Program.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Graphics\SpriteBatch.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Graphics\Targa.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Graphics\Texture.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\IdString.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Input\InputQueue.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Input\TouchHandler.Android.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Io\File.Android.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Io\File.Win32.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Io\FileInMemory.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Logger.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Memory\DefaultHeap.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Memory\MemoryTests.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Memory\StackHeap.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Text\Font.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Text\FontLoader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Text\TextWrapper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Ui\ButtonView.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Ui\ImageDrawable.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Ui\NinePatchDrawable.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Ui\TextBoxView.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Ui\View.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Vector.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\ApplicationTimer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\AssertBreak.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Color.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Common.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\ForwardDeclares.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\GameBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\GameTime.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Graphics\LineBatch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Graphics\Program.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Graphics\SpriteBatch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Graphics\Targa.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Graphics\Texture.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Graphics\Utils.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\IdString.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Input\InputEvent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Input\InputQueue.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Input\TouchHandler.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Io\File.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Io\FileInMemory.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Logger.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Matrix.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Memory\DefaultHeap.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Memory\Heap.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Memory\MemoryTests.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Memory\StackHeap.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Momo.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Offset.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Point.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Rectangle.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Text\Alignment.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Text\C99Printf.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Text\Font.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Text\FontLoader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Text\TextWrapper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Types.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Ui\ButtonView.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Ui\Drawable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Ui\ICallback.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Ui\ImageDrawable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Ui\NinePatchDrawable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Ui\States.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Ui\TextBoxView.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Ui\View.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Crc32.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\State.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\StateMachine.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Vector.h" />
+  </ItemGroup>
+</Project>

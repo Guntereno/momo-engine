@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\ApplicationTimer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\AssertBreak.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\GameBase.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\GameTime.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\IdString.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Logger.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Vector.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Graphics\LineBatch.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Graphics\Program.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Graphics\SpriteBatch.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Graphics\Targa.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Graphics\Texture.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Input\InputQueue.cpp">
+      <Filter>Source\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Input\TouchHandler.Android.cpp">
+      <Filter>Source\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Io\File.Android.cpp">
+      <Filter>Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Io\File.Win32.cpp">
+      <Filter>Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Io\FileInMemory.cpp">
+      <Filter>Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Memory\DefaultHeap.cpp">
+      <Filter>Source\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Memory\MemoryTests.cpp">
+      <Filter>Source\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Memory\StackHeap.cpp">
+      <Filter>Source\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Text\FontLoader.cpp">
+      <Filter>Source\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Text\TextWrapper.cpp">
+      <Filter>Source\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Text\Font.cpp">
+      <Filter>Source\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Ui\ButtonView.cpp">
+      <Filter>Source\Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Ui\ImageDrawable.cpp">
+      <Filter>Source\Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Ui\NinePatchDrawable.cpp">
+      <Filter>Source\Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Ui\TextBoxView.cpp">
+      <Filter>Source\Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Ui\View.cpp">
+      <Filter>Source\Ui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\ApplicationTimer.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\AssertBreak.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Color.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Common.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\ForwardDeclares.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\GameBase.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\GameTime.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\IdString.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Logger.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Matrix.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Momo.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Offset.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Point.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Rectangle.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Types.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Vector.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Graphics\LineBatch.h">
+      <Filter>Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Graphics\Program.h">
+      <Filter>Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Graphics\SpriteBatch.h">
+      <Filter>Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Graphics\Targa.h">
+      <Filter>Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Graphics\Texture.h">
+      <Filter>Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Graphics\Utils.h">
+      <Filter>Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Input\InputEvent.h">
+      <Filter>Include\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Input\InputQueue.h">
+      <Filter>Include\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Input\TouchHandler.h">
+      <Filter>Include\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Io\File.h">
+      <Filter>Include\Io</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Io\FileInMemory.h">
+      <Filter>Include\Io</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Memory\DefaultHeap.h">
+      <Filter>Include\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Memory\Heap.h">
+      <Filter>Include\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Memory\MemoryTests.h">
+      <Filter>Include\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Memory\StackHeap.h">
+      <Filter>Include\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Crc32.h">
+      <Filter>Include\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\State.h">
+      <Filter>Include\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\StateMachine.h">
+      <Filter>Include\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Ui\ButtonView.h">
+      <Filter>Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Ui\Drawable.h">
+      <Filter>Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Ui\ICallback.h">
+      <Filter>Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Ui\ImageDrawable.h">
+      <Filter>Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Ui\NinePatchDrawable.h">
+      <Filter>Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Ui\States.h">
+      <Filter>Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Ui\TextBoxView.h">
+      <Filter>Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Ui\View.h">
+      <Filter>Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Text\Alignment.h">
+      <Filter>Include\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Text\C99Printf.h">
+      <Filter>Include\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Text\Font.h">
+      <Filter>Include\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Text\FontLoader.h">
+      <Filter>Include\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Text\TextWrapper.h">
+      <Filter>Include\Text</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Include">
+      <UniqueIdentifier>{4d32df28-e516-4b26-9795-15dceaeff693}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{2f28832b-b657-4a0c-944b-1c6123e50be7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Graphics">
+      <UniqueIdentifier>{b828f565-08cb-4de5-93e0-6ada65a9eefc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Input">
+      <UniqueIdentifier>{c7890b01-7cbc-4f80-bd46-5d82594e3fb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Io">
+      <UniqueIdentifier>{63607b25-747d-46af-82ff-0410bae101c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Memory">
+      <UniqueIdentifier>{2589bb19-f52f-4387-acee-0f48dba75b78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Text">
+      <UniqueIdentifier>{b82c7293-30f6-4d2a-a77b-497ff28a4142}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Ui">
+      <UniqueIdentifier>{9096fc82-323c-463c-8e15-f2bd113242b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Util">
+      <UniqueIdentifier>{ede86b84-f17b-43be-ac49-82c3b936d8b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics">
+      <UniqueIdentifier>{4c06ae2b-a16a-42fb-b56b-e118adf54a83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Input">
+      <UniqueIdentifier>{e90454da-c8e2-4066-8e2d-062b2cf6d774}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Io">
+      <UniqueIdentifier>{9b105886-e986-4702-a0a6-4414a3dcbb03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Memory">
+      <UniqueIdentifier>{35ea9152-9496-43b8-ac6f-b59b71ae770f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Text">
+      <UniqueIdentifier>{7ea655f2-b2e1-4c93-9d17-49c02f97f239}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Ui">
+      <UniqueIdentifier>{1d534230-7e37-4708-9773-d7426838f4b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Util">
+      <UniqueIdentifier>{96b77e8b-32c7-4945-90bc-e88d971a5e65}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

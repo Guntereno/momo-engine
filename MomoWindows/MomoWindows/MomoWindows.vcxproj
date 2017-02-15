@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E4E924B4-1FFC-4106-A0B2-D1956C598753}</ProjectGuid>
+    <RootNamespace>MomoWindows</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(SolutionDir)..\PropertySheets\Angle.Debug.props" />
+    <Import Project="$(SolutionDir)..\PropertySheets\Debug.props" />
+    <Import Project="$(SolutionDir)..\PropertySheets\DirectX.Debug.props" />
+    <Import Project="$(SolutionDir)..\PropertySheets\Win32.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)..\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(SolutionDir)..\PropertySheets\Angle.Release.props" />
+    <Import Project="$(SolutionDir)..\PropertySheets\DirectX.Release.props" />
+    <Import Project="$(SolutionDir)..\PropertySheets\Win32.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(SolutionDir)\MomoWindows\Include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(SolutionDir)\MomoWindows\Include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+	  <AdditionalIncludeDirectories>$(ProjectDir)Include;$(SolutionDir)..\Momo\Include;$(SolutionDir)..\Game\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>($SolutionDir)..\Contrib\angleproject\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y "$(SolutionDir)..\Contrib\angleproject\lib\$(Configuration)\*.dll" "$(OutDir)"
+xcopy "$(SolutionDir)..\Assets" "$(OutDir)" /E /R /D /Y</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+	  <AdditionalIncludeDirectories>$(ProjectDir)Include;$(SolutionDir)..\Momo\Include;$(SolutionDir)..\Game\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y "$(SolutionDir)..\Contrib\angleproject\lib\$(Configuration)\*.dll" "$(OutDir)"
+xcopy "$(SolutionDir)..\Assets" "$(OutDir)" /E /R /D /Y</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="$(SolutionDir)..\Game\Include\Character.h" />
+    <ClInclude Include="$(SolutionDir)..\Game\Include\Game.h" />
+    <ClInclude Include="$(SolutionDir)..\Game\Include\MushroomCallback.h" />
+    <ClInclude Include="$(SolutionDir)..\Game\Include\Tests\Tests.h" />
+    <ClInclude Include="$(SolutionDir)..\Game\Include\TestView.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\ApplicationTimer.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\AssertBreak.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Color.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Common.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\ForwardDeclares.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\GameBase.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\GameTime.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Graphics\LineBatch.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Graphics\Program.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Graphics\SpriteBatch.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Graphics\Targa.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Graphics\Texture.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Graphics\Utils.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\IdString.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Input\InputEvent.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Input\InputQueue.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Input\TouchHandler.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Io\File.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Io\FileInMemory.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Logger.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Matrix.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Memory\DefaultHeap.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Memory\Heap.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Memory\MemoryTests.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Memory\StackHeap.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Momo.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Offset.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Point.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Rectangle.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Text\Alignment.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Text\C99Printf.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Text\Font.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Text\FontLoader.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Text\TextWrapper.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Types.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Ui\ButtonView.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Ui\Drawable.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Ui\ICallback.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Ui\ImageDrawable.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Ui\NinePatchDrawable.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Ui\States.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Ui\TextBoxView.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Ui\View.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Util\Crc32.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Util\State.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Util\StateMachine.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Vector.h" />
+    <ClInclude Include="Include\esUtil.h" />
+    <ClInclude Include="Include\esUtil_win.h" />
+    <ClInclude Include="Include\Main.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(SolutionDir)..\Game\Source\Character.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Game\Source\Game.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Game\Source\MushroomCallback.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Game\Source\Tests\Tests.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Game\Source\TestView.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\ApplicationTimer.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\AssertBreak.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\GameBase.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\GameTime.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Graphics\LineBatch.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Graphics\Program.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Graphics\SpriteBatch.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Graphics\Targa.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Graphics\Texture.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\IdString.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Input\InputQueue.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Input\TouchHandler.Android.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Io\File.Android.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Io\File.Win32.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Io\FileInMemory.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Logger.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Memory\DefaultHeap.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Memory\MemoryTests.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Memory\StackHeap.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Text\Font.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Text\FontLoader.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Text\TextWrapper.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Ui\ButtonView.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Ui\ImageDrawable.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Ui\NinePatchDrawable.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Ui\TextBoxView.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Ui\View.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Util\Crc32.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Util\State.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Util\StateMachine.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Vector.cpp" />
+    <ClCompile Include="Source\esUtil.c" />
+    <ClCompile Include="Source\esUtil_win32.c" />
+    <ClCompile Include="Source\Main.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

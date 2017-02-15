@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\ApplicationTimer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AssertBreak.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameBase.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Program.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\SpriteBatch.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Targa.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Texture.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Input\TouchHandler.Android.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Io\File.Android.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Io\File.Win32.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Io\FileInMemory.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Logger.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Memory\DefaultHeap.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Memory\MemoryTests.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Memory\StackHeap.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameTime.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Ui\View.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Vector.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Ui\ImageDrawable.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Ui\NinePatchDrawable.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Ui\TextBoxView.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Text\Font.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Text\FontLoader.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Text\TextWrapper.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Input\InputQueue.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Ui\ButtonView.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\LineBatch.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Util\StateMachine.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Util\State.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\IdString.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Util\Crc32.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\ApplicationTimer.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\AssertBreak.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Color.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Common.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ForwardDeclares.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\GameBase.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Graphics\Program.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Input\TouchHandler.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Io\FileInMemory.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Momo.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Text\C99Printf.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Text\Font.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Text\FontLoader.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Graphics\SpriteBatch.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Graphics\Targa.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Graphics\Texture.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Graphics\Utils.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Io\File.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Logger.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Matrix.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Memory\DefaultHeap.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Memory\Heap.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Memory\MemoryTests.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Memory\StackHeap.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Point.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rectangle.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\GameTime.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Types.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Ui\Drawable.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Offset.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Ui\States.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Ui\View.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Vector.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Ui\ImageDrawable.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Ui\NinePatchDrawable.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Ui\TextBoxView.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Text\TextWrapper.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Text\Alignment.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Input\InputQueue.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Input\InputEvent.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Ui\ButtonView.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Ui\ICallback.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Graphics\LineBatch.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Util\State.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Util\Crc32.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\IdString.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\util\StateMachine.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

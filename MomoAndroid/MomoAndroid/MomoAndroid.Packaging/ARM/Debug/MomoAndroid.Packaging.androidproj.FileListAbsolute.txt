@@ -1,0 +1,12 @@
+D:\dev\Momo\Main\Code\MomoAndroid\ARM\Debug\MomoAndroid.apk.recipe
+D:\dev\Momo\Main\Code\MomoAndroid\ARM\Debug\MomoAndroid.apk.recipe.merged
+D:\dev\Momo\Main\Code\MomoAndroid\ARM\Debug\Package\res\values\strings.xml
+D:\dev\Momo\Main\Code\MomoAndroid\ARM\Debug\Package\build.xml
+D:\dev\Momo\Main\Code\MomoAndroid\ARM\Debug\Package\project.properties
+D:\dev\Momo\Main\Code\MomoAndroid\ARM\Debug\Package\androidmanifest.xml
+D:\dev\Momo\Main\Code\MomoAndroid\ARM\Debug\MomoAndroid.apk
+D:\dev\Momo\Main\Code\MomoAndroid\ARM\Debug\MomoAndroid.lastsuccessfuldeploy
+D:\dev\Momo\Main\Code\MomoAndroid\MomoAndroid\MomoAndroid.Packaging\ARM\Debug\GenerateAndroidAntScript.incremental
+D:\dev\Momo\Main\Code\MomoAndroid\ARM\Debug\Package\libs\armeabi-v7a\libMomoAndroid.so
+D:\dev\Momo\Main\Code\MomoAndroid\ARM\Debug\Package\libs\armeabi-v7a\gdbserver
+D:\dev\Momo\Main\Code\MomoAndroid\ARM\Debug\Package\libs\armeabi-v7a\libgnustl_static.a

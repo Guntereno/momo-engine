@@ -1,0 +1,9 @@
+D:\dev\Momo\Main\Code\MomoAndroid\x86\Debug\MomoAndroid.apk.recipe
+D:\dev\Momo\Main\Code\MomoAndroid\x86\Debug\MomoAndroid.apk.recipe.merged
+D:\dev\Momo\Main\Code\MomoAndroid\x86\Debug\Package\res\values\strings.xml
+D:\dev\Momo\Main\Code\MomoAndroid\x86\Debug\Package\build.xml
+D:\dev\Momo\Main\Code\MomoAndroid\x86\Debug\Package\project.properties
+D:\dev\Momo\Main\Code\MomoAndroid\x86\Debug\Package\androidmanifest.xml
+D:\dev\Momo\Main\Code\MomoAndroid\x86\Debug\MomoAndroid.apk
+D:\dev\Momo\Main\Code\MomoAndroid\x86\Debug\MomoAndroid.lastsuccessfuldeploy
+D:\dev\Momo\Main\Code\MomoAndroid\MomoAndroid\MomoAndroid.Packaging\x86\Debug\GenerateAndroidAntScript.incremental

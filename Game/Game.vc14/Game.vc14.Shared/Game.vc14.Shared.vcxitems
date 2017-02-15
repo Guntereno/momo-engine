@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{c5130e00-fac8-428b-8c7b-08e6cc9529ac}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Character.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Game.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\MushroomCallback.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Tests\Tests.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\TestView.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Character.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Game.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\MushroomCallback.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\Tests\Tests.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Source\TestView.cpp" />
+  </ItemGroup>
+</Project>

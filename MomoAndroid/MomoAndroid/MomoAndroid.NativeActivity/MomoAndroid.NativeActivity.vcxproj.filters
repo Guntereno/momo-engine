@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="android_native_app_glue.h" />
+    <ClInclude Include="..\..\..\Momo\Include\ApplicationTimer.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\AssertBreak.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Color.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Common.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\ForwardDeclares.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\GameBase.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\GameTime.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\IdString.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Logger.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Matrix.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Momo.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Offset.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Point.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Rectangle.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Types.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Vector.h">
+      <Filter>Momo\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Graphics\LineBatch.h">
+      <Filter>Momo\Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Graphics\Program.h">
+      <Filter>Momo\Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Graphics\SpriteBatch.h">
+      <Filter>Momo\Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Graphics\Targa.h">
+      <Filter>Momo\Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Graphics\Texture.h">
+      <Filter>Momo\Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Graphics\Utils.h">
+      <Filter>Momo\Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Input\InputEvent.h">
+      <Filter>Momo\Include\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Input\InputQueue.h">
+      <Filter>Momo\Include\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Input\TouchHandler.h">
+      <Filter>Momo\Include\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Io\File.h">
+      <Filter>Momo\Include\Io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Io\FileInMemory.h">
+      <Filter>Momo\Include\Io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Memory\DefaultHeap.h">
+      <Filter>Momo\Include\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Memory\Heap.h">
+      <Filter>Momo\Include\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Memory\MemoryTests.h">
+      <Filter>Momo\Include\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Memory\StackHeap.h">
+      <Filter>Momo\Include\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Text\Alignment.h">
+      <Filter>Momo\Include\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Text\C99Printf.h">
+      <Filter>Momo\Include\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Text\Font.h">
+      <Filter>Momo\Include\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Text\FontLoader.h">
+      <Filter>Momo\Include\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Text\TextWrapper.h">
+      <Filter>Momo\Include\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Ui\Drawable.h">
+      <Filter>Momo\Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Ui\ICallback.h">
+      <Filter>Momo\Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Ui\ImageDrawable.h">
+      <Filter>Momo\Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Ui\NinePatchDrawable.h">
+      <Filter>Momo\Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Ui\States.h">
+      <Filter>Momo\Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Ui\TextBoxView.h">
+      <Filter>Momo\Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Ui\View.h">
+      <Filter>Momo\Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Ui\ButtonView.h">
+      <Filter>Momo\Include\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Util\Crc32.h">
+      <Filter>Momo\Include\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Util\State.h">
+      <Filter>Momo\Include\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Momo\Include\Util\StateMachine.h">
+      <Filter>Momo\Include\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Game\Include\Character.h">
+      <Filter>Game\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Game\Include\Game.h">
+      <Filter>Game\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Game\Include\MushroomCallback.h">
+      <Filter>Game\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Game\Include\TestView.h">
+      <Filter>Game\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Game\Include\Tests\Tests.h">
+      <Filter>Game\Include\Tests</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="android_native_app_glue.c" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="..\..\..\Momo\Source\ApplicationTimer.cpp">
+      <Filter>Momo\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\AssertBreak.cpp">
+      <Filter>Momo\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\GameBase.cpp">
+      <Filter>Momo\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\GameTime.cpp">
+      <Filter>Momo\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\IdString.cpp">
+      <Filter>Momo\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Logger.cpp">
+      <Filter>Momo\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Vector.cpp">
+      <Filter>Momo\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Graphics\LineBatch.cpp">
+      <Filter>Momo\Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Graphics\Program.cpp">
+      <Filter>Momo\Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Graphics\SpriteBatch.cpp">
+      <Filter>Momo\Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Graphics\Targa.cpp">
+      <Filter>Momo\Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Graphics\Texture.cpp">
+      <Filter>Momo\Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Input\TouchHandler.Android.cpp">
+      <Filter>Momo\Source\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Input\InputQueue.cpp">
+      <Filter>Momo\Source\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Io\File.Android.cpp">
+      <Filter>Momo\Source\Io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Io\File.Win32.cpp">
+      <Filter>Momo\Source\Io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Io\FileInMemory.cpp">
+      <Filter>Momo\Source\Io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Memory\DefaultHeap.cpp">
+      <Filter>Momo\Source\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Memory\MemoryTests.cpp">
+      <Filter>Momo\Source\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Memory\StackHeap.cpp">
+      <Filter>Momo\Source\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Text\Font.cpp">
+      <Filter>Momo\Source\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Text\FontLoader.cpp">
+      <Filter>Momo\Source\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Text\TextWrapper.cpp">
+      <Filter>Momo\Source\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Ui\ButtonView.cpp">
+      <Filter>Momo\Source\Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Ui\ImageDrawable.cpp">
+      <Filter>Momo\Source\Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Ui\NinePatchDrawable.cpp">
+      <Filter>Momo\Source\Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Ui\TextBoxView.cpp">
+      <Filter>Momo\Source\Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Ui\View.cpp">
+      <Filter>Momo\Source\Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Util\Crc32.cpp">
+      <Filter>Momo\Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Util\State.cpp">
+      <Filter>Momo\Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Momo\Source\Util\StateMachine.cpp">
+      <Filter>Momo\Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Game\Source\Character.cpp">
+      <Filter>Game\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Game\Source\Game.cpp">
+      <Filter>Game\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Game\Source\MushroomCallback.cpp">
+      <Filter>Game\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Game\Source\TestView.cpp">
+      <Filter>Game\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Game\Source\Tests\Tests.cpp">
+      <Filter>Game\Source\Tests</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Momo">
+      <UniqueIdentifier>{f6e7175a-8a25-4457-8d00-022be9135d56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{2afec9f4-cd18-4275-9c6c-51e0cb62691c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Include">
+      <UniqueIdentifier>{299001d7-072b-4675-adf3-3309ec495024}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Include">
+      <UniqueIdentifier>{09b32d84-4e4f-4f3c-be5d-d46add3c2ed4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Source">
+      <UniqueIdentifier>{68800461-647f-427c-974b-615c8c5e5a50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Source">
+      <UniqueIdentifier>{e93b3956-9d60-4d09-8795-7b16e8cb64c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Include\Graphics">
+      <UniqueIdentifier>{042c4ede-382e-4d1b-a1db-8123128174be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Include\Input">
+      <UniqueIdentifier>{89dd74ac-5eb9-4961-8f6f-b43721775045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Include\Io">
+      <UniqueIdentifier>{4e948984-835c-4f0c-9823-6aa3dbe3165d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Include\Memory">
+      <UniqueIdentifier>{3a542dd0-539f-4ac4-8073-003b5409d44e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Include\Text">
+      <UniqueIdentifier>{0564d66e-3e1d-4afb-ab19-a6de53bd0c0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Include\Ui">
+      <UniqueIdentifier>{5d5d326e-8037-4995-8ede-618f754cc373}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Include\Util">
+      <UniqueIdentifier>{11d2fa4b-1fa6-4086-836c-2dc5666175f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Source\Graphics">
+      <UniqueIdentifier>{fffeaef7-5bd0-41b2-ac9d-b23b1a288fe4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Source\Input">
+      <UniqueIdentifier>{92df5959-6cfe-447f-9790-b7c579c46dce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Source\Io">
+      <UniqueIdentifier>{7d4df603-cac6-4062-b69b-c12bdd2dc9f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Source\Memory">
+      <UniqueIdentifier>{384f0957-b05a-4d71-a122-ee4b3c4e9fdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Source\Text">
+      <UniqueIdentifier>{4a2fd77a-b77f-4e9f-9cef-5e171cd86a7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Source\Ui">
+      <UniqueIdentifier>{1bb25dec-2a92-49b7-8d6a-2b582ea6ecd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Momo\Source\Util">
+      <UniqueIdentifier>{46b3a7d6-d935-455f-b4f8-9be28992aebb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Include\Tests">
+      <UniqueIdentifier>{49875d58-ac5b-4195-98f9-d31e7915fd51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Source\Tests">
+      <UniqueIdentifier>{c9149112-faa9-45fe-9cc0-6514dcf5089a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
