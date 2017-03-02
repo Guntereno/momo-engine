@@ -95,6 +95,8 @@ extern PFNEGLDESTROYIMAGEKHRPROC eglDestroyImageKHR;
 
 extern PFNEGLPOSTSUBBUFFERNVPROC eglPostSubBufferNV;
 
+/*
+
 extern PFNGLEGLIMAGETARGETTEXTURE2DOESPROC glEGLImageTargetTexture2DOES;
 
 extern PFNGLDELETEFENCESNVPROC glDeleteFencesNV;
@@ -104,6 +106,8 @@ extern PFNGLISFENCENVPROC glIsFenceNV;
 extern PFNGLFINISHFENCENVPROC glFinishFenceNV;
 extern PFNGLSETFENCENVPROC glSetFenceNV;
 extern PFNGLTESTFENCENVPROC glTestFenceNV;
+
+*/
 
 ///
 //  Public Functions

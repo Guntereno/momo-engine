@@ -19,6 +19,8 @@ PFNEGLDESTROYIMAGEKHRPROC eglDestroyImageKHR;
 
 PFNEGLPOSTSUBBUFFERNVPROC eglPostSubBufferNV;
 
+/*
+
 PFNGLEGLIMAGETARGETTEXTURE2DOESPROC glEGLImageTargetTexture2DOES;
 
 PFNGLDELETEFENCESNVPROC glDeleteFencesNV;
@@ -28,6 +30,8 @@ PFNGLISFENCENVPROC glIsFenceNV;
 PFNGLFINISHFENCENVPROC glFinishFenceNV;
 PFNGLSETFENCENVPROC glSetFenceNV;
 PFNGLTESTFENCENVPROC glTestFenceNV;
+
+*/
 
 ///
 // CreateEGLContext()
@@ -66,6 +70,7 @@ EGLBoolean CreateEGLContext ( EGLNativeWindowType hWnd, EGLDisplay* eglDisplay,
 
    eglPostSubBufferNV = (PFNEGLPOSTSUBBUFFERNVPROC) eglGetProcAddress("eglPostSubBufferNV");
 
+/*
    glEGLImageTargetTexture2DOES = (PFNGLEGLIMAGETARGETTEXTURE2DOESPROC) eglGetProcAddress("glEGLImageTargetTexture2DOES");
 
    glDeleteFencesNV = (PFNGLDELETEFENCESNVPROC) eglGetProcAddress("glDeleteFencesNV");
@@ -75,6 +80,8 @@ EGLBoolean CreateEGLContext ( EGLNativeWindowType hWnd, EGLDisplay* eglDisplay,
    glFinishFenceNV = (PFNGLFINISHFENCENVPROC) eglGetProcAddress("glFinishFenceNV");
    glSetFenceNV = (PFNGLSETFENCENVPROC) eglGetProcAddress("glSetFenceNV");
    glTestFenceNV = (PFNGLTESTFENCENVPROC) eglGetProcAddress("glTestFenceNV");
+
+*/
 
    // Get configs
    if ( !eglGetConfigs(display, NULL, 0, &numConfigs) )
