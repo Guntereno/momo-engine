@@ -363,4 +363,10 @@
       <Filter>Momo</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\PropertySheets\Debug.props" />
+    <None Include="..\..\PropertySheets\DirectX.Debug.props" />
+    <None Include="..\..\PropertySheets\DirectX.Release.props" />
+    <None Include="..\..\PropertySheets\Win32.props" />
+  </ItemGroup>
 </Project>
