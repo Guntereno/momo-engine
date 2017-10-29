@@ -5,33 +5,34 @@
 #include <cstring>
 #include <cstdlib>
 
+
 namespace Momo
 {
-namespace Io
-{
-FileInMemory::FileInMemory(const char* pFileName):
-	mpData(NULL),
-	mDataSize(0)
-{
-	File::Handle file = File::Open(pFileName, File::kModeRead);
-	ASSERT(file != NULL);
-
-	if(file != NULL)
+	namespace Io
 	{
-		mDataSize = File::GetSize(file);
-		mpData = (u8*)malloc(mDataSize + 1);
-		memset(mpData, 0, mDataSize + 1);
+		FileInMemory::FileInMemory(const char* pFileName) :
+			mpData(NULL),
+			mDataSize(0)
+		{
+			File::Handle file = File::Open(pFileName, File::kModeRead);
+			ASSERT(file != NULL);
 
-		File::Read(file, mpData, mDataSize);
-		mpData[mDataSize] = '\0';
+			if (file != NULL)
+			{
+				mDataSize = File::GetSize(file);
+				mpData = (u8*)malloc(mDataSize + 1);
+				memset(mpData, 0, mDataSize + 1);
 
-		File::Close(file);
+				File::Read(file, mpData, mDataSize);
+				mpData[mDataSize] = '\0';
+
+				File::Close(file);
+			}
+		}
+
+		FileInMemory::~FileInMemory()
+		{
+			free(mpData);
+		}
 	}
-}
-
-FileInMemory::~FileInMemory()
-{
-	free (mpData);
-}
-}
 }

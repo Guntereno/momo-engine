@@ -22,7 +22,7 @@
 //
 //      Main window procedure
 //
-LRESULT WINAPI ESWindowProc ( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
+LRESULT WINAPI ESWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	LRESULT  lRet = 1;
 
@@ -32,119 +32,119 @@ LRESULT WINAPI ESWindowProc ( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam
 		break;
 
 	case WM_SIZE:
-		{
-			ESContext *esContext = (ESContext*)(LONG_PTR) GetWindowLongPtr ( hWnd, GWL_USERDATA );
-			if ( esContext ) {
-				esContext->width = LOWORD( lParam );
-				esContext->height = HIWORD( lParam );
+	{
+		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
+		if (esContext) {
+			esContext->width = LOWORD(lParam);
+			esContext->height = HIWORD(lParam);
 
-				if ( esContext && esContext->resizeFunc )
-					esContext->resizeFunc ( esContext, esContext->width, esContext->height );
+			if (esContext && esContext->resizeFunc)
+				esContext->resizeFunc(esContext, esContext->width, esContext->height);
 
-				InvalidateRect( esContext->hWnd, NULL, FALSE );
-			}
+			InvalidateRect(esContext->hWnd, NULL, FALSE);
 		}
+	}
 
 	case WM_PAINT:
-		{
-			ESContext *esContext = (ESContext*)(LONG_PTR) GetWindowLongPtr ( hWnd, GWL_USERDATA );
+	{
+		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
 
-			if ( esContext && esContext->drawFunc )
-				esContext->drawFunc ( esContext );
+		if (esContext && esContext->drawFunc)
+			esContext->drawFunc(esContext);
 
-			if ( esContext )
-				ValidateRect( esContext->hWnd, NULL );
-		}
-		break;
+		if (esContext)
+			ValidateRect(esContext->hWnd, NULL);
+	}
+	break;
 
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
 
 	case WM_CHAR:
-		{
-			POINT      point;
-			ESContext *esContext = (ESContext*)(LONG_PTR) GetWindowLongPtr ( hWnd, GWL_USERDATA );
+	{
+		POINT      point;
+		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
 
-			GetCursorPos( &point );
+		GetCursorPos(&point);
 
-			if ( esContext && esContext->keyFunc )
-				esContext->keyFunc ( esContext, (unsigned char) wParam,
-				(int) point.x, (int) point.y );
-		}
-		break;
+		if (esContext && esContext->keyFunc)
+			esContext->keyFunc(esContext, (unsigned char)wParam,
+			(int)point.x, (int)point.y);
+	}
+	break;
 
 	case WM_LBUTTONDOWN:
-		{
-			ESContext *esContext = (ESContext*)(LONG_PTR) GetWindowLongPtr ( hWnd, GWL_USERDATA );
+	{
+		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
 
-			WORD x = LOWORD(lParam);
-			WORD y = HIWORD(lParam);
+		WORD x = LOWORD(lParam);
+		WORD y = HIWORD(lParam);
 
-			if ( esContext && esContext->mouseFunc )
-				esContext->mouseFunc ( esContext, ES_MOUSE_DOWN,
-				(int) x, (int) y );
-		}
-		break;
+		if (esContext && esContext->mouseFunc)
+			esContext->mouseFunc(esContext, ES_MOUSE_DOWN,
+			(int)x, (int)y);
+	}
+	break;
 
 	case WM_MOUSEMOVE:
-		{
-			ESContext *esContext = (ESContext*)(LONG_PTR) GetWindowLongPtr ( hWnd, GWL_USERDATA );
+	{
+		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
 
-			WORD x = LOWORD(lParam);
-			WORD y = HIWORD(lParam);
+		WORD x = LOWORD(lParam);
+		WORD y = HIWORD(lParam);
 
-			if ( esContext && esContext->mouseFunc )
-				esContext->mouseFunc ( esContext, ES_MOUSE_MOVE,
-				(int) x, (int) y );
+		if (esContext && esContext->mouseFunc)
+			esContext->mouseFunc(esContext, ES_MOUSE_MOVE,
+			(int)x, (int)y);
 
-			// Start timer for handling mouse leaves
-			if ( esContext->mouseLeaveTimer == 0 )
-				esContext->mouseLeaveTimer = SetTimer( esContext->hWnd, MOUSELEAVE, 250, NULL );
-		}
-		break;
+		// Start timer for handling mouse leaves
+		if (esContext->mouseLeaveTimer == 0)
+			esContext->mouseLeaveTimer = SetTimer(esContext->hWnd, MOUSELEAVE, 250, NULL);
+	}
+	break;
 
 	case WM_LBUTTONUP:
-		{
-			ESContext *esContext = (ESContext*)(LONG_PTR) GetWindowLongPtr ( hWnd, GWL_USERDATA );
+	{
+		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
 
-			WORD x = LOWORD(lParam);
-			WORD y = HIWORD(lParam);
+		WORD x = LOWORD(lParam);
+		WORD y = HIWORD(lParam);
 
-			if ( esContext && esContext->mouseFunc )
-				esContext->mouseFunc ( esContext, ES_MOUSE_UP,
-				(int) x, (int) y );
-		}
-		break;
+		if (esContext && esContext->mouseFunc)
+			esContext->mouseFunc(esContext, ES_MOUSE_UP,
+			(int)x, (int)y);
+	}
+	break;
 
 	case WM_TIMER:
+	{
+		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
+
+		if (wParam == MOUSELEAVE)
 		{
-			ESContext *esContext = (ESContext*)(LONG_PTR) GetWindowLongPtr ( hWnd, GWL_USERDATA );
-
-			if ( wParam == MOUSELEAVE )
+			POINT pt;
+			RECT rect;
+			GetCursorPos(&pt);
+			GetWindowRect(esContext->hWnd, &rect);
+			if (!PtInRect(&rect, pt))
 			{
-				POINT pt;
-				RECT rect;
-				GetCursorPos( &pt );
-				GetWindowRect( esContext->hWnd, &rect );
-				if ( !PtInRect( &rect, pt ) )
-				{
-					if ( esContext && esContext->mouseFunc )
-						esContext->mouseFunc ( esContext, ES_MOUSE_LEAVE,
-						(int) pt.x, (int) pt.y );
+				if (esContext && esContext->mouseFunc)
+					esContext->mouseFunc(esContext, ES_MOUSE_LEAVE,
+					(int)pt.x, (int)pt.y);
 
-					if ( esContext->mouseLeaveTimer != 0 )
-					{
-						KillTimer( esContext->hWnd, esContext->mouseLeaveTimer );
-						esContext->mouseLeaveTimer = 0;
-					}
+				if (esContext->mouseLeaveTimer != 0)
+				{
+					KillTimer(esContext->hWnd, esContext->mouseLeaveTimer);
+					esContext->mouseLeaveTimer = 0;
 				}
 			}
 		}
-		break;
+	}
+	break;
 
 	default:
-		lRet = DefWindowProc (hWnd, uMsg, wParam, lParam);
+		lRet = DefWindowProc(hWnd, uMsg, wParam, lParam);
 		break;
 	}
 
@@ -162,20 +162,20 @@ LRESULT WINAPI ESWindowProc ( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam
 //
 //      Create Win32 instance and window
 //
-GLboolean WinCreate ( ESContext *esContext, LPCTSTR title )
+GLboolean WinCreate(ESContext *esContext, LPCTSTR title)
 {
-	WNDCLASS wndclass = {0};
-	DWORD    wStyle   = 0;
+	WNDCLASS wndclass = { 0 };
+	DWORD    wStyle = 0;
 	RECT     windowRect;
 	HINSTANCE hInstance = GetModuleHandle(NULL);
 
-	wndclass.style         = CS_OWNDC;
-	wndclass.lpfnWndProc   = (WNDPROC)ESWindowProc;
-	wndclass.hInstance     = hInstance;
+	wndclass.style = CS_OWNDC;
+	wndclass.lpfnWndProc = (WNDPROC)ESWindowProc;
+	wndclass.hInstance = hInstance;
 	wndclass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 	wndclass.lpszClassName = TEXT("opengles2.0");
 
-	if (!RegisterClass (&wndclass) )
+	if (!RegisterClass(&wndclass))
 		return FALSE;
 
 	wStyle = WS_VISIBLE | WS_POPUP | WS_BORDER | WS_SYSMENU | WS_CAPTION | WS_SIZEBOX;
@@ -187,7 +187,7 @@ GLboolean WinCreate ( ESContext *esContext, LPCTSTR title )
 	windowRect.right = esContext->width;
 	windowRect.bottom = esContext->height;
 
-	AdjustWindowRect ( &windowRect, wStyle, FALSE );
+	AdjustWindowRect(&windowRect, wStyle, FALSE);
 
 	esContext->hWnd = CreateWindow(
 		TEXT("opengles2.0"),
@@ -204,12 +204,12 @@ GLboolean WinCreate ( ESContext *esContext, LPCTSTR title )
 
 	// Set the ESContext* to the GWL_USERDATA so that it is available to the
 	// ESWindowProc
-	SetWindowLongPtr (  esContext->hWnd, GWL_USERDATA, (LONG) (LONG_PTR) esContext );
+	SetWindowLongPtr(esContext->hWnd, GWL_USERDATA, (LONG)(LONG_PTR)esContext);
 
-	if ( esContext->hWnd == NULL )
+	if (esContext->hWnd == NULL)
 		return GL_FALSE;
 
-	ShowWindow ( esContext->hWnd, TRUE );
+	ShowWindow(esContext->hWnd, TRUE);
 
 	return GL_TRUE;
 }
@@ -219,7 +219,7 @@ GLboolean WinCreate ( ESContext *esContext, LPCTSTR title )
 //
 //      Start main windows loop
 //
-void WinLoop ( ESContext *esContext )
+void WinLoop(ESContext *esContext)
 {
 	MSG msg = { 0 };
 	int done = 0;
@@ -229,14 +229,14 @@ void WinLoop ( ESContext *esContext )
 	{
 		int gotMsg = (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE) != 0);
 		DWORD curTime = GetTickCount();
-		float deltaTime = (float)( curTime - lastTime ) / 1000.0f;
+		float deltaTime = (float)(curTime - lastTime) / 1000.0f;
 		lastTime = curTime;
 
-		if ( gotMsg )
+		if (gotMsg)
 		{
-			if (msg.message==WM_QUIT)
+			if (msg.message == WM_QUIT)
 			{
-				done=1;
+				done = 1;
 			}
 			else
 			{
@@ -245,16 +245,16 @@ void WinLoop ( ESContext *esContext )
 			}
 		}
 		else
-			SendMessage( esContext->hWnd, WM_PAINT, 0, 0 );
+			SendMessage(esContext->hWnd, WM_PAINT, 0, 0);
 
 		// Call update function if registered
-		if ( esContext->updateFunc != NULL )
-			esContext->updateFunc ( esContext, deltaTime );
+		if (esContext->updateFunc != NULL)
+			esContext->updateFunc(esContext, deltaTime);
 	}
 
-	if ( esContext->mouseLeaveTimer != 0 )
+	if (esContext->mouseLeaveTimer != 0)
 	{
-		KillTimer( esContext->hWnd, esContext->mouseLeaveTimer );
+		KillTimer(esContext->hWnd, esContext->mouseLeaveTimer);
 		esContext->mouseLeaveTimer = 0;
 	}
 }

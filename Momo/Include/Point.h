@@ -3,42 +3,43 @@
 
 #include "Momo.h"
 
+
 namespace Momo
 {
 
-// POD type representing a 2D Point
-struct Point
-{
-	static Point Zero()
+	// POD type representing a 2D Point
+	struct Point
 	{
-		Point zero;
-		zero.Set(0,0);
-		return zero;
-	}
+		static Point Zero()
+		{
+			Point zero;
+			zero.Set(0, 0);
+			return zero;
+		}
 
-	int x;
-	int y;
+		int x;
+		int y;
 
-	void Set(int x, int y)
-	{
-		this->x = x;
-		this->y = y;
-	}
+		void Set(int x, int y)
+		{
+			this->x = x;
+			this->y = y;
+		}
 
-	bool operator==(const Point &rhs)
-	{
-		return
-			(this->x == rhs.x) &&
-			(this->y == rhs.y);
-	}
+		bool operator==(const Point &rhs)
+		{
+			return
+				(this->x == rhs.x) &&
+				(this->y == rhs.y);
+		}
 
-	bool operator!=(const Point &rhs)
-	{
-		return
-			(this->x != rhs.x) ||
-			(this->y != rhs.y);
-	}
-};
+		bool operator!=(const Point &rhs)
+		{
+			return
+				(this->x != rhs.x) ||
+				(this->y != rhs.y);
+		}
+	};
 
 }
 

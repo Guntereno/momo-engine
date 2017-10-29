@@ -6,48 +6,49 @@
 #include "Point.h"
 #include "Rectangle.h"
 
+
 namespace Momo
 {
-namespace Text
-{
-
-class TextWrapper
-{
-public:
-	struct LineData
+	namespace Text
 	{
-		const char* pStart;
-		const char* pEnd;
-		Point position;
-		int length;
-	};
 
-	TextWrapper(unsigned maxLines);
-	~TextWrapper();
+		class TextWrapper
+		{
+		public:
+			struct LineData
+			{
+				const char* pStart;
+				const char* pEnd;
+				Point position;
+				int length;
+			};
 
-	void Wrap(const Font* pFont, const char* pText, size_t textLen, const Rectangle& area, u32 flags);
+			TextWrapper(unsigned maxLines);
+			~TextWrapper();
 
-	unsigned GetLineCount() { return mLineCount; }
-	const LineData* GetLine(unsigned line);
+			void Wrap(const Font* pFont, const char* pText, size_t textLen, const Rectangle& area, u32 flags);
 
-private:
-	void Wrap();
-	void Position();
-	void AddLine(const char* pStart, const char* pEnd, int length);
+			unsigned GetLineCount() { return mLineCount; }
+			const LineData* GetLine(unsigned line);
 
-	unsigned mMaxLines;
+		private:
+			void Wrap();
+			void Position();
+			void AddLine(const char* pStart, const char* pEnd, int length);
 
-	const Font* mpFont;
-	const char* mpText;
-	size_t mTextLen;
-	Momo::Rectangle mArea;
-	u32 mFlags;
+			unsigned mMaxLines;
 
-	LineData* mpLines;
-	unsigned mLineCount;
-};
+			const Font* mpFont;
+			const char* mpText;
+			size_t mTextLen;
+			Momo::Rectangle mArea;
+			u32 mFlags;
 
-}
+			LineData* mpLines;
+			unsigned mLineCount;
+		};
+
+	}
 }
 
 #endif //MOMO_TEXT_TEXTWRAPPER_INCLUDED

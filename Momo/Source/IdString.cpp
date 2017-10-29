@@ -2,6 +2,7 @@
 
 namespace Momo
 {
+
 	const IdString IdString::kNull = IdString("");
 
 }

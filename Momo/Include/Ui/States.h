@@ -3,20 +3,21 @@
 
 #include "Momo.h"
 
+
 namespace Momo
 {
-namespace Ui
-{
+	namespace Ui
+	{
 
-enum StateId
-{
-	kStateDefault,
-	kStatePressed,
+		enum StateId
+		{
+			kStateDefault,
+			kStatePressed,
 
-	kStateCount
-};
+			kStateCount
+		};
 
-}
+	}
 }
 
 #endif //MOMO_UI_STATES_INCLUDED

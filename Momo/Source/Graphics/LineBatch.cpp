@@ -10,233 +10,235 @@
 
 #include <cstddef>
 
+
 //#define OUTPUT_VERTEX_INFO
+
 
 namespace Momo
 {
-namespace Graphics
-{
-
-static const char* kShaderNames[2] =
-{ "shaders/vpLineBatch.vp", "shaders/fpLineBatch.fp" };
-
-
-static bool gStaticsInitialised = false;
-static Technique gTechnique;
-
-LineBatch::LineBatch():
-	mVertexBufferHandle(0),
-	mIndexBufferHandle(0),
-	mInBeginEndBlock(false),
-	mLineCount(0)
-{
-}
-
-void LineBatch::Load()
-{
-	LOGI("LineBatch Constructor");
-
-	if (!gStaticsInitialised)
+	namespace Graphics
 	{
-		bool result = LoadTechnique();
-		ASSERT(result);
 
-		gStaticsInitialised = true;
-	}
+		static const char* kShaderNames[2] =
+		{ "shaders/vpLineBatch.vp", "shaders/fpLineBatch.fp" };
 
-	// Declare the vertex stream buffer
-	glGenBuffers(1, &mVertexBufferHandle);
-	glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferHandle);
-	glBufferData(GL_ARRAY_BUFFER, kVertexMax * sizeof(Vertex), mVertexData, GL_STREAM_DRAW);
 
-	// Generate the index buffer
-	GLushort indices[kIndexMax];
-	for(int line=0; line<kLineMax; ++line)
-	{
-		GLushort startIndex = (line * (GLushort)kIndicesPerLine);
-		GLushort startVert = (line * (GLushort)kVertsPerLine);
+		static bool gStaticsInitialised = false;
+		static Technique gTechnique;
 
-		indices[startIndex + 0] = startVert + 0;
-		indices[startIndex + 1] = startVert + 1;
-	}
+		LineBatch::LineBatch() :
+			mVertexBufferHandle(0),
+			mIndexBufferHandle(0),
+			mInBeginEndBlock(false),
+			mLineCount(0)
+		{
+		}
 
-	glGenBuffers(1, &mIndexBufferHandle);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, kIndexMax * sizeof(GLushort), indices, GL_STATIC_DRAW);
+		void LineBatch::Load()
+		{
+			LOGI("LineBatch Constructor");
 
-	// Unbind
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-}
+			if (!gStaticsInitialised)
+			{
+				bool result = LoadTechnique();
+				ASSERT(result);
 
-void LineBatch::Begin()
-{
-	//LOGI("LineBatch::Begin()");
-	ASSERT(!mInBeginEndBlock);
+				gStaticsInitialised = true;
+			}
 
-	mInBeginEndBlock = true;
-	mLineCount = 0;
-}
+			// Declare the vertex stream buffer
+			glGenBuffers(1, &mVertexBufferHandle);
+			glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferHandle);
+			glBufferData(GL_ARRAY_BUFFER, kVertexMax * sizeof(Vertex), mVertexData, GL_STREAM_DRAW);
 
-void LineBatch::Draw(const Point& from, const Point& to, const Color& color)
-{
-	DrawInternal(from, to, color, color);
-}
+			// Generate the index buffer
+			GLushort indices[kIndexMax];
+			for (int line = 0; line < kLineMax; ++line)
+			{
+				GLushort startIndex = (line * (GLushort)kIndicesPerLine);
+				GLushort startVert = (line * (GLushort)kVertsPerLine);
 
-void LineBatch::Draw(const Point& from, const Point& to, const Color& colorFrom, const Color& colorTo)
-{
-	DrawInternal(from, to, colorFrom, colorTo);
-}
+				indices[startIndex + 0] = startVert + 0;
+				indices[startIndex + 1] = startVert + 1;
+			}
 
-void LineBatch::DrawRectangle(const Rectangle& rect, const Color& color)
-{
-	Point points[] =
-	{
-		{ rect.Left(), rect.Bottom() },
-		{ rect.Left(), rect.Top() },
-		{ rect.Right(), rect.Top() },
-		{ rect.Right(), rect.Bottom() }
-	};
+			glGenBuffers(1, &mIndexBufferHandle);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, kIndexMax * sizeof(GLushort), indices, GL_STATIC_DRAW);
 
-	DrawInternal(points[0], points[1], color, color);
-	DrawInternal(points[1], points[2], color, color);
-	DrawInternal(points[2], points[3], color, color);
-	DrawInternal(points[3], points[0], color, color);
-}
+			// Unbind
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+		}
 
-void LineBatch::End(const Camera& camera)
-{
-	//LOGI("LineBatch::End()");
-	ASSERT(mInBeginEndBlock);
+		void LineBatch::Begin()
+		{
+			//LOGI("LineBatch::Begin()");
+			ASSERT(!mInBeginEndBlock);
 
-	GL_CHECK(glUseProgram(gTechnique.program.Handle()))
+			mInBeginEndBlock = true;
+			mLineCount = 0;
+		}
 
-	// Set the transform
-	glUniformMatrix4fv(gTechnique.uniforms.transform, 1, false, (GLfloat*)(&camera.GetViewProjection()));
+		void LineBatch::Draw(const Point& from, const Point& to, const Color& color)
+		{
+			DrawInternal(from, to, color, color);
+		}
 
-	// Send vertex data
-	glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferHandle);
-	GL_CHECK(glBufferSubData (
-		GL_ARRAY_BUFFER,
-		0,
-		mLineCount * kVertsPerLine * sizeof(Vertex),
-		mVertexData))
+		void LineBatch::Draw(const Point& from, const Point& to, const Color& colorFrom, const Color& colorTo)
+		{
+			DrawInternal(from, to, colorFrom, colorTo);
+		}
 
-	// Enable the vertex attributes
-	GL_CHECK(glVertexAttribPointer(
-		gTechnique.attributes.color, Vertex::kBytesPerColor,
-		GL_UNSIGNED_BYTE, GL_TRUE,
-		sizeof(Vertex),
-		(void*)offsetof(struct Vertex, color)))
+		void LineBatch::DrawRectangle(const Rectangle& rect, const Color& color)
+		{
+			Point points[] =
+			{
+				{ rect.Left(), rect.Bottom() },
+				{ rect.Left(), rect.Top() },
+				{ rect.Right(), rect.Top() },
+				{ rect.Right(), rect.Bottom() }
+			};
 
-	GL_CHECK(glVertexAttribPointer(
-		gTechnique.attributes.position, Vertex::kFloatsPerPosition,
-		GL_FLOAT, GL_FALSE,
-		sizeof(Vertex),
-		(void*)offsetof(struct Vertex, position)))
-	
-	GL_CHECK(glEnableVertexAttribArray(gTechnique.attributes.color))
-	GL_CHECK(glEnableVertexAttribArray(gTechnique.attributes.position))
+			DrawInternal(points[0], points[1], color, color);
+			DrawInternal(points[1], points[2], color, color);
+			DrawInternal(points[2], points[3], color, color);
+			DrawInternal(points[3], points[0], color, color);
+		}
 
-	// Draw indexed primitives
-	int indexCount = mLineCount * kIndicesPerLine;
-	GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle))
-	GL_CHECK(glDrawElements(
-		GL_LINES,
-		indexCount,
-		GL_UNSIGNED_SHORT,
-		(void*)(0)
-		))
+		void LineBatch::End(const Camera& camera)
+		{
+			//LOGI("LineBatch::End()");
+			ASSERT(mInBeginEndBlock);
 
-	mInBeginEndBlock = false;
-}
+			GL_CHECK(glUseProgram(gTechnique.program.Handle()))
 
-bool LineBatch::LoadTechnique()
-{
-	LOGI("LoadTechniques()\n");
+				// Set the transform
+				glUniformMatrix4fv(gTechnique.uniforms.transform, 1, false, (GLfloat*)(&camera.GetViewProjection()));
 
-	// Create the program
-	bool result = gTechnique.program.LoadFiles
-	(
-		kShaderNames[0],
-		kShaderNames[1]
-	);
+			// Send vertex data
+			glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferHandle);
+			GL_CHECK(glBufferSubData(
+				GL_ARRAY_BUFFER,
+				0,
+				mLineCount * kVertsPerLine * sizeof(Vertex),
+				mVertexData))
 
-	if (!result) {
-		LOGE("Could not create sprite batch program.\n");
-		return false;
-	}
+				// Enable the vertex attributes
+				GL_CHECK(glVertexAttribPointer(
+					gTechnique.attributes.color, Vertex::kBytesPerColor,
+					GL_UNSIGNED_BYTE, GL_TRUE,
+					sizeof(Vertex),
+					(void*)offsetof(struct Vertex, color)))
 
-	GLuint programHandle = gTechnique.program.Handle();
-	ASSERT(programHandle != 0);
+				GL_CHECK(glVertexAttribPointer(
+					gTechnique.attributes.position, Vertex::kFloatsPerPosition,
+					GL_FLOAT, GL_FALSE,
+					sizeof(Vertex),
+					(void*)offsetof(struct Vertex, position)))
 
-	// Get the attribute names
-	Technique::Attributes& attributes = gTechnique.attributes;
+				GL_CHECK(glEnableVertexAttribArray(gTechnique.attributes.color))
+				GL_CHECK(glEnableVertexAttribArray(gTechnique.attributes.position))
 
-	GL_CHECK(attributes.color = glGetAttribLocation(programHandle, "aColor"))
-	LOGI("glGetAttribLocation(\"aColor\") = %d\n",
-			attributes.color);
+				// Draw indexed primitives
+				int indexCount = mLineCount * kIndicesPerLine;
+			GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle))
+				GL_CHECK(glDrawElements(
+					GL_LINES,
+					indexCount,
+					GL_UNSIGNED_SHORT,
+					(void*)(0)
+				))
 
-	GL_CHECK(attributes.position = glGetAttribLocation(programHandle, "aPosition"))
-	LOGI("glGetAttribLocation(\"aPosition\") = %d\n",
-			attributes.position);
+				mInBeginEndBlock = false;
+		}
 
-	// Get the uniform handles
-	Technique::Uniforms& uniforms = gTechnique.uniforms;
+		bool LineBatch::LoadTechnique()
+		{
+			LOGI("LoadTechniques()\n");
 
-	GL_CHECK(uniforms.transform = glGetUniformLocation(programHandle, "uTransform"))
-	LOGI("glGetUniformLocation(\"uTransform\") = %d\n",
-			uniforms.transform);
+			// Create the program
+			bool result = gTechnique.program.LoadFiles
+			(
+				kShaderNames[0],
+				kShaderNames[1]
+			);
 
-	return true;
-}
+			if (!result) {
+				LOGE("Could not create sprite batch program.\n");
+				return false;
+			}
 
-void LineBatch::DrawInternal(const Point& from, const Point& to, const Color& colorFrom, const Color& colorTo)
-{
-	ASSERT(mInBeginEndBlock);
+			GLuint programHandle = gTechnique.program.Handle();
+			ASSERT(programHandle != 0);
 
-	if(mLineCount >= kLineMax)
-	{
-		BREAK();
-		return;
-	}
+			// Get the attribute names
+			Technique::Attributes& attributes = gTechnique.attributes;
 
-	// Setup the vertices
-	Vector2 positions[kVertsPerLine];
-	{
-		positions[0].Set(from);
-		positions[1].Set(to);
-	}
+			GL_CHECK(attributes.color = glGetAttribLocation(programHandle, "aColor"))
+				LOGI("glGetAttribLocation(\"aColor\") = %d\n",
+					attributes.color);
 
-	Color colors[kVertsPerLine];
-	{
-		colors[0] = colorFrom;
-		colors[1] = colorTo;
-	}
+			GL_CHECK(attributes.position = glGetAttribLocation(programHandle, "aPosition"))
+				LOGI("glGetAttribLocation(\"aPosition\") = %d\n",
+					attributes.position);
 
-	const int kFirstVert = mLineCount * kVertsPerLine;
-	for(int i=0; i<kVertsPerLine; ++i)
-	{
-		int vertIdx = kFirstVert + i;
+			// Get the uniform handles
+			Technique::Uniforms& uniforms = gTechnique.uniforms;
 
-		mVertexData[vertIdx].position = positions[i];
-		mVertexData[vertIdx].color = colors[i];
+			GL_CHECK(uniforms.transform = glGetUniformLocation(programHandle, "uTransform"))
+				LOGI("glGetUniformLocation(\"uTransform\") = %d\n",
+					uniforms.transform);
+
+			return true;
+		}
+
+		void LineBatch::DrawInternal(const Point& from, const Point& to, const Color& colorFrom, const Color& colorTo)
+		{
+			ASSERT(mInBeginEndBlock);
+
+			if (mLineCount >= kLineMax)
+			{
+				BREAK();
+				return;
+			}
+
+			// Setup the vertices
+			Vector2 positions[kVertsPerLine];
+			{
+				positions[0].Set(from);
+				positions[1].Set(to);
+			}
+
+			Color colors[kVertsPerLine];
+			{
+				colors[0] = colorFrom;
+				colors[1] = colorTo;
+			}
+
+			const int kFirstVert = mLineCount * kVertsPerLine;
+			for (int i = 0; i < kVertsPerLine; ++i)
+			{
+				int vertIdx = kFirstVert + i;
+
+				mVertexData[vertIdx].position = positions[i];
+				mVertexData[vertIdx].color = colors[i];
 
 #ifdef OUTPUT_VERTEX_INFO
 
-		LOGI("mVertexData[%d].color = 0x%x\n",
-			vertIdx,
-			mVertexData[vertIdx].color
-			);
-		LOGI("mVertexData[%d].position = { %.2f, %.2f }\n",
-			vertIdx,
-			mVertexData[vertIdx].position.x,
-			mVertexData[vertIdx].position.y
-			);
+				LOGI("mVertexData[%d].color = 0x%x\n",
+					vertIdx,
+					mVertexData[vertIdx].color
+				);
+				LOGI("mVertexData[%d].position = { %.2f, %.2f }\n",
+					vertIdx,
+					mVertexData[vertIdx].position.x,
+					mVertexData[vertIdx].position.y
+				);
 #endif
-	}
+			}
 
-	++mLineCount;
-}
-}
+			++mLineCount;
+		}
+	}
 }

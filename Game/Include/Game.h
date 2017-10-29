@@ -14,7 +14,7 @@
 #include "TestView.h"
 
 
-class Game: public Momo::GameBase
+class Game : public Momo::GameBase
 {
 public:
 	enum FontId

@@ -5,29 +5,30 @@
 #include <cstdlib>
 #include <new>
 
+
 namespace Momo
 {
-namespace Memory
-{
-void OutOfMemory()
-{
-	LOGE("Unable to allocate memory block! Aborting process.");
-	abort();
-}
+	namespace Memory
+	{
+		void OutOfMemory()
+		{
+			LOGE("Unable to allocate memory block! Aborting process.");
+			abort();
+		}
 
-DefaultHeap::DefaultHeap()
-{
-	//std::set_new_handler(OutOfMemory);
-}
+		DefaultHeap::DefaultHeap()
+		{
+			//std::set_new_handler(OutOfMemory);
+		}
 
-void* DefaultHeap::Allocate( size_t size )
-{
-	return malloc(size);
-}
+		void* DefaultHeap::Allocate(size_t size)
+		{
+			return malloc(size);
+		}
 
-void DefaultHeap::Free( void* pBlock )
-{
-	free(pBlock);
-}
-}
+		void DefaultHeap::Free(void* pBlock)
+		{
+			free(pBlock);
+		}
+	}
 }

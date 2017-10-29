@@ -14,38 +14,38 @@
 extern "C" {
 #endif
 
-///
-//  Macros
-//
+	///
+	//  Macros
+	//
 
-///
-// Types
-//
+	///
+	// Types
+	//
 
-///
-//  Public Functions
-//
+	///
+	//  Public Functions
+	//
 
-///
-//  WinCreate()
-//
-//      Create Win32 instance and window
-//
-GLboolean WinCreate ( ESContext *esContext, LPCTSTR title );
+	///
+	//  WinCreate()
+	//
+	//      Create Win32 instance and window
+	//
+	GLboolean WinCreate(ESContext *esContext, LPCTSTR title);
 
-///
-//  WinLoop()
-//
-//      Start main windows loop
-//
-void WinLoop ( ESContext *esContext );
+	///
+	//  WinLoop()
+	//
+	//      Start main windows loop
+	//
+	void WinLoop(ESContext *esContext);
 
-///
-//  WinTGALoad()
-//
-//      TGA loader win32 implementation
-//
-int WinTGALoad ( const char *fileName, char **buffer, int *width, int *height );
+	///
+	//  WinTGALoad()
+	//
+	//      TGA loader win32 implementation
+	//
+	int WinTGALoad(const char *fileName, char **buffer, int *width, int *height);
 
 #ifdef __cplusplus
 }

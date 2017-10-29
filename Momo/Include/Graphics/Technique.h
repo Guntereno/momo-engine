@@ -7,41 +7,42 @@
 
 #include <GLES2/gl2.h>
 
+
 namespace Momo
 {
-namespace Graphics
-{
-
-class Technique
-{
-public:
-	struct Attributes
+	namespace Graphics
 	{
-		GLuint position;
-		GLuint textureCoord;
-		GLuint color;
-		GLuint channel;
-	};
 
-	struct Uniforms
-	{
-		GLuint transform;
-		GLuint texture;
-	};
+		class Technique
+		{
+		public:
+			struct Attributes
+			{
+				GLuint position;
+				GLuint textureCoord;
+				GLuint color;
+				GLuint channel;
+			};
 
-	Technique();
+			struct Uniforms
+			{
+				GLuint transform;
+				GLuint texture;
+			};
 
-	bool Load(const char* pVertexFileName, const char* pFragmentFileName);
+			Technique();
 
-	Program program;
-	Attributes attributes;
-	Uniforms uniforms;
+			bool Load(const char* pVertexFileName, const char* pFragmentFileName);
 
-private:
-	DISALLOW_COPY_AND_ASSIGN(Technique);
-};
+			Program program;
+			Attributes attributes;
+			Uniforms uniforms;
 
-}
+		private:
+			DISALLOW_COPY_AND_ASSIGN(Technique);
+		};
+
+	}
 }
 
 #endif //MOMO_GRAPHICS_TECHNIQUE_INCLUDED

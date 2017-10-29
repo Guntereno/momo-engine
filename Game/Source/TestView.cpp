@@ -18,10 +18,10 @@ TestView::TestView()
 	SetMargin(margin);
 
 	mpNinePatchTexture = new Momo::Graphics::Texture();
-	
+
 	mpNinePatch = new Momo::Ui::NinePatchDrawable();
-	Momo::Rectangle outer = {0, 7, 57, 57};
-	Momo::Rectangle inner = {24, 20, 16, 25};
+	Momo::Rectangle outer = { 0, 7, 57, 57 };
+	Momo::Rectangle inner = { 24, 20, 16, 25 };
 	mpNinePatch->SetState
 	(
 		kStateDefault,
@@ -30,12 +30,12 @@ TestView::TestView()
 		inner
 	);
 
-	for(int i=0; i<kTextureCount; ++i)
+	for (int i = 0; i < kTextureCount; ++i)
 	{
 		mpTextures[i] = new Momo::Graphics::Texture();
 	}
 
-	for(int i=0; i<kImageCount; ++i)
+	for (int i = 0; i < kImageCount; ++i)
 	{
 		mpImages[i] = new ImageDrawable();
 	}
@@ -45,7 +45,7 @@ TestView::TestView()
 
 	// Create a null drawable for rendering plain coloured quads
 	mpNullImage = new ImageDrawable();
-	
+
 	mpNullImage->SetState(kStateDefault, NULL, Momo::Rectangle::Zero());
 
 	struct ViewParams
@@ -80,7 +80,7 @@ TestView::TestView()
 		},
 	};
 
-	for(int i=0; i<kViewCount; ++i)
+	for (int i = 0; i < kViewCount; ++i)
 	{
 		pViews[i]->SetBackground(params[i].pImage);
 		pViews[i]->SetColor(params[i].color);
@@ -112,7 +112,7 @@ void TestView::Load()
 		"toad.tga",
 		"toad_pressed.tga"
 	};
-	for(int i=0; i<kTextureCount; ++i)
+	for (int i = 0; i < kTextureCount; ++i)
 	{
 		mpTextures[i]->LoadTga(kFileNames[i]);
 	}

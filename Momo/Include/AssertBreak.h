@@ -3,6 +3,7 @@
 
 #include "Momo.h"
 
+
 #ifdef MOMO_DEBUG
 #define USE_ASSERT
 #endif
@@ -21,9 +22,9 @@ extern "C"
 {
 #endif
 
-void AssertPrint (const char* file, unsigned line, const char* expression);
-void AssertPrintMessage (const char* file, unsigned line, const char* expression, const char* message, ...);
-void BreakPrintMessage (const char* file, unsigned line, const char* message, ...);
+	void AssertPrint(const char* file, unsigned line, const char* expression);
+	void AssertPrintMessage(const char* file, unsigned line, const char* expression, const char* message, ...);
+	void BreakPrintMessage(const char* file, unsigned line, const char* message, ...);
 
 #ifdef __cplusplus
 }

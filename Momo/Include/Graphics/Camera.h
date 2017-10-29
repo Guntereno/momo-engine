@@ -10,10 +10,12 @@
 
 #include "Graphics/Texture.h"
 
+
 namespace Momo
 {
 	namespace Graphics
 	{
+
 		class Camera
 		{
 		public:
@@ -44,6 +46,7 @@ namespace Momo
 			mutable bool mViewProjectionDirty;
 			mutable Matrix mViewProjection;
 		};
+
 	}
 }
 

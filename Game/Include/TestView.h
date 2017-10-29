@@ -5,7 +5,8 @@
 
 #include "Ui/View.h"
 
-class TestView: public Momo::Ui::View
+
+class TestView : public Momo::Ui::View
 {
 public:
 	TestView();

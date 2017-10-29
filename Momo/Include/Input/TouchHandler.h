@@ -5,25 +5,28 @@
 
 #include "Point.h"
 
+
 namespace Momo
 {
-namespace Input
-{
-class TouchHandler
-{
-public:
-	static const int kMaxTouches = 5;
+	namespace Input
+	{
 
-	TouchHandler();
+		class TouchHandler
+		{
+		public:
+			static const int kMaxTouches = 5;
 
-	int GetNumTouches() const { return mNumTouches; }
-	const Point& GetTouch(int index) const { return mTouches[index]; }
+			TouchHandler();
 
-private:
-	Point mTouches[kMaxTouches];
-	int mNumTouches;
-};
-}
+			int GetNumTouches() const { return mNumTouches; }
+			const Point& GetTouch(int index) const { return mTouches[index]; }
+
+		private:
+			Point mTouches[kMaxTouches];
+			int mNumTouches;
+		};
+
+	}
 }
 
 #endif //MOMO_INPUT_TOUCHHANDLER_INCLUDED

@@ -5,36 +5,39 @@
 
 #include <GLES2/gl2.h>
 
+
 namespace Momo
 {
-namespace Graphics
-{
-class Texture
-{
-public:
-	Texture():
-		mHandle(0),
-		mWidth(0),
-		mHeight(0)
-		{}
+	namespace Graphics
+	{
 
-	inline int Width() const { return mWidth; }
-	inline int Height() const { return mHeight; }
-	inline GLuint Handle() const { return mHandle; }
-	inline GLenum Format() const { return mFormat; }
+		class Texture
+		{
+		public:
+			Texture() :
+				mHandle(0),
+				mWidth(0),
+				mHeight(0)
+			{}
 
-	void Load(GLsizei width, GLsizei height, GLenum format, const void* data);
-	bool LoadTga(const char* pFileName);
+			inline int Width() const { return mWidth; }
+			inline int Height() const { return mHeight; }
+			inline GLuint Handle() const { return mHandle; }
+			inline GLenum Format() const { return mFormat; }
 
-private:
-	DISALLOW_COPY_AND_ASSIGN(Texture);
+			void Load(GLsizei width, GLsizei height, GLenum format, const void* data);
+			bool LoadTga(const char* pFileName);
 
-	GLuint mHandle;
-	int mWidth;
-	int mHeight;
-	GLenum mFormat;
-};
-}
+		private:
+			DISALLOW_COPY_AND_ASSIGN(Texture);
+
+			GLuint mHandle;
+			int mWidth;
+			int mHeight;
+			GLenum mFormat;
+		};
+
+	}
 }
 
 #endif //MOMO_GRAPHICS_TEXTURE_INCLUDED

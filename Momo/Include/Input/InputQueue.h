@@ -3,34 +3,35 @@
 
 #include "InputEvent.h"
 
+
 namespace Momo
 {
-namespace Input
-{
+	namespace Input
+	{
 
-// FIFO queue for tracking input events
-class InputQueue
-{
-public:
-	static Event kNullEvent;
+		// FIFO queue for tracking input events
+		class InputQueue
+		{
+		public:
+			static Event kNullEvent;
 
-	InputQueue(int size = 256);
-	~InputQueue();
+			InputQueue(int size = 256);
+			~InputQueue();
 
-	void Push(Event& event);
-	const Event& Pop();
+			void Push(Event& event);
+			const Event& Pop();
 
-	short Count() const { return mCount; }
+			short Count() const { return mCount; }
 
-private:
-	int mSize;
-	Event* mQueue;
+		private:
+			int mSize;
+			Event* mQueue;
 
-	Event* mpStart;
-	int mCount;
-};
+			Event* mpStart;
+			int mCount;
+		};
 
-}
+	}
 }
 
 #endif //MOMO_INPUT_INPUTQUEUE_INCLUDED

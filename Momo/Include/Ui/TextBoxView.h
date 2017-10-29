@@ -6,53 +6,54 @@
 #include "Color.h"
 #include "View.h"
 
+
 namespace Momo
 {
-namespace Ui
-{
+	namespace Ui
+	{
 
-class TextBoxView: public View
-{
-public:
-	TextBoxView(size_t maxLength = 256, unsigned maxLines = 16);
-	virtual ~TextBoxView();
+		class TextBoxView : public View
+		{
+		public:
+			TextBoxView(size_t maxLength = 256, unsigned maxLines = 16);
+			virtual ~TextBoxView();
 
-	// Override
-	virtual void Arrange(const Rectangle& parentRect, bool force = false);
+			// Override
+			virtual void Arrange(const Rectangle& parentRect, bool force = false);
 
-	void SetFont(const Text::Font& font);
-	const Text::Font* GetFont() const { return mpFont; }
+			void SetFont(const Text::Font& font);
+			const Text::Font* GetFont() const { return mpFont; }
 
-	void SetColor(const Color& color) { mColor = color; }
-	const Color& GetColor() const { return mColor; }
+			void SetColor(const Color& color) { mColor = color; }
+			const Color& GetColor() const { return mColor; }
 
-	void SetText(const char* pText);
-	const char* GetText() { return mpBuffer; }
+			void SetText(const char* pText);
+			const char* GetText() { return mpBuffer; }
 
-	// Use bitwise or of TextWrapper::Flag
-	void SetFlags(u32 flags);
-	u32 GetFlags() { return mFlags; }
+			// Use bitwise or of TextWrapper::Flag
+			void SetFlags(u32 flags);
+			u32 GetFlags() { return mFlags; }
 
-private:
-	DISALLOW_COPY_AND_ASSIGN(TextBoxView);
+		private:
+			DISALLOW_COPY_AND_ASSIGN(TextBoxView);
 
-	// Override
-	virtual void DrawInternal(Graphics::SpriteBatch& spriteBatch);
+			// Override
+			virtual void DrawInternal(Graphics::SpriteBatch& spriteBatch);
 
-	void ReWrap();
+			void ReWrap();
 
-	char* mpBuffer;
-	size_t mBufferLen;
-	const Text::Font* mpFont;
-	Color mColor;
-	u32 mFlags;
+			char* mpBuffer;
+			size_t mBufferLen;
+			const Text::Font* mpFont;
+			Color mColor;
+			u32 mFlags;
 
-	Text::TextWrapper* mpTextWrapper;
+			Text::TextWrapper* mpTextWrapper;
 
-	bool mWrappingDirty;
-};
+			bool mWrappingDirty;
+		};
 
-}
+	}
 }
 
 #endif //MOMO_UI_TEXTBOXVIEW_INCLUDED

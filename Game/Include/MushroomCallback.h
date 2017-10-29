@@ -6,7 +6,8 @@
 
 #include "Game.h"
 
-class Game::MushroomCallback: public Momo::Ui::ICallback
+
+class Game::MushroomCallback : public Momo::Ui::ICallback
 {
 public:
 	MushroomCallback() {}

@@ -7,17 +7,6 @@
 
 #include <cstddef>
 
-namespace Momo
-{
-	class GameTime;
-
-	namespace Graphics
-	{
-		class SpriteBatch;
-		class Texture;
-	}
-}
-
 class Character
 {
 public:

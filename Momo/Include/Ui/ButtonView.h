@@ -7,29 +7,30 @@
 
 #include "ICallback.h"
 
+
 namespace Momo
 {
-namespace Ui
-{
+	namespace Ui
+	{
 
-class ButtonView: public View
-{
-public:
-	ButtonView();
-	virtual ~ButtonView();
+		class ButtonView : public View
+		{
+		public:
+			ButtonView();
+			virtual ~ButtonView();
 
-	virtual bool HandleInputEvent(const Input::Event& event);
+			virtual bool HandleInputEvent(const Input::Event& event);
 
-	void RegisterCallback(ICallback* pCallback) { mpCallback = pCallback; }
+			void RegisterCallback(ICallback* pCallback) { mpCallback = pCallback; }
 
-private:
-	DISALLOW_COPY_AND_ASSIGN(ButtonView);
+		private:
+			DISALLOW_COPY_AND_ASSIGN(ButtonView);
 
-	ICallback* mpCallback;
-	u32 mTouchId;
-};
+			ICallback* mpCallback;
+			u32 mTouchId;
+		};
 
-}
+	}
 }
 
 #endif //MOMO_UI_BUTTONVIEW_INCLUDED

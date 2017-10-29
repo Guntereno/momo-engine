@@ -3,33 +3,34 @@
 
 #include "Momo.h"
 
+
 namespace Momo
 {
 
-class GameTime
-{
-public:
-	static u64 SecondsToMilliseconds(float value);
-	static float MillisecondsToSeconds(u64 value);
+	class GameTime
+	{
+	public:
+		static u64 SecondsToMilliseconds(float value);
+		static float MillisecondsToSeconds(u64 value);
 
-	GameTime();
+		GameTime();
 
-	GameTime& operator= (const GameTime& value);
+		GameTime& operator= (const GameTime& value);
 
-	void Update(u64 tick);
+		void Update(u64 tick);
 
-	u64 GetDeltaMilliseconds() const;
-	float GetDeltaSeconds() const;
+		u64 GetDeltaMilliseconds() const;
+		float GetDeltaSeconds() const;
 
-	u64 GetCurrentTick() const { return mCurrentTick; }
-	u64 GetPreviousTick() const { return mPreviousTick; }
+		u64 GetCurrentTick() const { return mCurrentTick; }
+		u64 GetPreviousTick() const { return mPreviousTick; }
 
-	GameTime WithoutDelta() const;
+		GameTime WithoutDelta() const;
 
-private:
-	u64 mCurrentTick;
-	u64 mPreviousTick;
-};
+	private:
+		u64 mCurrentTick;
+		u64 mPreviousTick;
+	};
 
 }
 

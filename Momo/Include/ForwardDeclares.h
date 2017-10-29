@@ -1,8 +1,8 @@
 #ifndef MOMO_FORWARDDECLARES_INCLUDED
 #define MOMO_FORWARDDECLARES_INCLUDED
 
-// Forward declares for all engine classes
 
+// Forward declares for all engine classes
 namespace Momo
 {
 	namespace Graphics

@@ -3,28 +3,29 @@
 
 #include "Momo.h"
 
+
 namespace Momo
 {
-namespace Io
-{
+	namespace Io
+	{
 
-class FileInMemory
-{
-public:
-	FileInMemory(const char* pFileName);
-	virtual ~FileInMemory();
+		class FileInMemory
+		{
+		public:
+			FileInMemory(const char* pFileName);
+			virtual ~FileInMemory();
 
-	const u8* GetData() { return mpData; }
-	const size_t GetSize() { return mDataSize; }
+			const u8* GetData() { return mpData; }
+			const size_t GetSize() { return mDataSize; }
 
-private:
-	DISALLOW_COPY_AND_ASSIGN(FileInMemory);
+		private:
+			DISALLOW_COPY_AND_ASSIGN(FileInMemory);
 
-	u8* mpData;
-	size_t mDataSize;
-};
+			u8* mpData;
+			size_t mDataSize;
+		};
 
-}
+	}
 }
 
 #endif //MOMO_IO_FILEINMEMORY_INCLUDED

@@ -3,23 +3,24 @@
 
 #include "Momo.h"
 
+
 namespace Momo
 {
-namespace Text
-{
+	namespace Text
+	{
 
-enum Alignment
-{
-	kHAlignLeft = 0x1,
-	kHAlignRight = 0x2,
-	kHAlignCenter = kHAlignLeft | kHAlignRight,
+		enum Alignment
+		{
+			kHAlignLeft = 0x1,
+			kHAlignRight = 0x2,
+			kHAlignCenter = kHAlignLeft | kHAlignRight,
 
-	kVAlignBottom = 0x4,
-	kVAlignTop = 0x8,
-	kVAlignCenter = kVAlignBottom | kVAlignTop,
-};
+			kVAlignBottom = 0x4,
+			kVAlignTop = 0x8,
+			kVAlignCenter = kVAlignBottom | kVAlignTop,
+		};
 
-}
+	}
 }
 
 #endif //MOMO_TEXT_ALIGNMENT_INCLUDED

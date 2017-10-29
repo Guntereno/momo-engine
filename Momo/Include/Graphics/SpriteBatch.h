@@ -10,94 +10,95 @@
 
 #include "Graphics/Texture.h"
 
+
 namespace Momo
 {
-namespace Graphics
-{
-
-class SpriteBatch
-{
-public:
-	enum DrawFlags
+	namespace Graphics
 	{
-		kFlagFlipX = 1 << 0,
-		kFlagFlipY = 1 << 1
-	};
 
-	enum TechniqueId
-	{
-		kTechniqueInvalid = -1,
+		class SpriteBatch
+		{
+		public:
+			enum DrawFlags
+			{
+				kFlagFlipX = 1 << 0,
+				kFlagFlipY = 1 << 1
+			};
 
-		kTechniqueSprite,
-		kTechniqueFontNoOutline,
-		kTechniqueFontOutline,
+			enum TechniqueId
+			{
+				kTechniqueInvalid = -1,
 
-		kTechniqueCount
-	};
+				kTechniqueSprite,
+				kTechniqueFontNoOutline,
+				kTechniqueFontOutline,
 
-	SpriteBatch();
+				kTechniqueCount
+			};
 
-	void Load();
+			SpriteBatch();
 
-	void Begin();
+			void Load();
 
-	void Draw(const Texture* texture, const Rectangle& dest, const Color& color);
-	void Draw(const Texture* texture, const Rectangle& dest, const Color& color, unsigned int flags);
-	void Draw(const Texture* texture, const Rectangle& dest, const Rectangle& src, const Color& color);
-	void Draw(const Texture* texture, const Rectangle& dest, const Rectangle& src, const Color& color, unsigned int flags);
+			void Begin();
 
-	void DrawString(const Text::Font& font, const char* pUtf8String, size_t strLen, const Point& point, const Color& color);
+			void Draw(const Texture* texture, const Rectangle& dest, const Color& color);
+			void Draw(const Texture* texture, const Rectangle& dest, const Color& color, unsigned int flags);
+			void Draw(const Texture* texture, const Rectangle& dest, const Rectangle& src, const Color& color);
+			void Draw(const Texture* texture, const Rectangle& dest, const Rectangle& src, const Color& color, unsigned int flags);
 
-	void End(const Camera& camera);
+			void DrawString(const Text::Font& font, const char* pUtf8String, size_t strLen, const Point& point, const Color& color);
 
-private:
-	DISALLOW_COPY_AND_ASSIGN(SpriteBatch);
+			void End(const Camera& camera);
 
-	static const size_t kVertsPerSprite = 4;
-	static const size_t kIndicesPerSprite = 6;
+		private:
+			DISALLOW_COPY_AND_ASSIGN(SpriteBatch);
 
-	static const size_t kSpriteMax = 8192;
-	static const size_t kVertexMax = kSpriteMax * kVertsPerSprite;
-	static const size_t kIndexMax = kSpriteMax * kIndicesPerSprite;
+			static const size_t kVertsPerSprite = 4;
+			static const size_t kIndicesPerSprite = 6;
 
-	static const size_t kTrianglesPerSprite = 2;
+			static const size_t kSpriteMax = 8192;
+			static const size_t kVertexMax = kSpriteMax * kVertsPerSprite;
+			static const size_t kIndexMax = kSpriteMax * kIndicesPerSprite;
 
-	struct Vertex
-	{
-		static const int kFloatsPerPosition = 2;
-		static const int kFloatsPerUv = 2;
-		static const int kFloatsPerChannel = 4;
-		static const int kBytesPerColor = 4;
+			static const size_t kTrianglesPerSprite = 2;
 
-		Color color;
-		Vector2 position;
-		Vector2 uv;
-		Vector4 channel;
-	};
+			struct Vertex
+			{
+				static const int kFloatsPerPosition = 2;
+				static const int kFloatsPerUv = 2;
+				static const int kFloatsPerChannel = 4;
+				static const int kBytesPerColor = 4;
 
-	struct BatchInfo
-	{
-		const Texture* pTexture;
-		size_t count;
-		TechniqueId technique;
-	};
+				Color color;
+				Vector2 position;
+				Vector2 uv;
+				Vector4 channel;
+			};
 
-	bool LoadTechniques();
+			struct BatchInfo
+			{
+				const Texture* pTexture;
+				size_t count;
+				TechniqueId technique;
+			};
 
-	void DrawInternal(TechniqueId techniqueId, const Vector4& channel, const Texture* pTexture, const Rectangle& dest, const Rectangle* src, const Color& color, unsigned int flags);
+			bool LoadTechniques();
 
-	GLuint mVertexBufferHandle;
-	GLuint mIndexBufferHandle;
+			void DrawInternal(TechniqueId techniqueId, const Vector4& channel, const Texture* pTexture, const Rectangle& dest, const Rectangle* src, const Color& color, unsigned int flags);
 
-	Vertex mVertexData[kVertexMax];
-	BatchInfo mBatchData[kSpriteMax];
+			GLuint mVertexBufferHandle;
+			GLuint mIndexBufferHandle;
 
-	bool mInBeginEndBlock;
-	size_t mSpriteCount;
-	size_t mBatchCount;
-};
+			Vertex mVertexData[kVertexMax];
+			BatchInfo mBatchData[kSpriteMax];
 
-}
+			bool mInBeginEndBlock;
+			size_t mSpriteCount;
+			size_t mBatchCount;
+		};
+
+	}
 }
 
 #endif //MOMO_GRAPHICS_SPRITEBATCH_INCLUDED

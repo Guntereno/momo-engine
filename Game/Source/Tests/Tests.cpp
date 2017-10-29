@@ -10,7 +10,7 @@
 
 namespace Tests
 {
-	
+
 	bool Crc32Test()
 	{
 		bool success = true;
@@ -72,18 +72,18 @@ namespace Tests
 
 		u32 hashes[kTestStringsCount];
 
-		for(int i=0; i<kTestStringsCount; ++i)
+		for (int i = 0; i < kTestStringsCount; ++i)
 		{
 			const char* pStr = kTestStrings[i];
 			hashes[i] = Crc32(pStr, strlen(pStr));
 		}
 
 		// Check for collisions
-		for(int i=0; i<(kTestStringsCount-1); ++i)
+		for (int i = 0; i < (kTestStringsCount - 1); ++i)
 		{
-			for(int j=(i+1); j<kTestStringsCount; ++j)
+			for (int j = (i + 1); j < kTestStringsCount; ++j)
 			{
-				if(hashes[i] == hashes[j])
+				if (hashes[i] == hashes[j])
 				{
 					LOGI("Crc32 clash found between %s and %s!", kTestStrings[i], kTestStrings[j]);
 					success = false;
@@ -148,20 +148,20 @@ namespace Tests
 		};
 		static const u32 kTestStringsRandCount = sizeof(kTestStringsRand) / sizeof(*kTestStringsRand);
 
-		for(int i=0; i<kTestStringsRandCount; ++i)
+		for (int i = 0; i < kTestStringsRandCount; ++i)
 		{
 			const char* pStr = kTestStringsRand[i];
 			u32 hash = Crc32(pStr, strlen(pStr));
 			bool found = false;
-			for(int j=0; j<kTestStringsCount; ++j)
+			for (int j = 0; j < kTestStringsCount; ++j)
 			{
-				if(hash == hashes[j])
+				if (hash == hashes[j])
 				{
 					found = true;
 					break;
 				}
 			}
-			if(!found)
+			if (!found)
 			{
 				LOGI("Unable to find %s in table! h1=0x(%x) h2=0x(%x)", kTestStringsRand[i], hash, hashes[i]);
 				success = false;
@@ -187,14 +187,14 @@ namespace Tests
 		};
 		static const u32 kTestStringsExcludedCount = sizeof(kTestStringsExcluded) / sizeof(*kTestStringsExcluded);
 
-		for(int i=0; i<kTestStringsExcludedCount; ++i)
+		for (int i = 0; i < kTestStringsExcludedCount; ++i)
 		{
 			const char* pStr = kTestStringsExcluded[i];
 			u32 hash = Crc32(pStr, strlen(pStr));
 			bool found = false;
-			for(int j=0; j<kTestStringsCount; ++j)
+			for (int j = 0; j < kTestStringsCount; ++j)
 			{
-				if(hash == hashes[j])
+				if (hash == hashes[j])
 				{
 					LOGI("Found clash between %s 0x(%x) and %s 0x(%x)!", kTestStrings[i], hash, kTestStrings[i], hashes[i]);
 					success = false;

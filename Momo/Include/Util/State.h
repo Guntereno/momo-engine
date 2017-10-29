@@ -8,47 +8,47 @@
 
 namespace Momo
 {
-namespace Util
-{
-
-class State
-{
-public:
-	State(IdString id);
-	virtual ~State() {};
-
-	Momo::IdString GetId() const { return mId; }
-
-	void Enter();
-	void Update(const GameTime& gameTime);
-	void Exit();
-
-	bool IsActive();
-	Momo::IdString GetStateRequest() const { return mStateRequest; }
-
-protected:
-	enum Flag
+	namespace Util
 	{
-		kFlagComplete = 1 << 0
-	};
 
-	virtual void EnterInternal() {};
-	virtual void UpdateInternal(const GameTime& gameTime) = 0;
-	virtual void ExitInternal() {};
+		class State
+		{
+		public:
+			State(IdString id);
+			virtual ~State() {};
 
-	// Use to request exit to another state
-	void RequestState(IdString id);
+			Momo::IdString GetId() const { return mId; }
 
-private:
-	DISALLOW_COPY_AND_ASSIGN(State);
+			void Enter();
+			void Update(const GameTime& gameTime);
+			void Exit();
 
-	IdString mId;
+			bool IsActive();
+			Momo::IdString GetStateRequest() const { return mStateRequest; }
 
-	s16 mFlags;
-	IdString mStateRequest;
-};
+		protected:
+			enum Flag
+			{
+				kFlagComplete = 1 << 0
+			};
 
-}
+			virtual void EnterInternal() {};
+			virtual void UpdateInternal(const GameTime& gameTime) = 0;
+			virtual void ExitInternal() {};
+
+			// Use to request exit to another state
+			void RequestState(IdString id);
+
+		private:
+			DISALLOW_COPY_AND_ASSIGN(State);
+
+			IdString mId;
+
+			s16 mFlags;
+			IdString mStateRequest;
+		};
+
+	}
 }
 
 

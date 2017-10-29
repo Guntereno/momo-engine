@@ -3,25 +3,26 @@
 
 #include "Momo.h"
 
+
 namespace Momo
 {
 
-class ApplicationTimer
-{
-public:
-	ApplicationTimer();
+	class ApplicationTimer
+	{
+	public:
+		ApplicationTimer();
 
-	void Init();
+		void Init();
 
-	void Update();
-	u64 GetCurrentTick() { return mCurrentTick; }
-	void SetPaused(bool value) { mPaused = value; }
+		void Update();
+		u64 GetCurrentTick() { return mCurrentTick; }
+		void SetPaused(bool value) { mPaused = value; }
 
-private:
-	u64 mPreviousTick;
-	u64 mCurrentTick;
-	bool mPaused;
-};
+	private:
+		u64 mPreviousTick;
+		u64 mCurrentTick;
+		bool mPaused;
+	};
 
 }
 

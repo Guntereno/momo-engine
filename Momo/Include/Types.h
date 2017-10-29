@@ -5,6 +5,7 @@
 
 #include <cstddef>
 
+
 typedef char s8;
 typedef unsigned char u8;
 typedef short s16;

@@ -140,8 +140,6 @@ xcopy "$(SolutionDir)..\Assets" "$(OutDir)" /E /R /D /Y</Command>
     <ClInclude Include="$(SolutionDir)..\Momo\Include\Util\StateMachine.h" />
     <ClInclude Include="$(SolutionDir)..\Momo\Include\Vector.h" />
     <ClInclude Include="$(SolutionDir)..\Momo\Include\Graphics\Camera.h" />
-    <ClInclude Include="$(SolutionDir)..\Momo\Graphics\Mesh.h" />
-    <ClInclude Include="$(SolutionDir)..\Momo\Graphics\Technique.h" />
     <ClInclude Include="..\..\Momo\Include\Graphics\Mesh.h" />
     <ClInclude Include="..\..\Momo\Include\Graphics\Technique.h" />
     <ClInclude Include="Include\esUtil.h" />

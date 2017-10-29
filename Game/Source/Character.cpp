@@ -50,7 +50,7 @@ int Character::msScaleFactor = 1;
 
 void Character::ResetCounters()
 {
-	for(int i=0; i<Character::kCharacterCount; ++i)
+	for (int i = 0; i < Character::kCharacterCount; ++i)
 	{
 		gKillCounts[i] = 0;
 	}
@@ -61,7 +61,7 @@ int Character::GetKillCount(Type type)
 	return gKillCounts[type];
 }
 
-Character::Character():
+Character::Character() :
 	mType(kCharacterMarioBig),
 	mFrameTimer(0.0f),
 	mFrame(0),
@@ -96,79 +96,79 @@ void Character::Init()
 
 void Character::Update(const GameTime& gameTime)
 {
-	switch(mState)
+	switch (mState)
 	{
 	case kStateAlive:
+	{
+		float frameDelta = gameTime.GetDeltaSeconds();
+		mFrameTimer += frameDelta;
+		while (mFrameTimer > kFrameTime)
 		{
-			float frameDelta = gameTime.GetDeltaSeconds();
-			mFrameTimer += frameDelta;
-			while(mFrameTimer > kFrameTime)
+			if (++mFrame >= kFrameCount[mType])
+				mFrame = 0;
+
+			mFrameTimer -= kFrameTime;
+		}
+
+		float distance = kSpeeds[mType] * frameDelta;
+		switch (mDirection)
+		{
+		case kDirectionRight:
+		{
+			mPosition.x += distance;
+			Rectangle bounds = CurrentBounds();
+			if (bounds.Right() > msBounds.Right())
 			{
-				if(++mFrame >= kFrameCount[mType])
-					mFrame = 0;
-
-				mFrameTimer -= kFrameTime;
-			}
-
-			float distance = kSpeeds[mType] * frameDelta;
-			switch(mDirection)
-			{
-			case kDirectionRight:
-				{
-					mPosition.x += distance;
-					Rectangle bounds = CurrentBounds();
-					if(bounds.Right() > msBounds.Right())
-					{
-						mDirection = kDirectionLeft;
-					}
-				}
-				break;
-
-			case kDirectionLeft:
-				{
-					mPosition.x -= distance;
-					Rectangle bounds = CurrentBounds();
-					if(bounds.Left() < msBounds.Left())
-					{
-						mDirection = kDirectionRight;
-					}
-				}
-				break;
-
-			default:
-				ASSERT(false);
+				mDirection = kDirectionLeft;
 			}
 		}
 		break;
+
+		case kDirectionLeft:
+		{
+			mPosition.x -= distance;
+			Rectangle bounds = CurrentBounds();
+			if (bounds.Left() < msBounds.Left())
+			{
+				mDirection = kDirectionRight;
+			}
+		}
+		break;
+
+		default:
+			ASSERT(false);
+		}
+	}
+	break;
 
 	case kStateDying:
+	{
+		float frameDelta = gameTime.GetDeltaSeconds();
+		mFrameTimer += frameDelta;
+
+		// Small mario falls
+		if (mType == kCharacterMarioSmall)
 		{
-			float frameDelta = gameTime.GetDeltaSeconds();
-			mFrameTimer += frameDelta;
+			static const Vector2 kGravity = { 0.0f, -200.0f };
+			mVelocity += kGravity * frameDelta;
+			mPosition += mVelocity * frameDelta;
+		}
 
-			// Small mario falls
-			if(mType == kCharacterMarioSmall)
+		static const float kDeathLength = 2.0f;
+		if (mFrameTimer > kDeathLength)
+		{
+			if (mType == kCharacterMarioBig)
 			{
-				static const Vector2 kGravity = { 0.0f, -200.0f };
-				mVelocity += kGravity * frameDelta;
-				mPosition += mVelocity * frameDelta;
+				mType = kCharacterMarioSmall;
+				mState = kStateAlive;
 			}
-
-			static const float kDeathLength = 2.0f;
-			if(mFrameTimer > kDeathLength)
+			else
 			{
-				if(mType == kCharacterMarioBig)
-				{
-					mType = kCharacterMarioSmall;
-					mState = kStateAlive;
-				}
-				else
-				{
-					mState = kStateDead;
-				}
+				mState = kStateDead;
 			}
 		}
-		break;
+	}
+	break;
 
 	case kStateDead:
 		// Do nothing
@@ -178,7 +178,7 @@ void Character::Update(const GameTime& gameTime)
 
 void Character::Draw(Graphics::SpriteBatch& spriteBatch)
 {
-	if(mState == kStateDead)
+	if (mState == kStateDead)
 		return;
 
 	ASSERT(mspTexture != NULL);
@@ -187,55 +187,55 @@ void Character::Draw(Graphics::SpriteBatch& spriteBatch)
 
 	Rectangle source, dest;
 
-	switch(mState)
+	switch (mState)
 	{
-		case kStateAlive:
-		{
-			source = CurrentSource();
-			dest = CurrentBounds();
-		}
-		break;
+	case kStateAlive:
+	{
+		source = CurrentSource();
+		dest = CurrentBounds();
+	}
+	break;
 
-		case kStateDying:
+	case kStateDying:
+	{
+		int deadFrame = kDeadFrames[mType];
+		if (mType == kCharacterMarioBig)
 		{
-			int deadFrame = kDeadFrames[mType];
-			if (mType == kCharacterMarioBig)
+			// Big mario flashes between big and small
+			static const float kFlashTime = 0.2f;
+			if (fmod(mFrameTimer, kFlashTime) < (0.5f * kFlashTime))
 			{
-				// Big mario flashes between big and small
-				static const float kFlashTime = 0.2f;
-				if (fmod(mFrameTimer, kFlashTime) < (0.5f * kFlashTime))
-				{
-					source = kFrames[deadFrame];
-					dest.Set(
-						(int)mPosition.x,
-						(int)mPosition.y,
-						source.width * msScaleFactor,
-						source.height * msScaleFactor);
-				}
-				else
-				{
-					source = CurrentSource();
-					dest = CurrentBounds();
-				}
+				source = kFrames[deadFrame];
+				dest.Set(
+					(int)mPosition.x,
+					(int)mPosition.y,
+					source.width * msScaleFactor,
+					source.height * msScaleFactor);
 			}
 			else
 			{
-				source = kFrames[deadFrame];
+				source = CurrentSource();
 				dest = CurrentBounds();
 			}
 		}
-		break;
+		else
+		{
+			source = kFrames[deadFrame];
+			dest = CurrentBounds();
+		}
+	}
+	break;
 
-		case kStateDead:
-			// Do nothing
-			break;
+	case kStateDead:
+		// Do nothing
+		break;
 	}
 	spriteBatch.Draw(mspTexture, dest, source, Color::White(), flags);
 }
 
 void Character::OnHit()
 {
-	if(mState == kStateAlive)
+	if (mState == kStateAlive)
 	{
 		++gKillCounts[mType];
 
@@ -243,7 +243,7 @@ void Character::OnHit()
 		mFrameTimer = 0.0f;
 
 		// Small mario is launched in the air
-		if(mType == kCharacterMarioSmall)
+		if (mType == kCharacterMarioSmall)
 		{
 			static const Vector2 kInitialVelocity = { 0.0f, 100.0f };
 			mVelocity = kInitialVelocity;
@@ -271,7 +271,7 @@ Rectangle Character::CurrentBounds()
 
 void Character::Mushroom()
 {
-	if(mType == kCharacterMarioSmall)
+	if (mType == kCharacterMarioSmall)
 	{
 		mType = kCharacterMarioBig;
 	}

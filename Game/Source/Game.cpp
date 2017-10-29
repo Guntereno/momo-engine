@@ -36,7 +36,7 @@ static const char* kFontNames[Game::kFontCount] =
 	"fonts/verdana_outline_nopack.fnt",
 };
 
-Game::Game():
+Game::Game() :
 	GameBase(),
 	mCurrentFont(0)
 {
@@ -70,7 +70,7 @@ void Game::LoadGraphics()
 	mTexture.LoadTga("mario.tga");
 	Character::SetTexture(mTexture);
 
-	for(int i=0; i<kFontCount; ++i)
+	for (int i = 0; i < kFontCount; ++i)
 	{
 		mFonts[i].Load(kFontNames[i]);
 	}
@@ -132,7 +132,7 @@ void Game::LoadMesh()
 		pIndices,
 		kNumIndices
 	);
-	
+
 	mMeshTechnique.Load("shaders/vpMesh.vp", "shaders/fpMesh.fp");
 
 	mMeshRenderer.Load(mMeshTechnique, mMesh, &mTexture);
@@ -158,7 +158,7 @@ void Game::Resize(unsigned int width, unsigned int height)
 	Character::SetScaleFactor(kScaleFactor);
 
 	// Setup the characters
-	for(int i=0; i<kNumCharacters; ++i)
+	for (int i = 0; i < kNumCharacters; ++i)
 	{
 		mCharacters[i].Init();
 	}
@@ -174,7 +174,7 @@ void Game::Update()
 {
 	GameBase::Update();
 
-	for(int i=0; i<kNumCharacters; ++i)
+	for (int i = 0; i < kNumCharacters; ++i)
 	{
 		mCharacters[i].Update(mGameTime);
 	}
@@ -185,9 +185,9 @@ void Game::Draw()
 	//LOGI("Game::Render() begin");
 
 	GL_CHECK(glClearColor(0.322f, 0.545f, 0.651f, 1.0f))
-	GL_CHECK(glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT))
+		GL_CHECK(glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT))
 
-	glDisable(GL_CULL_FACE);
+		glDisable(GL_CULL_FACE);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -235,32 +235,32 @@ void Game::UnPause()
 
 bool Game::HandleTouchEvent(const Momo::Input::Event& event)
 {
-	switch(event.type)
+	switch (event.type)
 	{
-		case Momo::Input::Event::kDown:
-		case Momo::Input::Event::kMove:
-		case Momo::Input::Event::kUp:
+	case Momo::Input::Event::kDown:
+	case Momo::Input::Event::kMove:
+	case Momo::Input::Event::kUp:
+	{
+		// Search backwards so front characters are hit
+		for (int i = (kNumCharacters - 1); i >= 0; --i)
 		{
-			// Search backwards so front characters are hit
-			for (int i = (kNumCharacters - 1); i >= 0; --i)
+			Character& character = mCharacters[i];
+			if (character.IsAlive() && character.CurrentBounds().Contains(event.pos))
 			{
-				Character& character = mCharacters[i];
-				if (character.IsAlive() && character.CurrentBounds().Contains(event.pos))
-				{
-					mCharacters[i].OnHit();
-					break;
-				}
-
-				mMeshPos.x = (float)event.pos.x;
-				mMeshPos.y = (float)event.pos.y;
+				mCharacters[i].OnHit();
+				break;
 			}
-			return true;
-		}
-		break;
 
-		case Momo::Input::Event::kNone:
-			// Do nothing
-			break;
+			mMeshPos.x = (float)event.pos.x;
+			mMeshPos.y = (float)event.pos.y;
+		}
+		return true;
+	}
+	break;
+
+	case Momo::Input::Event::kNone:
+		// Do nothing
+		break;
 	}
 
 	return false;
@@ -268,7 +268,7 @@ bool Game::HandleTouchEvent(const Momo::Input::Event& event)
 
 void Game::RenderCharacters()
 {
-	for(int i=0; i<kNumCharacters; ++i)
+	for (int i = 0; i < kNumCharacters; ++i)
 	{
 		mCharacters[i].Draw(mSpriteBatch);
 	}
@@ -301,7 +301,7 @@ void Game::RenderMesh()
 
 const Momo::Text::Font* Game::GetFont(FontId fontId)
 {
-	if((fontId >= 0) && (fontId < kFontCount))
+	if ((fontId >= 0) && (fontId < kFontCount))
 	{
 		return &mFonts[fontId];
 	}

@@ -8,10 +8,12 @@
 
 #include <GLES2/gl2.h>
 
+
 namespace Momo
 {
 	namespace Graphics
 	{
+
 		class Mesh
 		{
 		public:
@@ -61,6 +63,7 @@ namespace Momo
 			const GLushort* mpIndexData;
 			size_t mIndexCount;
 		};
+
 	}
 }
 

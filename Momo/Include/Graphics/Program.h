@@ -5,30 +5,33 @@
 
 #include <GLES2/gl2.h>
 
+
 namespace Momo
 {
-namespace Graphics
-{
-class Program
-{
-public:
-	Program():
-		mHandle(0)
-		{}
+	namespace Graphics
+	{
 
-	inline GLuint Handle() const { return mHandle; }
+		class Program
+		{
+		public:
+			Program() :
+				mHandle(0)
+			{}
 
-	bool Load(const char* pVertexSource, const char* pFragmentSource);
-	bool LoadFiles(const char* pVertexFileName, const char* pFragmentFileName);
+			inline GLuint Handle() const { return mHandle; }
 
-private:
-	DISALLOW_COPY_AND_ASSIGN(Program);
+			bool Load(const char* pVertexSource, const char* pFragmentSource);
+			bool LoadFiles(const char* pVertexFileName, const char* pFragmentFileName);
 
-	GLuint LoadShader(GLenum shaderType, const char* pSource);
+		private:
+			DISALLOW_COPY_AND_ASSIGN(Program);
 
-	GLuint mHandle;
-};
-}
+			GLuint LoadShader(GLenum shaderType, const char* pSource);
+
+			GLuint mHandle;
+		};
+
+	}
 }
 
 #endif //MOMO_GRAPHICS_PROGRAM_INCLUDED
