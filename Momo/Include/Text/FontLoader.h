@@ -10,6 +10,7 @@ namespace Momo
 {
 namespace Text
 {
+
 // Class for loading text format AngelCode bitmap fonts
 class FontLoader
 {
@@ -58,6 +59,7 @@ private:
 	static const size_t kFileNameMax = 128;
 	char mpTextureFiles[Font::kMaxPages][kFileNameMax];
 };
+
 }
 }
 

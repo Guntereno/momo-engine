@@ -7,6 +7,7 @@ namespace Momo
 {
 namespace Io
 {
+
 class FileInMemory
 {
 public:
@@ -22,6 +23,7 @@ private:
 	u8* mpData;
 	size_t mDataSize;
 };
+
 }
 }
 

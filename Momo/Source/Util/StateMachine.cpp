@@ -19,7 +19,7 @@ namespace Util
 		if(mStateMax > 0)
 		{
 			mppStates = new State*[mStateMax];
-			memset(mppStates, 0, sizeof(*mppStates));
+			memset(mppStates, 0, sizeof(mppStates));
 		}
 	}
 

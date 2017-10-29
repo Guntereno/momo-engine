@@ -1,8 +1,10 @@
-#include "Graphics\SpriteBatch.h"
+#include "Graphics/SpriteBatch.h"
 
 #include "Logger.h"
 #include "AssertBreak.h"
+#include "Graphics/Camera.h"
 #include "Graphics/Program.h"
+#include "Graphics/Technique.h"
 #include "Graphics/Utils.h"
 #include "Text/Font.h"
 
@@ -14,6 +16,7 @@ namespace Momo
 {
 namespace Graphics
 {
+
 static const char* kShaderNames[SpriteBatch::kTechniqueCount][2] =
 {
 	{ "shaders/vpSpriteBatch.vp", "shaders/fpSpriteBatchSprite.fp" },
@@ -21,29 +24,8 @@ static const char* kShaderNames[SpriteBatch::kTechniqueCount][2] =
 	{ "shaders/vpSpriteBatch.vp", "shaders/fpSpriteBatchFontOutline.fp" }
 };
 
-struct Technique
-{
-	struct Attributes
-	{
-		GLuint position;
-		GLuint textureCoord;
-		GLuint color;
-		GLuint channel;
-	};
-
-	struct Uniforms
-	{
-		GLuint transform;
-		GLuint texture;
-	};
-
-	Program program;
-	Attributes attributes;
-	Uniforms uniforms;
-};
-
+static bool gStaticsInitialised = false;
 static Technique gTechniques[SpriteBatch::kTechniqueCount];
-
 static Texture* gWhiteTexture = NULL;
 
 static const Vector4 kChannelAll = { 0.0f, 0.0f, 0.0f, 0.0f };
@@ -61,9 +43,20 @@ void SpriteBatch::Load()
 {
 	LOGI("SpriteBatch Constructor");
 
-	bool result = LoadTechniques();
-	ASSERT(result);
+	if (!gStaticsInitialised)
+	{
+		bool result;
 
+		gWhiteTexture = new Texture();
+		result = gWhiteTexture->LoadTga("white.tga");
+		ASSERT(result);
+
+		result = LoadTechniques();
+		ASSERT(result);
+
+		gStaticsInitialised = true;
+	}
+	
 	// Declare the vertex stream buffer
 	glGenBuffers(1, &mVertexBufferHandle);
 	glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferHandle);
@@ -73,8 +66,8 @@ void SpriteBatch::Load()
 	GLushort indices[kIndexMax];
 	for(int sprite=0; sprite<kSpriteMax; ++sprite)
 	{
-		GLushort startIndex = (sprite * kIndicesPerSprite);
-		GLushort startVert = (sprite * kVertsPerSprite);
+		GLushort startIndex = (sprite * (GLushort)kIndicesPerSprite);
+		GLushort startVert = (sprite * (GLushort)kVertsPerSprite);
 
 		indices[startIndex + 0] = startVert + 0;
 		indices[startIndex + 1] = startVert + 1;
@@ -92,17 +85,10 @@ void SpriteBatch::Load()
 	// Unbind
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-	mTransform.SetIdentity();
-
-	delete(gWhiteTexture);
-	gWhiteTexture = new Texture();
-	gWhiteTexture->LoadTga("white.tga");
 }
 
 void SpriteBatch::Begin()
 {
-	//LOGI("SpriteBatch::Begin()");
 	ASSERT(!mInBeginEndBlock);
 
 	mInBeginEndBlock = true;
@@ -137,7 +123,7 @@ void SpriteBatch::DrawString(const Text::Font& font, const char* pUtf8String, si
 
 	Point cursor = point;
 
-	// Todo: utf8 decoding
+	// TODO: utf8 decoding
 	char prevChar = 0, curChar = 0;
 	for(unsigned i=0; i<strLen; ++i)
 	{
@@ -189,9 +175,8 @@ void SpriteBatch::DrawString(const Text::Font& font, const char* pUtf8String, si
 	}
 }
 
-void SpriteBatch::End()
+void SpriteBatch::End(const Camera& camera)
 {
-	//LOGI("SpriteBatch::End()");
 	ASSERT(mInBeginEndBlock);
 
 	unsigned int currentIndex = 0;
@@ -201,54 +186,48 @@ void SpriteBatch::End()
 
 		Technique& technique = gTechniques[currentBatch.technique];
 
-		glUseProgram(technique.program.Handle());
-		Graphics::Utils::CheckGlError("glUseProgram");
+		GL_CHECK(glUseProgram(technique.program.Handle()))
 
 		// Set the transform
-		glUniformMatrix4fv(technique.uniforms.transform, 1, false, (GLfloat*)(&mTransform));
+		glUniformMatrix4fv(technique.uniforms.transform, 1, false, (GLfloat*)(&camera.GetViewProjection()));
 
 		// Send vertex data
 		glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferHandle);
-		glBufferSubData (
+		GL_CHECK(glBufferSubData (
 			GL_ARRAY_BUFFER,
 			0,
 			mSpriteCount * kVertsPerSprite * sizeof(Vertex),
-			mVertexData);
-		Graphics::Utils::CheckGlError("glBufferSubData");
+			mVertexData))
 
 		// Enable the vertex attributes
-		glVertexAttribPointer(
+		GL_CHECK(glVertexAttribPointer(
 			technique.attributes.color, Vertex::kBytesPerColor,
 			GL_UNSIGNED_BYTE, GL_TRUE,
 			sizeof(Vertex),
-			(void*)offsetof(struct Vertex, color));
+			(void*)offsetof(struct Vertex, color)))
 
-		glVertexAttribPointer(
+		GL_CHECK(glVertexAttribPointer(
 			technique.attributes.position, Vertex::kFloatsPerPosition,
 			GL_FLOAT, GL_FALSE,
 			sizeof(Vertex),
-			(void*)offsetof(struct Vertex, position));
+			(void*)offsetof(struct Vertex, position)))
 
-		glVertexAttribPointer(
+		GL_CHECK(glVertexAttribPointer(
 			technique.attributes.textureCoord, Vertex::kFloatsPerUv,
 			GL_FLOAT, GL_FALSE,
 			sizeof(Vertex),
-			(void*)offsetof(struct Vertex, uv));
+			(void*)offsetof(struct Vertex, uv)))
 
-		glVertexAttribPointer(
+		GL_CHECK(glVertexAttribPointer(
 			technique.attributes.channel, Vertex::kFloatsPerChannel,
 			GL_FLOAT, GL_FALSE,
 			sizeof(Vertex),
-			(void*)offsetof(struct Vertex, channel));
+			(void*)offsetof(struct Vertex, channel)))
 
-		Graphics::Utils::CheckGlError("glVertexAttribPointer");
-
-		glEnableVertexAttribArray(technique.attributes.color);
-		glEnableVertexAttribArray(technique.attributes.position);
-		glEnableVertexAttribArray(technique.attributes.textureCoord);
-		glEnableVertexAttribArray(technique.attributes.channel);
-
-		Graphics::Utils::CheckGlError("glEnableVertexAttribArray");
+		GL_CHECK(glEnableVertexAttribArray(technique.attributes.color))
+		GL_CHECK(glEnableVertexAttribArray(technique.attributes.position))
+		GL_CHECK(glEnableVertexAttribArray(technique.attributes.textureCoord))
+		GL_CHECK(glEnableVertexAttribArray(technique.attributes.channel))
 
 		// Set the active texture unit to texture unit 0.
 		glActiveTexture(GL_TEXTURE0);
@@ -259,15 +238,13 @@ void SpriteBatch::End()
 
 		// Draw indexed primitives
 		int batchIndexCount = currentBatch.count * kIndicesPerSprite;
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle);
-		Graphics::Utils::CheckGlError("glBindBuffer");
-		glDrawElements(
+		GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle))
+		GL_CHECK(glDrawElements(
 			GL_TRIANGLES,
 			batchIndexCount,
 			GL_UNSIGNED_SHORT,
 			(void*)(currentIndex * sizeof(GLushort))
-			);
-		Graphics::Utils::CheckGlError("glDrawElements");
+			))
 
 		currentIndex += batchIndexCount;
 	}
@@ -279,60 +256,22 @@ bool SpriteBatch::LoadTechniques()
 {
 	LOGI("LoadTechniques()\n");
 
+	bool result;
+
 	for(int i=0; i<kTechniqueCount; ++i)
 	{
 		Technique& technique = gTechniques[i];
 
-		// Create the program
-		bool result = technique.program.LoadFiles
+		result = technique.Load
 		(
 			kShaderNames[i][0],
 			kShaderNames[i][1]
 		);
 
-		if (!result) {
-			LOGE("Could not create sprite batch program.\n");
+		if (!result)
+		{
 			return false;
 		}
-
-		GLuint programHandle = technique.program.Handle();
-		ASSERT(programHandle != 0);
-
-		// Get the attribute names
-		Technique::Attributes& attributes = technique.attributes;
-
-		attributes.color = glGetAttribLocation(programHandle, "aColor");
-		Graphics::Utils::CheckGlError("glGetAttribLocation");
-		LOGI("glGetAttribLocation(\"aColor\") = %d\n",
-				attributes.color);
-
-		attributes.position = glGetAttribLocation(programHandle, "aPosition");
-		Graphics::Utils::CheckGlError("glGetAttribLocation");
-		LOGI("glGetAttribLocation(\"aPosition\") = %d\n",
-				attributes.position);
-
-		attributes.textureCoord = glGetAttribLocation(programHandle, "aTexCoord");
-		Graphics::Utils::CheckGlError("glGetAttribLocation");
-		LOGI("glGetAttribLocation(\"aTexCoord\") = %d\n",
-				attributes.textureCoord);
-
-		attributes.channel = glGetAttribLocation(programHandle, "aChannel");
-		Graphics::Utils::CheckGlError("glGetAttribLocation");
-		LOGI("glGetUniformLocation(\"aChannel\") = %d\n",
-				attributes.channel);
-
-		// Get the uniform handles
-		Technique::Uniforms& uniforms = technique.uniforms;
-
-		uniforms.transform = glGetUniformLocation(programHandle, "uTransform");
-		Graphics::Utils::CheckGlError("glGetUniformLocation");
-		LOGI("glGetUniformLocation(\"uTransform\") = %d\n",
-				uniforms.transform);
-
-		uniforms.texture = glGetUniformLocation(programHandle, "uTexture");
-		Graphics::Utils::CheckGlError("glGetUniformLocation");
-		LOGI("glGetUniformLocation(\"uTexture\") = %d\n",
-				uniforms.texture);
 	}
 
 	return true;
@@ -483,5 +422,6 @@ void SpriteBatch::DrawInternal(TechniqueId techniqueId, const Vector4& channel, 
 
 	++mSpriteCount;
 }
+
 }
 }

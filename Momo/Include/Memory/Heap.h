@@ -7,6 +7,7 @@ namespace Momo
 {
 namespace Memory
 {
+
 // Base interface for all memory heaps
 class Heap
 {
@@ -16,6 +17,7 @@ public:
 	virtual void* Allocate(size_t size) = 0;
 	virtual void Free(void* pBlock) = 0;
 };
+
 }
 }
 

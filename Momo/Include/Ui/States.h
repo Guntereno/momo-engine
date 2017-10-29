@@ -7,6 +7,7 @@ namespace Momo
 {
 namespace Ui
 {
+
 enum StateId
 {
 	kStateDefault,
@@ -14,6 +15,7 @@ enum StateId
 
 	kStateCount
 };
+
 }
 }
 

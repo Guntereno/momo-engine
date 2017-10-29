@@ -9,6 +9,7 @@ namespace Momo
 {
 namespace Io
 {
+
 class File
 {
 public:
@@ -32,6 +33,7 @@ public:
 
 	static size_t GetSize(Handle file);
 };
+
 }
 }
 

@@ -14,15 +14,11 @@ namespace Momo
 {
 namespace Graphics
 {
+
 class LineBatch
 {
 public:
 	LineBatch();
-
-	inline void SetTransform(const Matrix& transform)
-	{
-		mTransform = transform;
-	}
 
 	void Load();
 
@@ -32,7 +28,7 @@ public:
 	void Draw(const Point& from, const Point& to, const Color& colorFrom, const Color& colorTo);
 	void DrawRectangle(const Rectangle& rect, const Color& color);
 
-	void End();
+	void End(const Camera& camera);
 
 private:
 	DISALLOW_COPY_AND_ASSIGN(LineBatch);
@@ -66,8 +62,9 @@ private:
 	bool mInBeginEndBlock;
 	size_t mLineCount;
 
-	Matrix mTransform;
+	const Camera* mpCamera;
 };
+
 }
 }
 

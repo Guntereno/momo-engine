@@ -15,11 +15,9 @@ GLuint Program::LoadShader(GLenum shaderType, const char* pSource)
 	GLuint shader = glCreateShader(shaderType);
 	if (shader)
 	{
-		glShaderSource(shader, 1, &pSource, NULL);
-		Utils::CheckGlError("glShaderSource");
+		GL_CHECK(glShaderSource(shader, 1, &pSource, NULL))
 
-		glCompileShader(shader);
-		Utils::CheckGlError("glCompileShader");
+		GL_CHECK(glCompileShader(shader))
 
 		GLint compiled = 0;
 		glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
@@ -50,22 +48,23 @@ bool Program::Load(const char* pVertexSource, const char* pFragmentSource)
 	GLuint vertexShader = LoadShader(GL_VERTEX_SHADER, pVertexSource);
 	if (!vertexShader)
 	{
+		BREAK_MSG("Failed loading vertex shader!")
 		return false;
 	}
 
 	GLuint pixelShader = LoadShader(GL_FRAGMENT_SHADER, pFragmentSource);
 	if (!pixelShader)
 	{
+		BREAK_MSG("Failed loading pixel shader!")
 		return false;
 	}
 
 	GLuint program = glCreateProgram();
 	if (program)
 	{
-		glAttachShader(program, vertexShader);
-		Graphics::Utils::CheckGlError("glAttachShader");
-		glAttachShader(program, pixelShader);
-		Graphics::Utils::CheckGlError("glAttachShader");
+		GL_CHECK(glAttachShader(program, vertexShader))
+		GL_CHECK(glAttachShader(program, pixelShader))
+
 		glLinkProgram(program);
 		GLint linkStatus = GL_FALSE;
 		glGetProgramiv(program, GL_LINK_STATUS, &linkStatus);

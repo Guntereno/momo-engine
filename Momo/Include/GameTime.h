@@ -5,6 +5,7 @@
 
 namespace Momo
 {
+
 class GameTime
 {
 public:
@@ -29,6 +30,7 @@ private:
 	u64 mCurrentTick;
 	u64 mPreviousTick;
 };
+
 }
 
 #endif // MOMO_GAMETIME_INCLUDED

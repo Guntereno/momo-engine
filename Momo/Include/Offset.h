@@ -5,6 +5,7 @@
 
 namespace Momo
 {
+
 // POD type representing a region offset (e.g. margin/padding information)
 struct Offset
 {

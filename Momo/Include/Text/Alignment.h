@@ -7,6 +7,7 @@ namespace Momo
 {
 namespace Text
 {
+
 enum Alignment
 {
 	kHAlignLeft = 0x1,
@@ -17,6 +18,7 @@ enum Alignment
 	kVAlignTop = 0x8,
 	kVAlignCenter = kVAlignBottom | kVAlignTop,
 };
+
 }
 }
 

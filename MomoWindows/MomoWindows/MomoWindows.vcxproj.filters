@@ -76,6 +76,9 @@
     <Filter Include="Game\Source\Tests">
       <UniqueIdentifier>{f32ceb73-7534-4e47-8610-cfad314a1e0a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{3b340171-5807-4c14-b3de-da531de09d66}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\esUtil.h">
@@ -243,6 +246,17 @@
     <ClInclude Include="$(SolutionDir)..\Momo\Include\Types.h">
       <Filter>Momo\Include</Filter>
     </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Graphics\Camera.h">
+      <Filter>Momo\Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)..\Momo\Graphics\Mesh.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Graphics\Technique.h" />
+    <ClInclude Include="..\..\Momo\Include\Graphics\Technique.h">
+      <Filter>Momo\Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Momo\Include\Graphics\Mesh.h">
+      <Filter>Momo\Include\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\esUtil.c">
@@ -341,26 +355,38 @@
     <ClCompile Include="$(SolutionDir)..\Game\Source\Tests\Tests.cpp">
       <Filter>Game\Source\Tests</Filter>
     </ClCompile>
-    <ClCompile Include="$(SolutionDir)..\Momo\Source\ApplicationTimer.cpp">
-      <Filter>Momo</Filter>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Graphics\Camera.cpp">
+      <Filter>Momo\Source\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="$(SolutionDir)..\Momo\Source\AssertBreak.cpp">
-      <Filter>Momo</Filter>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Graphics\Mesh.cpp">
+      <Filter>Momo\Source\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="$(SolutionDir)..\Momo\Source\GameBase.cpp">
-      <Filter>Momo</Filter>
+    <ClCompile Include="..\..\Momo\Source\Graphics\Technique.cpp">
+      <Filter>Momo\Source\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="$(SolutionDir)..\Momo\Source\GameTime.cpp">
-      <Filter>Momo</Filter>
+    <ClCompile Include="..\..\Momo\Source\Matrix.cpp">
+      <Filter>Momo\Source</Filter>
     </ClCompile>
-    <ClCompile Include="$(SolutionDir)..\Momo\Source\IdString.cpp">
-      <Filter>Momo</Filter>
+    <ClCompile Include="..\Momo\Source\ApplicationTimer.cpp">
+      <Filter>Momo\Source</Filter>
     </ClCompile>
-    <ClCompile Include="$(SolutionDir)..\Momo\Source\Logger.cpp">
-      <Filter>Momo</Filter>
+    <ClCompile Include="..\Momo\Source\AssertBreak.cpp">
+      <Filter>Momo\Source</Filter>
     </ClCompile>
-    <ClCompile Include="$(SolutionDir)..\Momo\Source\Vector.cpp">
-      <Filter>Momo</Filter>
+    <ClCompile Include="..\Momo\Source\GameBase.cpp">
+      <Filter>Momo\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Momo\Source\GameTime.cpp">
+      <Filter>Momo\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Momo\Source\IdString.cpp">
+      <Filter>Momo\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Momo\Source\Logger.cpp">
+      <Filter>Momo\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Momo\Source\Vector.cpp">
+      <Filter>Momo\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -368,5 +394,29 @@
     <None Include="..\..\PropertySheets\DirectX.Debug.props" />
     <None Include="..\..\PropertySheets\DirectX.Release.props" />
     <None Include="..\..\PropertySheets\Win32.props" />
+    <None Include="..\..\Assets\shaders\fpLineBatch.fp">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\..\Assets\shaders\fpSpriteBatchFontNoOutline.fp">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\..\Assets\shaders\fpSpriteBatchFontOutline.fp">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\..\Assets\shaders\fpSpriteBatchSprite.fp">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\..\Assets\shaders\vpLineBatch.vp">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\..\Assets\shaders\vpSpriteBatch.vp">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\..\Assets\shaders\fpMesh.fp">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\..\Assets\shaders\vpMesh.vp">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

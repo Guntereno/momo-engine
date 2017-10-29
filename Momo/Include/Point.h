@@ -5,6 +5,7 @@
 
 namespace Momo
 {
+
 // POD type representing a 2D Point
 struct Point
 {
@@ -38,6 +39,7 @@ struct Point
 			(this->y != rhs.y);
 	}
 };
+
 }
 
 #endif //MOMO_POINT_INCLUDED

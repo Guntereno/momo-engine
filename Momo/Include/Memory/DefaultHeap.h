@@ -9,6 +9,7 @@ namespace Momo
 {
 namespace Memory
 {
+
 // DefaultHeap provides an interface to the default new and delete operators
 class DefaultHeap: public Heap
 {
@@ -21,6 +22,7 @@ public:
 private:
 	DISALLOW_COPY_AND_ASSIGN(DefaultHeap);
 };
+
 }
 }
 

@@ -19,7 +19,7 @@ void AssertPrint (const char* file, unsigned line, const char* expression)
 extern "C"
 void AssertPrintMessage (const char* file, unsigned line, const char* expression, const char* message, ...)
 {
-	const size_t kBuffLen = 128;
+	const size_t kBuffLen = 256;
 	char buff[kBuffLen];
 	va_list args;
 	va_start(args, message);
@@ -32,7 +32,7 @@ void AssertPrintMessage (const char* file, unsigned line, const char* expression
 extern "C"
 void BreakPrintMessage (const char* file, unsigned line, const char* message, ...)
 {
-	const size_t kBuffLen = 128;
+	const size_t kBuffLen = 256;
 	char buff[kBuffLen];
 	va_list args;
 	va_start(args, message);

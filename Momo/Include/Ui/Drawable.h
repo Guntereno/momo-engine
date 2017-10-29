@@ -10,6 +10,7 @@ namespace Momo
 {
 namespace Ui
 {
+
 class Drawable
 {
 public:
@@ -30,6 +31,7 @@ public:
 private:
 	DISALLOW_COPY_AND_ASSIGN(Drawable);
 };
+
 }
 }
 

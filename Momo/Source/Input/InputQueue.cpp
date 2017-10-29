@@ -10,7 +10,13 @@ namespace Momo
 namespace Input
 {
 
-Event InputQueue::kNullEvent = { Event::kNone, -1, Point::Zero(), Point::Zero() };
+Event InputQueue::kNullEvent =
+{
+	Event::kNone,
+	(Event::Id)-1,
+	Point::Zero(),
+	Point::Zero()
+};
 
 InputQueue::InputQueue(int size):
 	mSize(size),

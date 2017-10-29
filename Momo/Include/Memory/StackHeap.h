@@ -9,6 +9,7 @@ namespace Momo
 {
 namespace Memory
 {
+
 // StackHeap allocates memory contiguously and provides no delete functionality.
 // Instead watermarks can be pushed and can then be popped to return to a
 // previous state.
@@ -41,6 +42,7 @@ private:
 	};
 	HeapHeader* mpCurrentHeap;
 };
+
 }
 }
 

@@ -2,7 +2,9 @@
 
 #include "Logger.h"
 #include "AssertBreak.h"
+#include "Graphics/Camera.h"
 #include "Graphics/Program.h"
+#include "Graphics/Technique.h"
 #include "Graphics/Utils.h"
 #include "Point.h"
 
@@ -18,24 +20,8 @@ namespace Graphics
 static const char* kShaderNames[2] =
 { "shaders/vpLineBatch.vp", "shaders/fpLineBatch.fp" };
 
-struct Technique
-{
-	struct Attributes
-	{
-		GLuint position;
-		GLuint color;
-	};
 
-	struct Uniforms
-	{
-		GLuint transform;
-	};
-
-	Program program;
-	Attributes attributes;
-	Uniforms uniforms;
-};
-
+static bool gStaticsInitialised = false;
 static Technique gTechnique;
 
 LineBatch::LineBatch():
@@ -50,8 +36,13 @@ void LineBatch::Load()
 {
 	LOGI("LineBatch Constructor");
 
-	bool result = LoadTechnique();
-	ASSERT(result);
+	if (!gStaticsInitialised)
+	{
+		bool result = LoadTechnique();
+		ASSERT(result);
+
+		gStaticsInitialised = true;
+	}
 
 	// Declare the vertex stream buffer
 	glGenBuffers(1, &mVertexBufferHandle);
@@ -62,8 +53,8 @@ void LineBatch::Load()
 	GLushort indices[kIndexMax];
 	for(int line=0; line<kLineMax; ++line)
 	{
-		GLushort startIndex = (line * kIndicesPerLine);
-		GLushort startVert = (line * kVertsPerLine);
+		GLushort startIndex = (line * (GLushort)kIndicesPerLine);
+		GLushort startVert = (line * (GLushort)kVertsPerLine);
 
 		indices[startIndex + 0] = startVert + 0;
 		indices[startIndex + 1] = startVert + 1;
@@ -76,8 +67,6 @@ void LineBatch::Load()
 	// Unbind
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-	mTransform.SetIdentity();
 }
 
 void LineBatch::Begin()
@@ -115,57 +104,49 @@ void LineBatch::DrawRectangle(const Rectangle& rect, const Color& color)
 	DrawInternal(points[3], points[0], color, color);
 }
 
-void LineBatch::End()
+void LineBatch::End(const Camera& camera)
 {
 	//LOGI("LineBatch::End()");
 	ASSERT(mInBeginEndBlock);
 
-	glUseProgram(gTechnique.program.Handle());
-	Graphics::Utils::CheckGlError("glUseProgram");
+	GL_CHECK(glUseProgram(gTechnique.program.Handle()))
 
 	// Set the transform
-	glUniformMatrix4fv(gTechnique.uniforms.transform, 1, false, (GLfloat*)(&mTransform));
+	glUniformMatrix4fv(gTechnique.uniforms.transform, 1, false, (GLfloat*)(&camera.GetViewProjection()));
 
 	// Send vertex data
 	glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferHandle);
-	glBufferSubData (
+	GL_CHECK(glBufferSubData (
 		GL_ARRAY_BUFFER,
 		0,
 		mLineCount * kVertsPerLine * sizeof(Vertex),
-		mVertexData);
-	Graphics::Utils::CheckGlError("glBufferSubData");
+		mVertexData))
 
 	// Enable the vertex attributes
-	glVertexAttribPointer(
+	GL_CHECK(glVertexAttribPointer(
 		gTechnique.attributes.color, Vertex::kBytesPerColor,
 		GL_UNSIGNED_BYTE, GL_TRUE,
 		sizeof(Vertex),
-		(void*)offsetof(struct Vertex, color));
+		(void*)offsetof(struct Vertex, color)))
 
-	glVertexAttribPointer(
+	GL_CHECK(glVertexAttribPointer(
 		gTechnique.attributes.position, Vertex::kFloatsPerPosition,
 		GL_FLOAT, GL_FALSE,
 		sizeof(Vertex),
-		(void*)offsetof(struct Vertex, position));
+		(void*)offsetof(struct Vertex, position)))
 	
-	Graphics::Utils::CheckGlError("glVertexAttribPointer");
-
-	glEnableVertexAttribArray(gTechnique.attributes.color);
-	glEnableVertexAttribArray(gTechnique.attributes.position);
-
-	Graphics::Utils::CheckGlError("glEnableVertexAttribArray");
+	GL_CHECK(glEnableVertexAttribArray(gTechnique.attributes.color))
+	GL_CHECK(glEnableVertexAttribArray(gTechnique.attributes.position))
 
 	// Draw indexed primitives
 	int indexCount = mLineCount * kIndicesPerLine;
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle);
-	Graphics::Utils::CheckGlError("glBindBuffer");
-	glDrawElements(
+	GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle))
+	GL_CHECK(glDrawElements(
 		GL_LINES,
 		indexCount,
 		GL_UNSIGNED_SHORT,
 		(void*)(0)
-		);
-	Graphics::Utils::CheckGlError("glDrawElements");
+		))
 
 	mInBeginEndBlock = false;
 }
@@ -192,21 +173,18 @@ bool LineBatch::LoadTechnique()
 	// Get the attribute names
 	Technique::Attributes& attributes = gTechnique.attributes;
 
-	attributes.color = glGetAttribLocation(programHandle, "aColor");
-	Graphics::Utils::CheckGlError("glGetAttribLocation");
+	GL_CHECK(attributes.color = glGetAttribLocation(programHandle, "aColor"))
 	LOGI("glGetAttribLocation(\"aColor\") = %d\n",
 			attributes.color);
 
-	attributes.position = glGetAttribLocation(programHandle, "aPosition");
-	Graphics::Utils::CheckGlError("glGetAttribLocation");
+	GL_CHECK(attributes.position = glGetAttribLocation(programHandle, "aPosition"))
 	LOGI("glGetAttribLocation(\"aPosition\") = %d\n",
 			attributes.position);
 
 	// Get the uniform handles
 	Technique::Uniforms& uniforms = gTechnique.uniforms;
 
-	uniforms.transform = glGetUniformLocation(programHandle, "uTransform");
-	Graphics::Utils::CheckGlError("glGetUniformLocation");
+	GL_CHECK(uniforms.transform = glGetUniformLocation(programHandle, "uTransform"))
 	LOGI("glGetUniformLocation(\"uTransform\") = %d\n",
 			uniforms.transform);
 

@@ -19,7 +19,6 @@ GameBase::GameBase():
 	mAppTimer(),
 	mGameTime(),
 	mViewport(),
-	mProjectionMatrix(),
 	mSpriteBatch()
 {
 	mpViewContainer = new Ui::View();
@@ -55,11 +54,10 @@ void GameBase::Resize(unsigned int width, unsigned int height)
 	mpViewContainer->SetFlags(Ui::View::kFlagFill);
 	mpViewContainer->Arrange(mViewport, true);
 
-	glViewport(0, 0, width, height);
-	Graphics::Utils::CheckGlError("glViewport");
+	GL_CHECK(glViewport(0, 0, width, height))
 
 	// Setup the view projection matrix
-	SetViewProjectionMatrix();
+	InitCamera();
 }
 
 void GameBase::Update()
@@ -96,18 +94,15 @@ void GameBase::UnPause()
 	mAppTimer.SetPaused(false);
 }
 
-void GameBase::SetViewProjectionMatrix()
+void GameBase::InitCamera()
 {
-	Matrix view, projection;
+	Matrix view;
 	view.SetTranslation(
 		0.0f - (float)(mViewport.width/2),
 		0.0f - (float)(mViewport.height/2),
 		0.0f);
-	projection.SetOrthographicProjection((float)mViewport.width, (float)mViewport.height, -1.0f, 1.0f);
-	Matrix::Multiply(projection, view, mProjectionMatrix);
-
-	mSpriteBatch.SetTransform(mProjectionMatrix);
-	mLineBatch.SetTransform(mProjectionMatrix);
+	mCamera.SetView(view);
+	mCamera.SetProjectionOrtho(mViewport, -1.0f, 1.0f);
 }
 
 void GameBase::OnTouchEvent(Input::Event::Type type, Input::Event::Id id, const Point& pos, const Point& delta)

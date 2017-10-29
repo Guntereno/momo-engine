@@ -10,6 +10,7 @@ namespace Momo
 {
 namespace Text
 {
+
 class Font
 {
 public:
@@ -125,6 +126,7 @@ private:
 
 	int mTechniqueId;
 };
+
 }
 }
 

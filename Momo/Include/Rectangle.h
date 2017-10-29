@@ -8,6 +8,7 @@
 
 namespace Momo
 {
+
 // POD type representing a 2D rectangle
 struct Rectangle
 {
@@ -168,6 +169,7 @@ struct Rectangle
 			(this->height != rhs.height);
 	}
 };
+
 }
 
 #endif //MOMO_RECTANGLE_INCLUDED

@@ -6,10 +6,13 @@
 #include "Momo.h"
 
 #include "Character.h"
+#include "Graphics/Mesh.h"
+#include "Graphics/Technique.h"
 #include "Graphics/Texture.h"
 #include "Point.h"
 #include "Text/Font.h"
 #include "TestView.h"
+
 
 class Game: public Momo::GameBase
 {
@@ -50,9 +53,12 @@ private:
 
 	void DoTests();
 	void LoadGraphics();
+	void Init3dCamera();
+	void LoadMesh();
 
 	void RenderCharacters();
 	void RenderOsd();
+	void RenderMesh();
 
 	Momo::Graphics::Texture mTexture;
 	Character mCharacters[kNumCharacters];
@@ -60,6 +66,13 @@ private:
 	int mCurrentFont;
 
 	TestView mTestView;
+
+	Momo::Graphics::Camera mCamera3d;
+	Momo::Graphics::Mesh mMesh;
+	Momo::Graphics::Technique mMeshTechnique;
+	Momo::Graphics::Mesh::Renderer mMeshRenderer;
+
+	Momo::Vector3 mMeshPos;
 };
 
 #endif // GAME_GAME_INCLUDED

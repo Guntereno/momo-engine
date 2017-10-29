@@ -14,13 +14,14 @@ namespace Momo
 {
 namespace Graphics
 {
+
 class SpriteBatch
 {
 public:
 	enum DrawFlags
 	{
-		kFlagFlipX = 1,
-		kFlagFlipY = 2
+		kFlagFlipX = 1 << 0,
+		kFlagFlipY = 1 << 1
 	};
 
 	enum TechniqueId
@@ -36,11 +37,6 @@ public:
 
 	SpriteBatch();
 
-	inline void SetTransform(const Matrix& transform)
-	{
-		mTransform = transform;
-	}
-
 	void Load();
 
 	void Begin();
@@ -52,7 +48,7 @@ public:
 
 	void DrawString(const Text::Font& font, const char* pUtf8String, size_t strLen, const Point& point, const Color& color);
 
-	void End();
+	void End(const Camera& camera);
 
 private:
 	DISALLOW_COPY_AND_ASSIGN(SpriteBatch);
@@ -99,9 +95,8 @@ private:
 	bool mInBeginEndBlock;
 	size_t mSpriteCount;
 	size_t mBatchCount;
-
-	Matrix mTransform;
 };
+
 }
 }
 

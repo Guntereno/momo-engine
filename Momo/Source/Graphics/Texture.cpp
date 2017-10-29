@@ -16,8 +16,7 @@ void Texture::Load(GLsizei width, GLsizei height, GLenum format, const void* dat
 	mHeight = height;
 	mFormat = format;
 
-	glGenTextures(1, &textureHandle);
-	Utils::CheckGlError("glGenTextures");
+	GL_CHECK(glGenTextures(1, &textureHandle))
 
 	if (textureHandle != 0)
 	{

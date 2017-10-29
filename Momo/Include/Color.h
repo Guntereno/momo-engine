@@ -5,6 +5,7 @@
 
 namespace Momo
 {
+
 // POD type representing a Colour
 struct Color
 {
@@ -141,6 +142,7 @@ struct Color
 		return color;
 	}
 };
+
 }
 
 #endif //MOMO_COLOR_INCLUDED

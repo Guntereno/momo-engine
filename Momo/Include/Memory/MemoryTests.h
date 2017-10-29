@@ -7,7 +7,9 @@ namespace Momo
 {
 namespace Memory
 {
+
 bool PerformTests();
+
 }
 }
 

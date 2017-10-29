@@ -7,12 +7,14 @@
 #include "GameTime.h"
 #include "Rectangle.h"
 #include "Matrix.h"
+#include "Graphics/Camera.h"
 #include "Graphics/LineBatch.h"
 #include "Graphics/SpriteBatch.h"
 #include "Input/InputEvent.h"
 
 namespace Momo
 {
+
 class GameBase
 {
 public:
@@ -32,19 +34,20 @@ public:
 	void OnTouchEvent(Input::Event::Type type, Input::Event::Id id, const Point& pos, const Point& delta);
 
 protected:
-	void SetViewProjectionMatrix();
+	void InitCamera();
 
 	ApplicationTimer mAppTimer;
 	GameTime mGameTime;
 
 	Rectangle mViewport;
-	Matrix mProjectionMatrix;
+	Graphics::Camera mCamera;
 	Graphics::SpriteBatch mSpriteBatch;
 	Graphics::LineBatch mLineBatch;
 
 	Ui::View* mpViewContainer;
 	Input::InputQueue* mpInputQueue;
 };
+
 }
 
 #endif // MOMO_GAMEBASE_INCLUDED

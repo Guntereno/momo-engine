@@ -12,6 +12,7 @@ namespace Momo
 {
 namespace Ui
 {
+
 class ImageDrawable: public Drawable
 {
 public:
@@ -36,6 +37,7 @@ private:
 
 	const State* mStates[kStateCount];
 };
+
 }
 }
 

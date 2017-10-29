@@ -5,6 +5,7 @@
 
 namespace Momo
 {
+
 class ApplicationTimer
 {
 public:
@@ -21,6 +22,7 @@ private:
 	u64 mCurrentTick;
 	bool mPaused;
 };
+
 }
 
 #endif // MOMO_APPLICATIONTIMER_INCLUDED

@@ -7,10 +7,13 @@ namespace Momo
 {
 	namespace Graphics
 	{
+		class Camera;
 		class LineBatch;
+		class Mesh;
 		class Program;
 		class SpriteBatch;
 		class Targa;
+		class Technique;
 		class Texture;
 		class Utils;
 	}
@@ -68,6 +71,7 @@ namespace Momo
 	struct Point;
 	struct Rectangle;
 	struct Vector2;
+	struct Vector3;
 	struct Vector4;
 }
 

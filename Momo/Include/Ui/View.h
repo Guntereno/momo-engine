@@ -12,6 +12,7 @@ namespace Momo
 {
 namespace Ui
 {
+
 class View
 {
 public:
@@ -90,6 +91,7 @@ private:
 
 	bool mArrangementDirty;
 };
+
 }
 }
 

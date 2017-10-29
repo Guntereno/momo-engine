@@ -139,6 +139,11 @@ xcopy "$(SolutionDir)..\Assets" "$(OutDir)" /E /R /D /Y</Command>
     <ClInclude Include="$(SolutionDir)..\Momo\Include\Util\State.h" />
     <ClInclude Include="$(SolutionDir)..\Momo\Include\Util\StateMachine.h" />
     <ClInclude Include="$(SolutionDir)..\Momo\Include\Vector.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Include\Graphics\Camera.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Graphics\Mesh.h" />
+    <ClInclude Include="$(SolutionDir)..\Momo\Graphics\Technique.h" />
+    <ClInclude Include="..\..\Momo\Include\Graphics\Mesh.h" />
+    <ClInclude Include="..\..\Momo\Include\Graphics\Technique.h" />
     <ClInclude Include="Include\esUtil.h" />
     <ClInclude Include="Include\esUtil_win.h" />
     <ClInclude Include="Include\Main.h" />
@@ -180,11 +185,23 @@ xcopy "$(SolutionDir)..\Assets" "$(OutDir)" /E /R /D /Y</Command>
     <ClCompile Include="$(SolutionDir)..\Momo\Source\Util\State.cpp" />
     <ClCompile Include="$(SolutionDir)..\Momo\Source\Util\StateMachine.cpp" />
     <ClCompile Include="$(SolutionDir)..\Momo\Source\Vector.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Graphics\Camera.cpp" />
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Graphics\Mesh.cpp" />
+    <ClCompile Include="..\..\Momo\Source\Graphics\Technique.cpp" />
+    <ClCompile Include="..\..\Momo\Source\Matrix.cpp" />
     <ClCompile Include="Source\esUtil.c" />
     <ClCompile Include="Source\esUtil_win32.c" />
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Assets\shaders\fpLineBatch.fp" />
+    <None Include="..\..\Assets\shaders\fpMesh.fp" />
+    <None Include="..\..\Assets\shaders\fpSpriteBatchFontNoOutline.fp" />
+    <None Include="..\..\Assets\shaders\fpSpriteBatchFontOutline.fp" />
+    <None Include="..\..\Assets\shaders\fpSpriteBatchSprite.fp" />
+    <None Include="..\..\Assets\shaders\vpLineBatch.vp" />
+    <None Include="..\..\Assets\shaders\vpMesh.vp" />
+    <None Include="..\..\Assets\shaders\vpSpriteBatch.vp" />
     <None Include="..\..\PropertySheets\Debug.props" />
     <None Include="..\..\PropertySheets\DirectX.Debug.props" />
     <None Include="..\..\PropertySheets\DirectX.Release.props">
