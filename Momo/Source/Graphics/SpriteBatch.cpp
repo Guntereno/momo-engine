@@ -188,10 +188,10 @@ namespace Momo
 
 				Technique& technique = gTechniques[currentBatch.technique];
 
-				GL_CHECK(glUseProgram(technique.program.Handle()))
+				GL_CHECK(glUseProgram(technique.GetProgram().Handle()))
 
 					// Set the transform
-					glUniformMatrix4fv(technique.uniforms.transform, 1, false, (GLfloat*)(&camera.GetViewProjection()));
+					glUniformMatrix4fv(technique.GetUniforms().transform, 1, false, (GLfloat*)(&camera.GetViewProjection()));
 
 				// Send vertex data
 				glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferHandle);
@@ -203,37 +203,37 @@ namespace Momo
 
 					// Enable the vertex attributes
 					GL_CHECK(glVertexAttribPointer(
-						technique.attributes.color, Vertex::kBytesPerColor,
+						technique.GetAttributes().color, Vertex::kBytesPerColor,
 						GL_UNSIGNED_BYTE, GL_TRUE,
 						sizeof(Vertex),
 						(void*)offsetof(struct Vertex, color)))
 
 					GL_CHECK(glVertexAttribPointer(
-						technique.attributes.position, Vertex::kFloatsPerPosition,
+						technique.GetAttributes().position, Vertex::kFloatsPerPosition,
 						GL_FLOAT, GL_FALSE,
 						sizeof(Vertex),
 						(void*)offsetof(struct Vertex, position)))
 
 					GL_CHECK(glVertexAttribPointer(
-						technique.attributes.textureCoord, Vertex::kFloatsPerUv,
+						technique.GetAttributes().textureCoord, Vertex::kFloatsPerUv,
 						GL_FLOAT, GL_FALSE,
 						sizeof(Vertex),
 						(void*)offsetof(struct Vertex, uv)))
 
 					GL_CHECK(glVertexAttribPointer(
-						technique.attributes.channel, Vertex::kFloatsPerChannel,
+						technique.GetAttributes().channel, Vertex::kFloatsPerChannel,
 						GL_FLOAT, GL_FALSE,
 						sizeof(Vertex),
 						(void*)offsetof(struct Vertex, channel)))
 
-					GL_CHECK(glEnableVertexAttribArray(technique.attributes.color))
-					GL_CHECK(glEnableVertexAttribArray(technique.attributes.position))
-					GL_CHECK(glEnableVertexAttribArray(technique.attributes.textureCoord))
-					GL_CHECK(glEnableVertexAttribArray(technique.attributes.channel))
+					GL_CHECK(glEnableVertexAttribArray(technique.GetAttributes().color))
+					GL_CHECK(glEnableVertexAttribArray(technique.GetAttributes().position))
+					GL_CHECK(glEnableVertexAttribArray(technique.GetAttributes().textureCoord))
+					GL_CHECK(glEnableVertexAttribArray(technique.GetAttributes().channel))
 
 					// Set the active texture unit to texture unit 0.
 					glActiveTexture(GL_TEXTURE0);
-				glUniform1i(technique.uniforms.texture, 0);
+				glUniform1i(technique.GetUniforms().texture, 0);
 
 				// Bind the texture for this batch
 				glBindTexture(GL_TEXTURE_2D, currentBatch.pTexture->Handle());

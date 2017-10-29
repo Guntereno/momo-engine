@@ -34,12 +34,27 @@ namespace Momo
 
 			bool Load(const char* pVertexFileName, const char* pFragmentFileName);
 
-			Program program;
-			Attributes attributes;
-			Uniforms uniforms;
+			inline const Attributes& GetAttributes() const
+			{
+				return attributes;
+			}
+
+			inline const Uniforms& GetUniforms() const
+			{
+				return uniforms;
+			}
+
+			inline const Program& GetProgram() const
+			{
+				return program;
+			}
 
 		private:
 			DISALLOW_COPY_AND_ASSIGN(Technique);
+
+			Program program;
+			Attributes attributes;
+			Uniforms uniforms;
 		};
 
 	}

@@ -111,10 +111,10 @@ namespace Momo
 			//LOGI("LineBatch::End()");
 			ASSERT(mInBeginEndBlock);
 
-			GL_CHECK(glUseProgram(gTechnique.program.Handle()))
+			GL_CHECK(glUseProgram(gTechnique.GetProgram().Handle()))
 
 				// Set the transform
-				glUniformMatrix4fv(gTechnique.uniforms.transform, 1, false, (GLfloat*)(&camera.GetViewProjection()));
+				glUniformMatrix4fv(gTechnique.GetUniforms().transform, 1, false, (GLfloat*)(&camera.GetViewProjection()));
 
 			// Send vertex data
 			glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferHandle);
@@ -126,19 +126,19 @@ namespace Momo
 
 				// Enable the vertex attributes
 				GL_CHECK(glVertexAttribPointer(
-					gTechnique.attributes.color, Vertex::kBytesPerColor,
+					gTechnique.GetAttributes().color, Vertex::kBytesPerColor,
 					GL_UNSIGNED_BYTE, GL_TRUE,
 					sizeof(Vertex),
 					(void*)offsetof(struct Vertex, color)))
 
 				GL_CHECK(glVertexAttribPointer(
-					gTechnique.attributes.position, Vertex::kFloatsPerPosition,
+					gTechnique.GetAttributes().position, Vertex::kFloatsPerPosition,
 					GL_FLOAT, GL_FALSE,
 					sizeof(Vertex),
 					(void*)offsetof(struct Vertex, position)))
 
-				GL_CHECK(glEnableVertexAttribArray(gTechnique.attributes.color))
-				GL_CHECK(glEnableVertexAttribArray(gTechnique.attributes.position))
+				GL_CHECK(glEnableVertexAttribArray(gTechnique.GetAttributes().color))
+				GL_CHECK(glEnableVertexAttribArray(gTechnique.GetAttributes().position))
 
 				// Draw indexed primitives
 				int indexCount = mLineCount * kIndicesPerLine;
@@ -158,39 +158,13 @@ namespace Momo
 			LOGI("LoadTechniques()\n");
 
 			// Create the program
-			bool result = gTechnique.program.LoadFiles
+			bool result = gTechnique.Load
 			(
 				kShaderNames[0],
 				kShaderNames[1]
 			);
 
-			if (!result) {
-				LOGE("Could not create sprite batch program.\n");
-				return false;
-			}
-
-			GLuint programHandle = gTechnique.program.Handle();
-			ASSERT(programHandle != 0);
-
-			// Get the attribute names
-			Technique::Attributes& attributes = gTechnique.attributes;
-
-			GL_CHECK(attributes.color = glGetAttribLocation(programHandle, "aColor"))
-				LOGI("glGetAttribLocation(\"aColor\") = %d\n",
-					attributes.color);
-
-			GL_CHECK(attributes.position = glGetAttribLocation(programHandle, "aPosition"))
-				LOGI("glGetAttribLocation(\"aPosition\") = %d\n",
-					attributes.position);
-
-			// Get the uniform handles
-			Technique::Uniforms& uniforms = gTechnique.uniforms;
-
-			GL_CHECK(uniforms.transform = glGetUniformLocation(programHandle, "uTransform"))
-				LOGI("glGetUniformLocation(\"uTransform\") = %d\n",
-					uniforms.transform);
-
-			return true;
+			return result;
 		}
 
 		void LineBatch::DrawInternal(const Point& from, const Point& to, const Color& colorFrom, const Color& colorTo)

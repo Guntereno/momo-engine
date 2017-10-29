@@ -46,25 +46,25 @@ namespace Momo
 			ASSERT(mVertexBufferHandle != -1);
 			ASSERT(mIndexBufferHandle != -1);
 
-			GL_CHECK(glUseProgram(mpTechnique->program.Handle()))
+			GL_CHECK(glUseProgram(mpTechnique->GetProgram().Handle()))
 
 				// Set the transform
 				Matrix transform;
 			//Matrix::Multiply(camera.GetViewProjection(), world, transform);
 			transform = camera.GetViewProjection() * world;
-			GL_CHECK(glUniformMatrix4fv(mpTechnique->uniforms.transform, 1, false, (GLfloat*)(&transform)))
+			GL_CHECK(glUniformMatrix4fv(mpTechnique->GetUniforms().transform, 1, false, (GLfloat*)(&transform)))
 
 				// Send vertex data
 				GL_CHECK(glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferHandle))
 				GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle))
 
-				GL_CHECK(glEnableVertexAttribArray(mpTechnique->attributes.color))
-				GL_CHECK(glEnableVertexAttribArray(mpTechnique->attributes.position))
-				GL_CHECK(glEnableVertexAttribArray(mpTechnique->attributes.textureCoord))
+				GL_CHECK(glEnableVertexAttribArray(mpTechnique->GetAttributes().color))
+				GL_CHECK(glEnableVertexAttribArray(mpTechnique->GetAttributes().position))
+				GL_CHECK(glEnableVertexAttribArray(mpTechnique->GetAttributes().textureCoord))
 
 				// Enable the vertex attributes
 				GL_CHECK(glVertexAttribPointer(
-					mpTechnique->attributes.color,
+					mpTechnique->GetAttributes().color,
 					Vertex::kBytesPerColor,
 					GL_UNSIGNED_BYTE,
 					GL_TRUE,
@@ -72,7 +72,7 @@ namespace Momo
 					(void*)offsetof(struct Vertex, color)))
 
 				GL_CHECK(glVertexAttribPointer(
-					mpTechnique->attributes.position,
+					mpTechnique->GetAttributes().position,
 					Vertex::kFloatsPerPosition,
 					GL_FLOAT,
 					GL_FALSE,
@@ -80,7 +80,7 @@ namespace Momo
 					(void*)offsetof(struct Vertex, position)))
 
 				GL_CHECK(glVertexAttribPointer(
-					mpTechnique->attributes.textureCoord,
+					mpTechnique->GetAttributes().textureCoord,
 					Vertex::kFloatsPerUv,
 					GL_FLOAT,
 					GL_FALSE,
@@ -89,7 +89,7 @@ namespace Momo
 
 				// Set the active texture unit to texture unit 0.
 				glActiveTexture(GL_TEXTURE0);
-			glUniform1i(mpTechnique->uniforms.texture, 0);
+			glUniform1i(mpTechnique->GetUniforms().texture, 0);
 
 			// Bind the texture for this batch
 			glBindTexture(GL_TEXTURE_2D, mpTexture->Handle());
@@ -102,9 +102,9 @@ namespace Momo
 					GL_UNSIGNED_SHORT,
 					NULL))
 
-				glDisableVertexAttribArray(mpTechnique->attributes.color);
-			glDisableVertexAttribArray(mpTechnique->attributes.position);
-			glDisableVertexAttribArray(mpTechnique->attributes.textureCoord);
+			glDisableVertexAttribArray(mpTechnique->GetAttributes().color);
+			glDisableVertexAttribArray(mpTechnique->GetAttributes().position);
+			glDisableVertexAttribArray(mpTechnique->GetAttributes().textureCoord);
 		}
 
 
