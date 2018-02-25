@@ -53,6 +53,8 @@ namespace Momo
 		s16 side[kSideCount];
 	};
 
+	POD_CHECK(Offset);
+
 }
 
 #endif //MOMO_OFFSET_INCLUDED

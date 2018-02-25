@@ -6,5 +6,6 @@
 #include "ForwardDeclares.h"
 #include "Common.h"
 #include "Types.h"
+#include "AssertBreak.h"
 
 #endif //MOMO_MOMO_INCLUDED

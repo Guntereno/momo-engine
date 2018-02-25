@@ -33,22 +33,22 @@ namespace Momo
 		void SetIdentity();
 
 		void SetOrthographicProjection(float width, float height, float zNearPlane, float zFarPlane);
+		void SetPerspectiveFieldOfView(float fieldOfViewRads, float aspectRatio, float zNearPlane, float zFarPlane);
 
 		void SetTranslation(const Vector3& pos);
-
 		void SetTranslation(float x, float y, float z);
 
 		static void Multiply(const Matrix& matrix1, const Matrix& matrix2, Matrix& result);
 
 		static Matrix Identity();
 
-		static Matrix Translate(float x, float y, float z);
-
-		static Matrix Translate(const Vector3& pos);
+		static Matrix Translation(float x, float y, float z);
+		static Matrix Translation(const Vector3& pos);
 	};
 
 	Matrix operator* (const Matrix& a, const Matrix& b);
 
+	POD_CHECK(Matrix);
 }
 
 #endif //MOMO_MATRIX_INCLUDED

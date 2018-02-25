@@ -7,4 +7,11 @@
   TypeName(const TypeName&);               \
   void operator=(const TypeName&)
 
+#ifdef MOMO_DEBUG
+# include <type_traits>
+# define POD_CHECK(Type) static_assert(std::is_pod<Type>::value, #Type " is not POD!");
+#else
+# define POD_CHECK(Type)
+#endif
+
 #endif //MOMO_COMMON_INCLUDED

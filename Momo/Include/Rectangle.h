@@ -171,6 +171,7 @@ namespace Momo
 		}
 	};
 
+	POD_CHECK(Rectangle);
 }
 
 #endif //MOMO_RECTANGLE_INCLUDED

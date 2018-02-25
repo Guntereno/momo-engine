@@ -61,6 +61,9 @@ namespace Momo
 	Vector2 operator* (const Vector2& vector, float scalar);
 	Vector2 operator+ (const Vector2& vector1, const Vector2& vector2);
 
+	POD_CHECK(Vector2);
+
+
 	// POD type representing a 3D Vector
 	struct Vector3
 	{
@@ -119,6 +122,9 @@ namespace Momo
 	Vector3 operator* (const Vector3& vector, float scalar);
 	Vector3 operator+ (const Vector3& vector1, const Vector3& vector2);
 
+	POD_CHECK(Vector3);
+
+
 	// POD type representing a 4D Vector
 	struct Vector4
 	{
@@ -161,6 +167,8 @@ namespace Momo
 		}
 	};
 
+
+	POD_CHECK(Vector4);
 }
 
 #endif //MOMO_VECTOR_INCLUDED

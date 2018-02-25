@@ -41,6 +41,8 @@ namespace Momo
 		}
 	};
 
+
+	POD_CHECK(Point);
 }
 
 #endif //MOMO_POINT_INCLUDED

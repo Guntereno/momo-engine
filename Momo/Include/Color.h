@@ -144,6 +144,7 @@ namespace Momo
 		}
 	};
 
+	POD_CHECK(Color);
 }
 
 #endif //MOMO_COLOR_INCLUDED
