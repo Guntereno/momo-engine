@@ -1,41 +1,32 @@
 #ifndef MOMO_TYPES_INCLUDED
 #define MOMO_TYPES_INCLUDED
 
-#include "AssertBreak.h"
 
-#include <cstddef>
+#include <stdint.h>
 
+typedef int8_t s8;
+typedef int16_t s16;
+typedef int32_t s32;
+typedef int64_t s64;
 
-typedef char s8;
-typedef unsigned char u8;
-typedef short s16;
-typedef unsigned short u16;
-typedef int s32;
-typedef unsigned int u32;
+typedef uint8_t u8;
+typedef uint16_t u16;
+typedef uint32_t u32;
+typedef uint64_t u64;
+
 typedef float f32;
 typedef double f64;
 
-#ifdef ANDROID
 
-typedef long s64;
-typedef unsigned long u64;
-
-#else
-
-typedef __int64 s64;
-typedef unsigned __int64 u64;
-
-#endif
-
-//COMPILE_TIME_ASSERT(sizeof(s8) == 1);
-//COMPILE_TIME_ASSERT(sizeof(u8) == 1);
-//COMPILE_TIME_ASSERT(sizeof(s16) == 2);
-//COMPILE_TIME_ASSERT(sizeof(u16) == 2);
-//COMPILE_TIME_ASSERT(sizeof(s32) == 4);
-//COMPILE_TIME_ASSERT(sizeof(u32) == 4);
-//COMPILE_TIME_ASSERT(sizeof(f32) == 4);
-//COMPILE_TIME_ASSERT(sizeof(s64) == 8);
-//COMPILE_TIME_ASSERT(sizeof(u64) == 8);
-//COMPILE_TIME_ASSERT(sizeof(f64) == 8);
+static_assert(sizeof(s8) == 1, "s8 has invalid length!");
+static_assert(sizeof(u8) == 1, "u8 has invalid length!");
+static_assert(sizeof(s16) == 2, "s16 has invalid length!");
+static_assert(sizeof(u16) == 2, "u16 has invalid length!");
+static_assert(sizeof(s32) == 4, "s32 has invalid length!");
+static_assert(sizeof(u32) == 4, "u32 has invalid length!");
+static_assert(sizeof(f32) == 4, "f32 has invalid length!");
+static_assert(sizeof(s64) == 8, "s64 has invalid length!");
+static_assert(sizeof(u64) == 8, "u64 has invalid length!");
+static_assert(sizeof(f64) == 8, "f64 has invalid length!");
 
 #endif //MOMO_TYPES_INCLUDED
