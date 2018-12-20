@@ -50,15 +50,15 @@ namespace Momo
 			GLuint vertexShader = LoadShader(GL_VERTEX_SHADER, pVertexSource);
 			if (!vertexShader)
 			{
-				BREAK_MSG("Failed loading vertex shader!")
-					return false;
+				BREAK_MSG("Failed loading vertex shader!");
+				return false;
 			}
 
 			GLuint pixelShader = LoadShader(GL_FRAGMENT_SHADER, pFragmentSource);
 			if (!pixelShader)
 			{
-				BREAK_MSG("Failed loading pixel shader!")
-					return false;
+				BREAK_MSG("Failed loading pixel shader!");
+				return false;
 			}
 
 			GLuint program = glCreateProgram();

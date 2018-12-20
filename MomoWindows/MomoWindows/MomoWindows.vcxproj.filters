@@ -81,15 +81,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Include\esUtil.h">
-      <Filter>MomoWindows\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\esUtil_win.h">
-      <Filter>MomoWindows\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Main.h">
-      <Filter>MomoWindows\Include</Filter>
-    </ClInclude>
     <ClInclude Include="$(SolutionDir)..\Momo\Include\Graphics\LineBatch.h">
       <Filter>Momo\Include\Graphics</Filter>
     </ClInclude>
@@ -255,17 +246,17 @@
     <ClInclude Include="..\..\Momo\Include\Graphics\Mesh.h">
       <Filter>Momo\Include\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Include\esUtil.h">
+      <Filter>MomoWindows\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\esUtil_win.h">
+      <Filter>MomoWindows\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Main.h">
+      <Filter>MomoWindows\Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\esUtil.c">
-      <Filter>MomoWindows\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\esUtil_win32.c">
-      <Filter>MomoWindows\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Main.cpp">
-      <Filter>MomoWindows\Source</Filter>
-    </ClCompile>
     <ClCompile Include="$(SolutionDir)..\Momo\Source\Graphics\LineBatch.cpp">
       <Filter>Momo\Source\Graphics</Filter>
     </ClCompile>
@@ -365,26 +356,35 @@
     <ClCompile Include="..\..\Momo\Source\Matrix.cpp">
       <Filter>Momo\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\Momo\Source\ApplicationTimer.cpp">
-      <Filter>Momo\Source</Filter>
+    <ClCompile Include="Source\esUtil.c">
+      <Filter>MomoWindows\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\Momo\Source\AssertBreak.cpp">
-      <Filter>Momo\Source</Filter>
+    <ClCompile Include="Source\esUtil_win32.c">
+      <Filter>MomoWindows\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\Momo\Source\GameBase.cpp">
-      <Filter>Momo\Source</Filter>
+    <ClCompile Include="Source\Main.cpp">
+      <Filter>MomoWindows\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\Momo\Source\GameTime.cpp">
-      <Filter>Momo\Source</Filter>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\ApplicationTimer.cpp">
+      <Filter>MomoWindows\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\Momo\Source\IdString.cpp">
-      <Filter>Momo\Source</Filter>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\GameBase.cpp">
+      <Filter>MomoWindows\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\Momo\Source\Logger.cpp">
-      <Filter>Momo\Source</Filter>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\GameTime.cpp">
+      <Filter>MomoWindows\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\Momo\Source\Vector.cpp">
-      <Filter>Momo\Source</Filter>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\IdString.cpp">
+      <Filter>MomoWindows\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Logger.cpp">
+      <Filter>MomoWindows\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Vector.cpp">
+      <Filter>MomoWindows\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\AssertBreak.cpp">
+      <Filter>MomoWindows\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

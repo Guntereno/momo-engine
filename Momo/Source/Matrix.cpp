@@ -100,14 +100,14 @@ namespace Momo
 		return matrix;
 	}
 
-	Matrix Matrix::Translate(float x, float y, float z)
+	Matrix Matrix::Translation(float x, float y, float z)
 	{
 		Matrix matrix;
 		matrix.SetTranslation(x, y, z);
 		return matrix;
 	}
 
-	Matrix Matrix::Translate(const Vector3& pos)
+	Matrix Matrix::Translation(const Vector3& pos)
 	{
 		Matrix matrix;
 		matrix.SetTranslation(pos);

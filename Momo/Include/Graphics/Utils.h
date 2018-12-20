@@ -25,8 +25,7 @@ namespace Momo
 			{
 				for (GLint error = glGetError(); (error != 0); error = glGetError())
 				{
-					BreakPrintMessage(pFile, pLine, "after '%s' glError (0x%x) in file '%s' on line '%d'.\n", statement, error, pFile, pLine);
-					DEBUG_BREAK();
+					BREAK_MSG(pFile, pLine, "after '%s' glError (0x%x) in file '%s' on line '%d'.\n", statement, error, pFile, pLine);
 				}
 			}
 		};

@@ -185,9 +185,9 @@ void Game::Draw()
 	//LOGI("Game::Render() begin");
 
 	GL_CHECK(glClearColor(0.322f, 0.545f, 0.651f, 1.0f))
-		GL_CHECK(glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT))
+	GL_CHECK(glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT))
 
-		glDisable(GL_CULL_FACE);
+	glDisable(GL_CULL_FACE);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -295,7 +295,7 @@ void Game::RenderOsd()
 
 void Game::RenderMesh()
 {
-	Momo::Matrix world = Momo::Matrix::Translate(mMeshPos);
+	Momo::Matrix world = Momo::Matrix::Translation(mMeshPos);
 	mMeshRenderer.Draw(mCamera, world);
 }
 
