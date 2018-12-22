@@ -52,7 +52,7 @@ namespace Momo
 
 		mViewport.Set(0, 0, (s32)width, (s32)height);
 
-		mpViewContainer->SetFlags(Ui::View::kFlagFill);
+		mpViewContainer->SetFlags(Ui::View::Flags::Fill);
 		mpViewContainer->Arrange(mViewport, true);
 
 		GL_CHECK(glViewport(0, 0, (GLsizei)width, (GLsizei)height))

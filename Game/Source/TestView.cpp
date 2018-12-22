@@ -52,7 +52,7 @@ TestView::TestView()
 	{
 		Drawable* pImage;
 		Momo::Color color;
-		u16 flags;
+		Momo::Ui::View::Flags flags;
 		Momo::Rectangle area;
 		Momo::Offset padding;
 	};
@@ -67,14 +67,14 @@ TestView::TestView()
 		{
 			mpImages[kTextureToad],
 			Momo::Color::White(),
-			View::kFlagTouchRight | View::kFlagTouchTop,
+			View::Flags::TouchRight | View::Flags::TouchTop,
 			{0, 0, 128, 128},
 			{{0, 0, 0, 0}}
 		},
 		{
 			mpNinePatch,
 			Momo::Color::White(),
-			View::kFlagTouchRight,
+			View::Flags::TouchRight,
 			{0, 0, 250, 200},
 			{{10, 10, 10, 10}}
 		},

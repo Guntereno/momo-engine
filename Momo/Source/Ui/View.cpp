@@ -17,7 +17,7 @@ namespace Momo
 			mpSibling(NULL),
 			mpChild(NULL),
 			mColor(Color::White()),
-			mFlags(0),
+			mFlags(Flags::None),
 			mMargin(Offset::Zero()),
 			mPadding(Offset::Zero()),
 			mArea(Rectangle::Zero()),
@@ -41,8 +41,7 @@ namespace Momo
 				if
 					(
 					(mArea == Rectangle::Zero()) ||
-						((mFlags & kFlagFill) == kFlagFill)
-						)
+						((mFlags & Flags::Fill) == Flags::Fill))
 				{
 					area = parentRect;
 				}
@@ -158,7 +157,8 @@ namespace Momo
 			return count;
 		}
 
-		Rectangle View::AlignChildRectangle(const Rectangle& parent, const Rectangle& child, u16 flags)
+		Rectangle View::AlignChildRectangle(const Rectangle& parent, const Rectangle& child,
+			Flags flags)
 		{
 			Rectangle result = child;
 
@@ -167,8 +167,8 @@ namespace Momo
 			result.mY += parent.mY;
 
 			// Align horizontally
-			bool touchLeft = ((flags & kFlagTouchLeft) != 0);
-			bool touchRight = ((flags & kFlagTouchRight) != 0);
+			bool touchLeft = ((flags & Flags::TouchLeft) != Flags::None);
+			bool touchRight = ((flags & Flags::TouchRight) != Flags::None);
 			if (touchLeft || touchRight)
 			{
 				if (touchLeft && touchRight)
@@ -187,8 +187,8 @@ namespace Momo
 			}
 
 			// Align vertically
-			bool touchTop = ((flags & kFlagTouchTop) != 0);
-			bool touchBottom = ((flags & kFlagTouchBottom) != 0);
+			bool touchTop = ((flags & Flags::TouchTop) != Flags::None);
+			bool touchBottom = ((flags & Flags::TouchBottom) != Flags::None);
 			if (touchTop || touchBottom)
 			{
 				if (touchTop && touchBottom)
@@ -209,7 +209,7 @@ namespace Momo
 			return result;
 		}
 
-		void View::SetFlags(u16 flags)
+		void View::SetFlags(Flags flags)
 		{
 			mFlags = flags;
 			mArrangementDirty = true;

@@ -17,6 +17,17 @@ namespace Momo
 		class View
 		{
 		public:
+			enum class Flags : u8
+			{
+				TouchTop = 1 << 0,
+				TouchRight = 1 << 1,
+				TouchBottom = 1 << 2,
+				TouchLeft = 1 << 3,
+
+				Fill = TouchTop | TouchRight | TouchBottom | TouchLeft,
+				None = 0
+			};
+
 			View();
 			virtual ~View();
 
@@ -36,8 +47,8 @@ namespace Momo
 			void SetColor(const Color& color) { mColor = color; }
 			const Color& GetColor() const { return mColor; }
 
-			void SetFlags(u16 flags);
-			u16 GetFlags() const { return mFlags; }
+			void SetFlags(Flags flags);
+			Flags GetFlags() const { return mFlags; }
 
 			void SetMargin(const Offset& offset);
 			const Offset& GetMargin() const { return mMargin; }
@@ -55,15 +66,6 @@ namespace Momo
 
 			bool GetArrangementDirty() const { return mArrangementDirty; }
 
-			enum Flag
-			{
-				kFlagTouchTop = 0x1,
-				kFlagTouchRight = 0x2,
-				kFlagTouchBottom = 0x4,
-				kFlagTouchLeft = 0x08,
-				kFlagFill = kFlagTouchTop | kFlagTouchRight | kFlagTouchBottom | kFlagTouchLeft
-			};
-
 		protected:
 			virtual void DrawInternal(Graphics::SpriteBatch& spriteBatch);
 			virtual void DrawDebugInternal(Graphics::LineBatch& lineBatch);
@@ -76,7 +78,8 @@ namespace Momo
 			StateId mState;
 
 		private:
-			static Rectangle AlignChildRectangle(const Rectangle& parent, const Rectangle& child, u16 flags);
+			static Rectangle AlignChildRectangle(const Rectangle& parent, const Rectangle& child,
+				Flags flags);
 
 			DISALLOW_COPY_AND_ASSIGN(View);
 
@@ -85,7 +88,7 @@ namespace Momo
 
 			Color mColor;
 
-			u16 mFlags;
+			Flags mFlags;
 			Offset mMargin;
 			Offset mPadding;
 			Rectangle mArea;
@@ -97,6 +100,7 @@ namespace Momo
 			bool mArrangementDirty;
 		};
 
+		FLAG_OPS(View::Flags)
 	}
 }
 
