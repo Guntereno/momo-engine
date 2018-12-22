@@ -14,7 +14,7 @@ namespace Momo
 			mpData(NULL),
 			mDataSize(0)
 		{
-			File::Handle file = File::Open(pFileName, File::kModeRead);
+			File::Handle file = File::Open(pFileName, File::Mode::Read);
 			ASSERT(file != NULL);
 
 			if (file != NULL)

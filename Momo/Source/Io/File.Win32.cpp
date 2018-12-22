@@ -28,11 +28,11 @@ namespace Momo
 			const char* modeString = NULL;
 			switch (mode)
 			{
-			case kModeRead:
+			case Mode::Read:
 				modeString = "rb";
 				break;
 
-			case kModeWrite:
+			case Mode::Write:
 				modeString = "wb";
 				break;
 

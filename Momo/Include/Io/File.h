@@ -16,10 +16,10 @@ namespace Momo
 		public:
 			typedef void* Handle;
 
-			enum Mode
+			enum class Mode : u8
 			{
-				kModeRead,
-				kModeWrite
+				Read,
+				Write
 			};
 
 			// pData is platform specific:

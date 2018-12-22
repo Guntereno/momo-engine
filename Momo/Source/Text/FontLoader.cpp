@@ -44,7 +44,7 @@ namespace Momo
 			mCurrentKerningCount = 0;
 
 			// Open the file
-			mFile = File::Open(mpFileName, Io::File::kModeRead);
+			mFile = File::Open(mpFileName, Io::File::Mode::Read);
 			if (mFile == NULL)
 			{
 				BREAK_MSG("Unable to load file %s!", mpFileName);

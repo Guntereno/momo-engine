@@ -76,7 +76,7 @@ namespace Momo
 			ASSERT(pFileName != NULL);
 
 			// Open the file
-			File::Handle file = File::Open(pFileName, Io::File::kModeRead);
+			File::Handle file = File::Open(pFileName, Io::File::Mode::Read);
 			if (file == NULL)
 			{
 				BREAK_MSG("Unable to load file %s!", pFileName);
@@ -153,7 +153,7 @@ namespace Momo
 
 			ASSERT(pFileName != NULL);
 
-			File::Handle file = Io::File::Open(pFileName, Io::File::kModeWrite);
+			File::Handle file = Io::File::Open(pFileName, Io::File::Mode::Write);
 
 			File::Write(&mHeader.mIdLength, sizeof(u8), file);
 			File::Write(&mHeader.mColourMapType, sizeof(u8), file);
