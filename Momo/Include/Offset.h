@@ -10,14 +10,14 @@ namespace Momo
 	// POD type representing a region offset (e.g. margin/padding information)
 	struct Offset
 	{
-		enum Side
+		enum class Side : u8
 		{
-			kSideTop,
-			kSideRight,
-			kSideBottom,
-			kSideLeft,
+			Top,
+			Right,
+			Bottom,
+			Left,
 
-			kSideCount
+			Count
 		};
 
 		static Offset Zero()
@@ -29,28 +29,28 @@ namespace Momo
 
 		void Set(s16 top, s16 right, s16 bottom, s16 left)
 		{
-			side[kSideTop] = top;
-			side[kSideRight] = right;
-			side[kSideBottom] = bottom;
-			side[kSideLeft] = left;
+			side[(int)Side::Top] = top;
+			side[(int)Side::Right] = right;
+			side[(int)Side::Bottom] = bottom;
+			side[(int)Side::Left] = left;
 		}
 
 		void Set(s16 vertical, s16 horizontal)
 		{
-			side[kSideTop] = side[kSideBottom] = vertical;
-			side[kSideRight] = side[kSideLeft] = horizontal;
+			side[(int)Side::Top] = side[(int)Side::Bottom] = vertical;
+			side[(int)Side::Right] = side[(int)Side::Left] = horizontal;
 		}
 
 		void Set(s16 value)
 		{
-			side[kSideTop] =
-				side[kSideBottom] =
-				side[kSideRight] =
-				side[kSideLeft] =
-				value;
+			side[(int)Side::Top] =
+			side[(int)Side::Bottom] =
+			side[(int)Side::Right] =
+			side[(int)Side::Left] =
+			value;
 		}
 
-		s16 side[kSideCount];
+		s16 side[(int)Side::Count];
 	};
 
 	POD_CHECK(Offset);

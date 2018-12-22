@@ -120,18 +120,18 @@ namespace Momo
 
 		void Inflate(const Offset& offset)
 		{
-			this->mX -= offset.side[Offset::kSideLeft];
-			this->mY -= offset.side[Offset::kSideBottom];
-			this->mWidth += (offset.side[Offset::kSideLeft] + offset.side[Offset::kSideRight]);
-			this->mHeight += (offset.side[Offset::kSideTop] + offset.side[Offset::kSideBottom]);
+			this->mX -= offset.side[(int)Offset::Side::Left];
+			this->mY -= offset.side[(int)Offset::Side::Bottom];
+			this->mWidth += (offset.side[(int)Offset::Side::Left] + offset.side[(int)Offset::Side::Right]);
+			this->mHeight += (offset.side[(int)Offset::Side::Top] + offset.side[(int)Offset::Side::Bottom]);
 		}
 
 		void Deflate(const Offset& offset)
 		{
-			this->mX += offset.side[Offset::kSideLeft];
-			this->mY += offset.side[Offset::kSideBottom];
-			this->mWidth -= (offset.side[Offset::kSideLeft] + offset.side[Offset::kSideRight]);
-			this->mHeight -= (offset.side[Offset::kSideTop] + offset.side[Offset::kSideBottom]);
+			this->mX += offset.side[(int)Offset::Side::Left];
+			this->mY += offset.side[(int)Offset::Side::Bottom];
+			this->mWidth -= (offset.side[(int)Offset::Side::Left] + offset.side[(int)Offset::Side::Right]);
+			this->mHeight -= (offset.side[(int)Offset::Side::Top] + offset.side[(int)Offset::Side::Bottom]);
 		}
 
 		static void Union(const Rectangle& value1, const Rectangle& value2, Rectangle& result)
