@@ -30,22 +30,22 @@ namespace Momo
 				u8  mImageDescriptor;
 			};
 
-			enum DataType
+			enum DataType : u8
 			{
-				kTypeNoData = 0,										// No image data included.
-				kTypeUncompressedColorMapped = 1,						// Uncompressed, color-mapped images.
-				kTypeUncompressedRgb = 2,								// Uncompressed, RGB images.
-				kTypeUncompressedGray = 3,								// Uncompressed, black and white images.
-				kTypeRleColorMapped = 9,								// Runlength encoded color-mapped images.
-				kTypeRleRgb = 10,										// Runlength encoded RGB images.
-				kTypeCompressedGray = 11,								// Compressed, black and white images.
+				NoData = 0,										// No image data included.
+				UncompressedColorMapped = 1,						// Uncompressed, color-mapped images.
+				UncompressedRgb = 2,								// Uncompressed, RGB images.
+				UncompressedGray = 3,								// Uncompressed, black and white images.
+				RleColorMapped = 9,								// Runlength encoded color-mapped images.
+				RleRgb = 10,										// Runlength encoded RGB images.
+				CompressedGray = 11,								// Compressed, black and white images.
 			};
 
-			enum Interleaving
+			enum class Interleaving : u8
 			{
-				kInterleaveNone,
-				kInterleaveTwoWay,
-				kInterleaveFourWay
+				None,
+				TwoWay,
+				FourWay
 			};
 
 			Targa();

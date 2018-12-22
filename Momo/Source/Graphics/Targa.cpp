@@ -53,16 +53,16 @@ namespace Momo
 
 			switch (interleaving)
 			{
-			case kInterleaveNone:
+				case Interleaving::None:
 				// Nothing
 				break;
 
-			case kInterleaveTwoWay:
-				byte |= 0x64;
+				case Interleaving::TwoWay:
+					byte |= 0x64;
 				break;
 
-			case kInterleaveFourWay:
-				byte |= 0x128;
+				case Interleaving::FourWay:
+					byte |= 0x128;
 				break;
 			}
 
@@ -194,12 +194,12 @@ namespace Momo
 			case GL_RGBA:
 			{
 				mHeader.mIdLength = 0;
-				mHeader.mDataTypeCode = kTypeUncompressedRgb;
+				mHeader.mDataTypeCode = DataType::UncompressedRgb;
 				mHeader.mWidth = width;
 				mHeader.mHeight = height;
 				mHeader.mYOrigin = height;
 				mHeader.mBitsPerPixel = 32;
-				mHeader.mImageDescriptor = ImageDescriptorByte(0, true, kInterleaveNone);
+				mHeader.mImageDescriptor = ImageDescriptorByte(0, true, Interleaving::None);
 			}
 			break;
 
