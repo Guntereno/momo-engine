@@ -237,9 +237,9 @@ bool Game::HandleTouchEvent(const Momo::Input::Event& event)
 {
 	switch (event.type)
 	{
-	case Momo::Input::Event::kDown:
-	case Momo::Input::Event::kMove:
-	case Momo::Input::Event::kUp:
+	case Momo::Input::Event::Type::Down:
+	case Momo::Input::Event::Type::Move:
+	case Momo::Input::Event::Type::Up:
 	{
 		// Search backwards so front characters are hit
 		for (int i = (kNumCharacters - 1); i >= 0; --i)
@@ -258,7 +258,7 @@ bool Game::HandleTouchEvent(const Momo::Input::Event& event)
 	}
 	break;
 
-	case Momo::Input::Event::kNone:
+	case Momo::Input::Event::Type::None:
 		// Do nothing
 		break;
 	}

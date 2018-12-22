@@ -17,12 +17,12 @@ namespace Momo
 			using Id = u8;
 			static constexpr Id IdInvalid = std::numeric_limits<Id>::max();
 
-			enum Type
+			enum class Type : u8
 			{
-				kNone,
-				kDown,
-				kMove,
-				kUp
+				None,
+				Down,
+				Move,
+				Up
 			};
 
 			Type type;
@@ -34,10 +34,10 @@ namespace Momo
 			{
 				switch (type)
 				{
-				case kNone: return "None";
-				case kDown: return "Down";
-				case kMove: return "Move";
-				case kUp: return "Up";
+				case Type::None: return "None";
+				case Type::Down: return "Down";
+				case Type::Move: return "Move";
+				case Type::Up: return "Up";
 
 				default:
 					BREAK_MSG("Invalid type %d!", type);

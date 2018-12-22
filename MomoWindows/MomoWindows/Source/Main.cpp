@@ -119,7 +119,7 @@ void OnMouse(ESContext* esContext, unsigned char type, int x, int y)
 	{
 	case ES_MOUSE_DOWN:
 		gMousePos.Set(x, y);
-		gGame.OnTouchEvent(Momo::Input::Event::kDown, 0, gMousePos, delta);
+		gGame.OnTouchEvent(Momo::Input::Event::Type::Down, 0, gMousePos, delta);
 		gMouseDown = true;
 		break;
 
@@ -133,7 +133,7 @@ void OnMouse(ESContext* esContext, unsigned char type, int x, int y)
 		if (gMouseDown)
 		{
 			gMousePos.Set(x, y);
-			gGame.OnTouchEvent(Momo::Input::Event::kUp, 0, gMousePos, delta);
+			gGame.OnTouchEvent(Momo::Input::Event::Type::Up, 0, gMousePos, delta);
 			gMouseDown = false;
 		}
 		break;
@@ -144,7 +144,7 @@ void OnMouse(ESContext* esContext, unsigned char type, int x, int y)
 			delta.Set(x - gMousePos.mX, y - gMousePos.mY);
 			gMousePos.Set(x, y);
 
-			gGame.OnTouchEvent(Momo::Input::Event::kMove, 0, gMousePos, delta);
+			gGame.OnTouchEvent(Momo::Input::Event::Type::Move, 0, gMousePos, delta);
 		}
 		break;
 	}

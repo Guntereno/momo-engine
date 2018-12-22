@@ -33,7 +33,7 @@ namespace Momo
 
 			switch (event.type)
 			{
-			case Input::Event::kDown:
+			case Input::Event::Type::Down:
 			{
 				if (containsPos)
 				{
@@ -46,7 +46,7 @@ namespace Momo
 			}
 			break;
 
-			case Input::Event::kMove:
+			case Input::Event::Type::Move:
 			{
 				// Moved out of region
 				if (isMyTouch && (!containsPos))
@@ -57,7 +57,7 @@ namespace Momo
 			}
 			break;
 
-			case Input::Event::kUp:
+			case Input::Event::Type::Up:
 			{
 				if (isMyTouch)
 				{
@@ -76,7 +76,7 @@ namespace Momo
 			}
 			break;
 
-			case Input::Event::kNone:
+			case Input::Event::Type::None:
 				// Do nothing
 				break;
 			}

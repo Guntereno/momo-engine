@@ -13,7 +13,7 @@ namespace Momo
 
 		Event InputQueue::kNullEvent =
 		{
-			Event::kNone,
+			Event::Type::None,
 			(Event::Id) - 1,
 			Point::Zero(),
 			Point::Zero()
