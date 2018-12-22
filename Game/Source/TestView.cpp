@@ -93,7 +93,7 @@ TestView::TestView()
 	mpTextBox = new TextBoxView(128);
 	mpTextBox->SetColor(Momo::Color::White());
 	mpTextBox->SetText("This is some test text to test the text. Is it working?");
-	mpTextBox->SetFlags(Momo::Text::kHAlignCenter | Momo::Text::kVAlignCenter);
+	mpTextBox->SetAlignment(Momo::Text::Alignment::HCenter | Momo::Text::Alignment::VCenter);
 	mpOsdView->AddChild(mpTextBox);
 }
 

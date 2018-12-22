@@ -5,7 +5,7 @@
 
 #include "Color.h"
 #include "View.h"
-
+#include "Text/Alignment.h"
 
 namespace Momo
 {
@@ -29,10 +29,9 @@ namespace Momo
 
 			void SetText(const char* pText);
 			const char* GetText() { return mpBuffer; }
-
-			// Use bitwise or of TextWrapper::Flag
-			void SetFlags(u32 flags);
-			u32 GetFlags() { return mFlags; }
+			
+			void SetAlignment(Text::Alignment flags);
+			Text::Alignment GetAlignment() { return mAlignment; }
 
 		private:
 			DISALLOW_COPY_AND_ASSIGN(TextBoxView);
@@ -46,7 +45,7 @@ namespace Momo
 			size_t mBufferLen;
 			const Text::Font* mpFont;
 			Color mColor;
-			u32 mFlags;
+			Text::Alignment mAlignment;
 
 			Text::TextWrapper* mpTextWrapper;
 

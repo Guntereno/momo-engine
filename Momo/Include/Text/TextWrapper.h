@@ -5,7 +5,7 @@
 
 #include "Point.h"
 #include "Rectangle.h"
-
+#include "Text/Alignment.h"
 
 namespace Momo
 {
@@ -26,7 +26,8 @@ namespace Momo
 			TextWrapper(unsigned maxLines);
 			~TextWrapper();
 
-			void Wrap(const Font* pFont, const char* pText, size_t textLen, const Rectangle& area, u32 flags);
+			void Wrap(const Font* pFont, const char* pText, size_t textLen, const Rectangle& area,
+				Alignment alignment);
 
 			unsigned GetLineCount() { return mLineCount; }
 			const LineData* GetLine(unsigned line);
@@ -42,7 +43,7 @@ namespace Momo
 			const char* mpText;
 			size_t mTextLen;
 			Momo::Rectangle mArea;
-			u32 mFlags;
+			Alignment mAlignment;
 
 			LineData* mpLines;
 			unsigned mLineCount;

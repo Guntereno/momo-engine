@@ -18,7 +18,7 @@ namespace Momo
 			mBufferLen(maxLength),
 			mpFont(NULL),
 			mColor(Color::White()),
-			mFlags(0),
+			mAlignment(Text::Alignment::HLeft | Text::Alignment::VTop),
 			mWrappingDirty(true)
 		{
 			mpBuffer = new char[mBufferLen];
@@ -87,14 +87,14 @@ namespace Momo
 				return;
 			}
 
-			mpTextWrapper->Wrap(mpFont, mpBuffer, strlen(mpBuffer), GetArrangedArea(), mFlags);
+			mpTextWrapper->Wrap(mpFont, mpBuffer, strlen(mpBuffer), GetArrangedArea(), mAlignment);
 
 			mWrappingDirty = false;
 		}
 
-		void TextBoxView::SetFlags(u32 flags)
+		void TextBoxView::SetAlignment(Text::Alignment alignment)
 		{
-			mFlags = flags;
+			mAlignment = alignment;
 			mWrappingDirty = true;
 		}
 

@@ -22,7 +22,8 @@ namespace Momo
 			delete[] mpLines;
 		}
 
-		void TextWrapper::Wrap(const Font* pFont, const char* pText, size_t textLen, const Momo::Rectangle& area, u32 flags)
+		void TextWrapper::Wrap(const Font* pFont, const char* pText, size_t textLen,
+			const Momo::Rectangle& area, Alignment alignment)
 		{
 			ASSERT(pFont != NULL);
 			ASSERT(pText != NULL);
@@ -31,7 +32,7 @@ namespace Momo
 			mpText = pText;
 			mTextLen = textLen;
 			mArea = area;
-			mFlags = flags;
+			mAlignment = alignment;
 			mLineCount = 0;
 
 			Wrap();
@@ -87,11 +88,11 @@ namespace Momo
 			Point center = mArea.Center();
 
 			int yPos;
-			if ((mFlags & kVAlignCenter) == kVAlignCenter)
+			if ((mAlignment & Alignment::VCenter) == Alignment::VCenter)
 			{
 				yPos = (int)(center.mY + ((mLineCount * lineHeight) / 2) - lineHeight);
 			}
-			else if ((mFlags & kVAlignTop) == kVAlignTop)
+			else if ((mAlignment & Alignment::VTop) == Alignment::VTop)
 			{
 				yPos = (int)(mArea.Top() - lineHeight);
 			}
@@ -104,11 +105,11 @@ namespace Momo
 			{
 				int xPos;
 				int lineLen = mpLines[i].length;
-				if ((mFlags & kHAlignCenter) == kHAlignCenter)
+				if ((mAlignment & Alignment::HCenter) == Alignment::HCenter)
 				{
 					xPos = center.mX - (lineLen / 2);
 				}
-				else if ((mFlags & kHAlignRight) == kHAlignRight)
+				else if ((mAlignment & Alignment::HRight) == Alignment::HRight)
 				{
 					xPos = mArea.Right() - lineLen;
 				}
