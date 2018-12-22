@@ -1,3 +1,10 @@
+#if defined(_MSC_VER)
+#pragma warning(disable: 4204) // nonstandard extension used : non-constant aggregate initializer
+#pragma warning(disable: 4100) // unreferenced formal parameter
+#pragma warning(disable: 4668) // '__cplusplus' is not defined as a preprocessor macro, replacing with '0' for '#if/#elif'
+#pragma warning(disable: 4255) // 'EnableMouseInPointerForThread': no function prototype given : converting '()' to '(void)'
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <GLES2/gl2.h>
@@ -5,10 +12,6 @@
 #include <EGL/eglext.h>
 #include "esUtil.h"
 #include "esUtil_win.h"
-
-#if defined(_MSC_VER)
-#pragma warning(disable: 4204) // nonstandard extension used : non-constant aggregate initializer
-#endif
 
 ///
 //  Extensions

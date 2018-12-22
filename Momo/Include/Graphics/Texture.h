@@ -25,7 +25,7 @@ namespace Momo
 			inline GLuint Handle() const { return mHandle; }
 			inline GLenum Format() const { return mFormat; }
 
-			void Load(GLsizei width, GLsizei height, GLenum format, const void* data);
+			void Load(GLsizei mWidth, GLsizei mHeight, GLenum format, const void* data);
 			bool LoadTga(const char* pFileName);
 
 		private:

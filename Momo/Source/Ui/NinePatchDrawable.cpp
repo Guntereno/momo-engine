@@ -48,13 +48,13 @@ namespace Momo
 			int srcRowHeights[] =
 			{
 				pState->pTexture->Height() - pState->inside.Top(),
-				pState->inside.height,
+				pState->inside.mHeight,
 				pState->inside.Bottom()
 			};
 			int srcColumnWidths[] =
 			{
 				pState->pTexture->Width() - pState->inside.Right(),
-				pState->inside.width,
+				pState->inside.mWidth,
 				pState->inside.Left()
 			};
 
@@ -66,8 +66,8 @@ namespace Momo
 				pState->inside.Left() - pState->outside.Left()
 			};
 
-			int destInsideHeight = dest.height - (margin[0] + margin[2]);
-			int destInsideWidth = dest.width - (margin[1] + margin[3]);
+			int destInsideHeight = dest.mHeight - (margin[0] + margin[2]);
+			int destInsideWidth = dest.mWidth - (margin[1] + margin[3]);
 
 			const int kNumRows = 3;
 			const int kNumColumns = 3;
@@ -80,25 +80,25 @@ namespace Momo
 
 			for (int x = 0; x < kNumColumns; ++x)
 			{
-				curSrc.width = srcColumnWidths[x];
-				curDest.width = (x == 1) ? destInsideWidth : curSrc.width;
+				curSrc.mWidth = srcColumnWidths[x];
+				curDest.mWidth = (x == 1) ? destInsideWidth : curSrc.mWidth;
 
 				for (int y = 0; y < kNumRows; ++y)
 				{
-					curSrc.height = srcRowHeights[y];
-					curDest.height = (y == 1) ? destInsideHeight : curSrc.height;
-					curDest.y -= curDest.height;
+					curSrc.mHeight = srcRowHeights[y];
+					curDest.mHeight = (y == 1) ? destInsideHeight : curSrc.mHeight;
+					curDest.mY -= curDest.mHeight;
 
 					spriteBatch.Draw(pState->pTexture, curDest, curSrc, color);
 
-					curSrc.y += curSrc.height;
+					curSrc.mY += curSrc.mHeight;
 				}
 
-				curSrc.y = pState->pTexture->Height();
-				curDest.y = destTop;
+				curSrc.mY = pState->pTexture->Height();
+				curDest.mY = destTop;
 
-				curSrc.x += curSrc.width;
-				curDest.x += curDest.width;
+				curSrc.mX += curSrc.mWidth;
+				curDest.mX += curDest.mWidth;
 			}
 		}
 

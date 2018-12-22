@@ -15,7 +15,7 @@ using namespace Momo;
 
 const float kFrameTime = 1.0f / 10.0f; // 10 fps
 
-static const Rectangle kFrames[] =
+static constexpr Rectangle kFrames[] =
 {
 	{0, 0, 16, 32},
 	{16, 0, 16, 32},
@@ -31,16 +31,16 @@ static const Rectangle kFrames[] =
 	{48, 48, 16, 16},
 };
 
-static const int kFrameCount[Character::kCharacterCount] = { 3, 3, 2 };
-static const int kAnimFrames[Character::kCharacterCount][3] =
+static constexpr int kFrameCount[Character::kCharacterCount] = { 3, 3, 2 };
+static constexpr int kAnimFrames[Character::kCharacterCount][3] =
 {
 	{ 0, 1, 2 },
 	{ 4, 5, 6 },
 	{ 8, 9, 10 }
 };
-static const int kDeadFrames[Character::kCharacterCount] = { 4, 11, 10 };
+static constexpr int kDeadFrames[Character::kCharacterCount] = { 4, 11, 10 };
 
-static const float kSpeeds[Character::kCharacterCount] = { 50.0f, 25.0f, 20.0f };
+static constexpr float kSpeeds[Character::kCharacterCount] = { 50.0f, 25.0f, 20.0f };
 
 static int gKillCounts[Character::kCharacterCount] = { 0, };
 
@@ -76,13 +76,13 @@ void Character::Init()
 	mState = kStateAlive;
 
 	static const int kRowHeight = 32 * msScaleFactor;
-	const int kRowCount = msBounds.height / kRowHeight;
+	const int kRowCount = msBounds.mHeight / kRowHeight;
 
 	SetType((Character::Type)(rand() % Character::kCharacterCount));
 	Vector2 position;
 	position.Set
 	(
-		(float)(rand() % (msBounds.width - 16)),
+		(float)(rand() % (msBounds.mWidth - 16)),
 		(float)((rand() % kRowCount) * kRowHeight)
 	);
 	SetPosition(position);
@@ -115,7 +115,7 @@ void Character::Update(const GameTime& gameTime)
 		{
 		case kDirectionRight:
 		{
-			mPosition.x += distance;
+			mPosition.mX += distance;
 			Rectangle bounds = CurrentBounds();
 			if (bounds.Right() > msBounds.Right())
 			{
@@ -126,7 +126,7 @@ void Character::Update(const GameTime& gameTime)
 
 		case kDirectionLeft:
 		{
-			mPosition.x -= distance;
+			mPosition.mX -= distance;
 			Rectangle bounds = CurrentBounds();
 			if (bounds.Left() < msBounds.Left())
 			{
@@ -149,12 +149,12 @@ void Character::Update(const GameTime& gameTime)
 		// Small mario falls
 		if (mType == kCharacterMarioSmall)
 		{
-			static const Vector2 kGravity = { 0.0f, -200.0f };
+			static constexpr Vector2 kGravity = { 0.0f, -200.0f };
 			mVelocity += kGravity * frameDelta;
 			mPosition += mVelocity * frameDelta;
 		}
 
-		static const float kDeathLength = 2.0f;
+		static constexpr float kDeathLength = 2.0f;
 		if (mFrameTimer > kDeathLength)
 		{
 			if (mType == kCharacterMarioBig)
@@ -178,12 +178,17 @@ void Character::Update(const GameTime& gameTime)
 
 void Character::Draw(Graphics::SpriteBatch& spriteBatch)
 {
+	using namespace Graphics;
+
 	if (mState == kStateDead)
 		return;
 
 	ASSERT(mspTexture != NULL);
 
-	unsigned int flags = (mDirection == kDirectionLeft) ? Graphics::SpriteBatch::kFlagFlipX : 0;
+	SpriteBatch::DrawFlags flags =
+		(mDirection == kDirectionLeft) ?
+		SpriteBatch::DrawFlags::FlipX :
+		SpriteBatch::DrawFlags::None;
 
 	Rectangle source, dest;
 
@@ -202,15 +207,15 @@ void Character::Draw(Graphics::SpriteBatch& spriteBatch)
 		if (mType == kCharacterMarioBig)
 		{
 			// Big mario flashes between big and small
-			static const float kFlashTime = 0.2f;
+			static constexpr float kFlashTime = 0.2f;
 			if (fmod(mFrameTimer, kFlashTime) < (0.5f * kFlashTime))
 			{
 				source = kFrames[deadFrame];
 				dest.Set(
-					(int)mPosition.x,
-					(int)mPosition.y,
-					source.width * msScaleFactor,
-					source.height * msScaleFactor);
+					(int)mPosition.mX,
+					(int)mPosition.mY,
+					source.mWidth * msScaleFactor,
+					source.mHeight * msScaleFactor);
 			}
 			else
 			{
@@ -245,7 +250,7 @@ void Character::OnHit()
 		// Small mario is launched in the air
 		if (mType == kCharacterMarioSmall)
 		{
-			static const Vector2 kInitialVelocity = { 0.0f, 100.0f };
+			static constexpr Vector2 kInitialVelocity = { 0.0f, 100.0f };
 			mVelocity = kInitialVelocity;
 		}
 	}
@@ -261,10 +266,10 @@ Rectangle Character::CurrentBounds()
 	const Rectangle& source = CurrentSource();
 	Rectangle destination;
 	destination.Set(
-		(int)mPosition.x,
-		(int)mPosition.y,
-		source.width * msScaleFactor,
-		source.height * msScaleFactor);
+		(int)mPosition.mX,
+		(int)mPosition.mY,
+		source.mWidth * msScaleFactor,
+		source.mHeight * msScaleFactor);
 
 	return destination;
 }

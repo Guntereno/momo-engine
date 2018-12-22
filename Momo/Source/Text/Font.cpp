@@ -16,7 +16,8 @@ namespace Momo
 			mpGlyphs(NULL),
 			mGlyphCount(0),
 			mpKernings(NULL),
-			mKerningCount(0)
+			mKerningCount(0),
+			mTechniqueId(Graphics::SpriteBatch::TechniqueId::FontNoOutline)
 		{
 			memset(&mInfo, 0, sizeof(Info));
 			memset(&mCommon, 0, sizeof(Common));
@@ -95,7 +96,7 @@ namespace Momo
 
 				if (i > 0)
 				{
-					const Font::Kerning* pKerning = GetKerning(prevChar, curChar);
+					const Font::Kerning* pKerning = GetKerning((u16)prevChar, (u16)curChar);
 					if (pKerning != NULL)
 					{
 						currentLength += pKerning->amount;
@@ -112,7 +113,7 @@ namespace Momo
 				}
 				else
 				{
-					const Font::Glyph* pGlyph = GetGlyph(curChar);
+					const Font::Glyph* pGlyph = GetGlyph((u16)curChar);
 					if (pGlyph == NULL)
 					{
 						pGlyph = GetGlyph('?');

@@ -36,9 +36,9 @@ namespace Momo
 		m22 = 1.0f;
 		m33 = 1.0f;
 
-		m14 = pos.x;
-		m24 = pos.y;
-		m34 = pos.z;
+		m14 = pos.mX;
+		m24 = pos.mY;
+		m34 = pos.mZ;
 		m44 = 1.0f;
 	}
 

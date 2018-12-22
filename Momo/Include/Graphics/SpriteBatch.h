@@ -10,6 +10,8 @@
 
 #include "Graphics/Texture.h"
 
+#include <limits>
+#include <type_traits>
 
 namespace Momo
 {
@@ -19,21 +21,22 @@ namespace Momo
 		class SpriteBatch
 		{
 		public:
-			enum DrawFlags
+			enum class DrawFlags : u32
 			{
-				kFlagFlipX = 1 << 0,
-				kFlagFlipY = 1 << 1
+				None = 0,
+				FlipX = 1 << 0,
+				FlipY = 1 << 1
 			};
-
-			enum TechniqueId
+			
+			enum class TechniqueId : u32
 			{
-				kTechniqueInvalid = -1,
+				Sprite,
+				FontNoOutline,
+				FontOutline,
 
-				kTechniqueSprite,
-				kTechniqueFontNoOutline,
-				kTechniqueFontOutline,
+				Count,
 
-				kTechniqueCount
+				Invalid
 			};
 
 			SpriteBatch();
@@ -43,9 +46,9 @@ namespace Momo
 			void Begin();
 
 			void Draw(const Texture* texture, const Rectangle& dest, const Color& color);
-			void Draw(const Texture* texture, const Rectangle& dest, const Color& color, unsigned int flags);
+			void Draw(const Texture* texture, const Rectangle& dest, const Color& color, DrawFlags flags);
 			void Draw(const Texture* texture, const Rectangle& dest, const Rectangle& src, const Color& color);
-			void Draw(const Texture* texture, const Rectangle& dest, const Rectangle& src, const Color& color, unsigned int flags);
+			void Draw(const Texture* texture, const Rectangle& dest, const Rectangle& src, const Color& color, DrawFlags flags);
 
 			void DrawString(const Text::Font& font, const char* pUtf8String, size_t strLen, const Point& point, const Color& color);
 
@@ -54,21 +57,21 @@ namespace Momo
 		private:
 			DISALLOW_COPY_AND_ASSIGN(SpriteBatch);
 
-			static const size_t kVertsPerSprite = 4;
-			static const size_t kIndicesPerSprite = 6;
+			static constexpr size_t kVertsPerSprite = 4;
+			static constexpr size_t kIndicesPerSprite = 6;
 
-			static const size_t kSpriteMax = 8192;
-			static const size_t kVertexMax = kSpriteMax * kVertsPerSprite;
-			static const size_t kIndexMax = kSpriteMax * kIndicesPerSprite;
+			static constexpr size_t kSpriteMax = std::numeric_limits<u16>::max();
+			static constexpr size_t kVertexMax = kSpriteMax * kVertsPerSprite;
+			static constexpr size_t kIndexMax = kSpriteMax * kIndicesPerSprite;
 
-			static const size_t kTrianglesPerSprite = 2;
+			static constexpr size_t kTrianglesPerSprite = 2;
 
 			struct Vertex
 			{
-				static const int kFloatsPerPosition = 2;
-				static const int kFloatsPerUv = 2;
-				static const int kFloatsPerChannel = 4;
-				static const int kBytesPerColor = 4;
+				static constexpr int kFloatsPerPosition = 2;
+				static constexpr int kFloatsPerUv = 2;
+				static constexpr int kFloatsPerChannel = 4;
+				static constexpr int kBytesPerColor = 4;
 
 				Color color;
 				Vector2 position;
@@ -85,7 +88,7 @@ namespace Momo
 
 			bool LoadTechniques();
 
-			void DrawInternal(TechniqueId techniqueId, const Vector4& channel, const Texture* pTexture, const Rectangle& dest, const Rectangle* src, const Color& color, unsigned int flags);
+			void DrawInternal(TechniqueId techniqueId, const Vector4& channel, const Texture* pTexture, const Rectangle& dest, const Rectangle* src, const Color& color, DrawFlags flags);
 
 			GLuint mVertexBufferHandle;
 			GLuint mIndexBufferHandle;
@@ -98,6 +101,7 @@ namespace Momo
 			size_t mBatchCount;
 		};
 
+		FLAG_OPS(SpriteBatch::DrawFlags)
 	}
 }
 

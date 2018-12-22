@@ -23,14 +23,18 @@ namespace Momo
 		virtual ~GameBase();
 
 		virtual void Init();
-		virtual void Resize(unsigned int width, unsigned int height);
+		virtual void Resize(u32 mWidth, u32 mHeight);
 		virtual void Update();
 		virtual void Draw() = 0;
 		virtual void DrawDebug() = 0;
 		virtual void Destroy();
 		virtual void Pause();
 		virtual void UnPause();
-		virtual bool HandleTouchEvent(const Input::Event& event) { return false; };
+		virtual bool HandleTouchEvent(const Input::Event& event)
+		{
+			UNUSED(event);
+			return false;
+		};
 
 		void OnTouchEvent(Input::Event::Type type, Input::Event::Id id, const Point& pos, const Point& delta);
 
@@ -47,6 +51,9 @@ namespace Momo
 
 		Ui::View* mpViewContainer;
 		Input::InputQueue* mpInputQueue;
+
+	private:
+		DISALLOW_COPY_AND_ASSIGN(GameBase);
 	};
 
 }

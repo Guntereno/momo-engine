@@ -11,13 +11,13 @@
 #endif // WIN32
 
 extern "C"
-void AssertPrint (const char* file, unsigned line, const char* expression)
+void AssertPrint (const char* file, long line, const char* expression)
 {
 	LOGE("\n%s(%d): ASSERT (%s)\n\n", file, line, expression);
 }
 
 extern "C"
-void AssertPrintMessage (const char* file, unsigned line, const char* expression, const char* message, ...)
+void AssertPrintMessage (const char* file, long line, const char* expression, const char* message, ...)
 {
 	const size_t kBuffLen = 256;
 	char buff[kBuffLen];
@@ -30,7 +30,7 @@ void AssertPrintMessage (const char* file, unsigned line, const char* expression
 }
 
 extern "C"
-void BreakPrintMessage (const char* file, unsigned line, const char* message, ...)
+void BreakPrintMessage (const char* file, long line, const char* message, ...)
 {
 	const size_t kBuffLen = 256;
 	char buff[kBuffLen];

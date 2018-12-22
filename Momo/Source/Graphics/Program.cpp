@@ -29,7 +29,8 @@ namespace Momo
 					glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &infoLen);
 					if (infoLen)
 					{
-						char* buf = (char*)malloc(infoLen);
+						ASSERT(infoLen > 0);
+						char* buf = (char*)malloc((size_t)infoLen);
 						if (buf)
 						{
 							glGetShaderInfoLog(shader, infoLen, NULL, buf);
@@ -76,7 +77,8 @@ namespace Momo
 					glGetProgramiv(program, GL_INFO_LOG_LENGTH, &bufLength);
 					if (bufLength)
 					{
-						char* buf = (char*)malloc(bufLength);
+						ASSERT(bufLength > 0);
+						char* buf = (char*)malloc((size_t)bufLength);
 						if (buf)
 						{
 							glGetProgramInfoLog(program, bufLength, NULL, buf);

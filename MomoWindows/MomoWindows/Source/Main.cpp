@@ -41,11 +41,17 @@ int Init(ESContext *esContext)
 
 void Resize(ESContext *esContext, int width, int height)
 {
-	gGame.Resize(gWindowWidth, gWindowHeight);
+	UNUSED(esContext); // Not needed for this platform
+	gWindowWidth = width;
+	gWindowHeight = height;
+	gGame.Resize((unsigned int)gWindowWidth, (unsigned int)gWindowHeight);
 }
 
 void Update(ESContext *esContext, float frameDelta)
 {
+	UNUSED(esContext); // Not needed for this platform
+	UNUSED(frameDelta); // Not needed for this platform
+
 	gGame.Update();
 }
 
@@ -59,41 +65,49 @@ void Draw(ESContext *esContext)
 
 void OnKey(ESContext* esContext, unsigned char key, int keyCode, int unicode)
 {
+	UNUSED(keyCode);
+	UNUSED(unicode);
+
 	switch (key)
 	{
-	case 'p':
-	case 'P':
-	{
-		gAppPaused = !gAppPaused;
-		if (gAppPaused)
+		case 'p':
+		case 'P':
 		{
-			gGame.Pause();
+			gAppPaused = !gAppPaused;
+			if (gAppPaused)
+			{
+				gGame.Pause();
+			}
+			else
+			{
+				gGame.UnPause();
+			}
 		}
-		else
+		break;
+
+		case 'r':
+		case 'R':
 		{
-			gGame.UnPause();
+			// Rotate the display
+			GLint temp = gWindowWidth;
+			gWindowWidth = gWindowHeight;
+			gWindowHeight = temp;
+
+			RECT clientRect, windowRect;
+			GetClientRect(esContext->hWnd, &clientRect);
+			GetWindowRect(esContext->hWnd, &windowRect);
+
+			POINT diff;
+			diff.x = (windowRect.right - windowRect.left) - clientRect.right;
+			diff.y = (windowRect.bottom - windowRect.top) - clientRect.bottom;
+
+			MoveWindow(esContext->hWnd, windowRect.left, windowRect.top, gWindowWidth + diff.x, gWindowHeight + diff.y, true);
 		}
-	}
-	break;
+		break;
 
-	case 'r':
-	case 'R':
-	{
-		// Rotate the display
-		GLint temp = gWindowWidth;
-		gWindowWidth = gWindowHeight;
-		gWindowHeight = temp;
-
-		RECT clientRect, windowRect;
-		GetClientRect(esContext->hWnd, &clientRect);
-		GetWindowRect(esContext->hWnd, &windowRect);
-
-		POINT diff;
-		diff.x = (windowRect.right - windowRect.left) - clientRect.right;
-		diff.y = (windowRect.bottom - windowRect.top) - clientRect.bottom;
-
-		MoveWindow(esContext->hWnd, windowRect.left, windowRect.top, gWindowWidth + diff.x, gWindowHeight + diff.y, true);
-	}
+		default:
+			// Do nothing
+			break;
 	}
 }
 
@@ -127,7 +141,7 @@ void OnMouse(ESContext* esContext, unsigned char type, int x, int y)
 	case ES_MOUSE_MOVE:
 		if (gMouseDown)
 		{
-			delta.Set(x - gMousePos.x, y - gMousePos.y);
+			delta.Set(x - gMousePos.mX, y - gMousePos.mY);
 			gMousePos.Set(x, y);
 
 			gGame.OnTouchEvent(Momo::Input::Event::kMove, 0, gMousePos, delta);
@@ -138,11 +152,15 @@ void OnMouse(ESContext* esContext, unsigned char type, int x, int y)
 
 void ShutDown(ESContext *esContext)
 {
+	UNUSED(esContext);
 	gGame.Destroy();
 }
 
 int main(int argc, char *argv[])
 {
+	UNUSED(argc);
+	UNUSED(argv);
+
 	ESContext esContext;
 
 	esInitContext(&esContext);

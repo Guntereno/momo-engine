@@ -1,8 +1,5 @@
 #include "Ui\ButtonView.h"
 
-#include "Input\InputEvent.h"
-
-
 namespace Momo
 {
 	namespace Ui
@@ -10,7 +7,7 @@ namespace Momo
 
 		ButtonView::ButtonView() :
 			View(),
-			mTouchId(-1)
+			mTouchId(Input::Event::IdInvalid)
 		{
 
 		}
@@ -40,7 +37,7 @@ namespace Momo
 			{
 				if (containsPos)
 				{
-					if (mTouchId == -1)
+					if (mTouchId == Input::Event::IdInvalid)
 					{
 						mTouchId = event.id;
 						mState = kStatePressed;
@@ -73,7 +70,7 @@ namespace Momo
 						}
 					}
 
-					mTouchId = -1;
+					mTouchId = Input::Event::IdInvalid;
 					mState = kStateDefault;
 				}
 			}

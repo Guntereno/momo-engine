@@ -34,18 +34,18 @@ namespace Momo
 		private:
 			DISALLOW_COPY_AND_ASSIGN(LineBatch);
 
-			static const size_t kVertsPerLine = 2;
-			static const size_t kIndicesPerLine = 2;
+			static constexpr size_t kVertsPerLine = 2;
+			static constexpr size_t kIndicesPerLine = 2;
 
-			static const size_t kLineMax = 8192;
-			static const size_t kVertexMax = kLineMax * kVertsPerLine;
-			static const size_t kIndexMax = kLineMax * kIndicesPerLine;
+			static constexpr size_t kLineMax = 8192;
+			static constexpr size_t kVertexMax = kLineMax * kVertsPerLine;
+			static constexpr size_t kIndexMax = kLineMax * kIndicesPerLine;
 
 			struct Vertex
 			{
-				static const int kFloatsPerPosition = 2;
-				static const int kFloatsPerChannel = 4;
-				static const int kBytesPerColor = 4;
+				static constexpr int kFloatsPerPosition = 2;
+				static constexpr int kFloatsPerChannel = 4;
+				static constexpr int kBytesPerColor = 4;
 
 				Color color;
 				Vector2 position;

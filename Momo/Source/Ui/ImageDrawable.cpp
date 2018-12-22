@@ -46,7 +46,7 @@ namespace Momo
 				return;
 			}
 
-			if (pState->src.width == pState->src.height == 0)
+			if (pState->src.mWidth == pState->src.mHeight == 0)
 			{
 				spriteBatch.Draw(pState->pTexture, dest, color);
 			}

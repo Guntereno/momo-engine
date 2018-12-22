@@ -14,12 +14,15 @@ namespace Momo
 	class IdString
 	{
 	public:
-		static const IdString kNull;
-
 		// Assumes null terminated string
 		IdString(const char* pString)
 		{
 			mHash = Crc32(pString, strlen(pString));
+		}
+
+		IdString()
+		{
+			mHash = 0;
 		}
 
 		bool operator==(const IdString& rhs)

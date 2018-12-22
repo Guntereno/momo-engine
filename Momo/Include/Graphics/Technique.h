@@ -18,16 +18,16 @@ namespace Momo
 		public:
 			struct Attributes
 			{
-				GLuint position;
-				GLuint textureCoord;
-				GLuint color;
-				GLuint channel;
+				GLint position;
+				GLint textureCoord;
+				GLint color;
+				GLint channel;
 			};
 
 			struct Uniforms
 			{
-				GLuint transform;
-				GLuint texture;
+				GLint transform;
+				GLint texture;
 			};
 
 			Technique();

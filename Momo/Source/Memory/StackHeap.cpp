@@ -40,6 +40,7 @@ namespace Momo
 
 		void StackHeap::Free(void* pBlock)
 		{
+			UNUSED(pBlock);
 			// Do nothing, memory is freed when we pop the containing heap
 		}
 
@@ -77,7 +78,7 @@ namespace Momo
 
 		size_t StackHeap::BytesAllocated()
 		{
-			return mpTail - mpHead;
+			return (size_t)(mpTail - mpHead);
 		}
 
 		size_t StackHeap::BytesRemaining()

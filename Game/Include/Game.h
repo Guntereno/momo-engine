@@ -45,7 +45,7 @@ public:
 	MushroomCallback* GetMushroomCallback() { return mpMushroomCallback; }
 
 private:
-	static const int kNumCharacters = 512;
+	static constexpr int kNumCharacters = 512;
 
 	static Game* mspInstance;
 

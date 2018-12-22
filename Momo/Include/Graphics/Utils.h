@@ -21,11 +21,16 @@ namespace Momo
 		class Utils
 		{
 		public:
-			static void CheckGlError(const char* pFile, int pLine, const char* statement) 
+			static void CheckGlError(const char* pFile, int line, const char* statement) 
 			{
-				for (GLint error = glGetError(); (error != 0); error = glGetError())
+				for (GLenum error = glGetError(); (error != 0); error = glGetError())
 				{
-					BREAK_MSG(pFile, pLine, "after '%s' glError (0x%x) in file '%s' on line '%d'.\n", statement, error, pFile, pLine);
+					// Unused in Release
+					UNUSED(pFile);
+					UNUSED(line);
+					UNUSED(statement);
+
+					BREAK_MSG(pFile, line, "after '%s' glError (0x%x).\n", statement, error);
 				}
 			}
 		};

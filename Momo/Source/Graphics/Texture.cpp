@@ -35,7 +35,8 @@ namespace Momo
 					glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
 					// Load the bitmap into the bound texture.
-					glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, mFormat, GL_UNSIGNED_BYTE, data);
+					glTexImage2D(GL_TEXTURE_2D, 0, (GLint)mFormat, mWidth, mHeight, 0, mFormat,
+						GL_UNSIGNED_BYTE, data);
 				}
 
 			mHandle = textureHandle;
@@ -52,7 +53,7 @@ namespace Momo
 
 			const Targa::Header& header = targa.GetHeader();
 
-			switch (header.dataTypeCode)
+			switch (header.mDataTypeCode)
 			{
 			case Targa::kTypeUncompressedRgb:
 			case Targa::kTypeUncompressedGray:
@@ -84,7 +85,7 @@ namespace Momo
 			u8* pTextureData = NULL;
 			pTextureData = new u8[targa.GetDataSize()];
 
-			int numPixels = header.width * header.height;
+			int numPixels = header.mWidth * header.mHeight;
 
 			for (int i = 0; i < numPixels; ++i)
 			{
@@ -107,7 +108,7 @@ namespace Momo
 				}
 			}
 
-			Load(header.width, header.height, format, pTextureData);
+			Load(header.mWidth, header.mHeight, format, pTextureData);
 
 			return true;
 		}

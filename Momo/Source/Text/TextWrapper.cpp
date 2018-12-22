@@ -54,8 +54,8 @@ namespace Momo
 						++pCurrent;
 					}
 
-					int length = mpFont->MeasureString(pStart, (pCurrent - pStart));
-					if (length > mArea.width)
+					int length = mpFont->MeasureString(pStart, (size_t)(pCurrent - pStart));
+					if (length > mArea.mWidth)
 					{
 						AddLine(pStart, pEnd, previousLength);
 						pStart = pEnd = pEnd + 1;
@@ -69,7 +69,7 @@ namespace Momo
 				else if (*pCurrent == '\n')
 				{
 					pEnd = pCurrent;
-					int length = mpFont->MeasureString(pStart, (pEnd - pStart));
+					int length = mpFont->MeasureString(pStart, (size_t)(pEnd - pStart));
 					AddLine(pStart, pEnd, length);
 					pStart = pCurrent + 1;
 				}
@@ -77,7 +77,7 @@ namespace Momo
 
 			// Add the remainder
 			pEnd = mpText + mTextLen;
-			int length = mpFont->MeasureString(pStart, (pEnd - pStart));
+			int length = mpFont->MeasureString(pStart, (size_t)(pEnd - pStart));
 			AddLine(pStart, pEnd, length);
 		}
 
@@ -89,15 +89,15 @@ namespace Momo
 			int yPos;
 			if ((mFlags & kVAlignCenter) == kVAlignCenter)
 			{
-				yPos = center.y + ((mLineCount * lineHeight) / 2) - lineHeight;
+				yPos = (int)(center.mY + ((mLineCount * lineHeight) / 2) - lineHeight);
 			}
 			else if ((mFlags & kVAlignTop) == kVAlignTop)
 			{
-				yPos = mArea.Top() - lineHeight;
+				yPos = (int)(mArea.Top() - lineHeight);
 			}
 			else // bottom align
 			{
-				yPos = mArea.y + ((mLineCount - 1) * lineHeight);
+				yPos = (int)(mArea.mY + ((mLineCount - 1) * lineHeight));
 			}
 
 			for (unsigned i = 0; i < mLineCount; ++i)
@@ -106,7 +106,7 @@ namespace Momo
 				int lineLen = mpLines[i].length;
 				if ((mFlags & kHAlignCenter) == kHAlignCenter)
 				{
-					xPos = center.x - (lineLen / 2);
+					xPos = center.mX - (lineLen / 2);
 				}
 				else if ((mFlags & kHAlignRight) == kHAlignRight)
 				{

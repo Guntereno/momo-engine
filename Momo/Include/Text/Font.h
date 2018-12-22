@@ -3,6 +3,7 @@
 
 #include "Momo.h"
 
+#include "Graphics/SpriteBatch.h"
 #include "Rectangle.h"
 #include "Vector.h"
 
@@ -17,7 +18,7 @@ namespace Momo
 		public:
 			friend class FontLoader;
 
-			static const int kMaxPages = 8;
+			static constexpr int kMaxPages = 8;
 
 			struct Glyph
 			{
@@ -45,9 +46,9 @@ namespace Momo
 
 			struct Info
 			{
-				static const size_t kStrLen = 32;
-				static const int kPaddingCount = 4;
-				static const int kSpacingCount = 2;
+				static constexpr size_t kStrLen = 32;
+				static constexpr int kPaddingCount = 4;
+				static constexpr int kSpacingCount = 2;
 
 				enum Flags
 				{
@@ -108,7 +109,7 @@ namespace Momo
 			const Page* GetPage(unsigned index) const;
 			const Glyph* GetGlyph(u16 unicode) const;
 			const Kerning* GetKerning(u16 first, u16 second) const;
-			int GetTechniqueId() const { return mTechniqueId; }
+			Graphics::SpriteBatch::TechniqueId GetTechniqueId() const { return mTechniqueId; }
 
 			int MeasureString(const char* pString, size_t length) const;
 
@@ -125,7 +126,7 @@ namespace Momo
 			Kerning* mpKernings;
 			u32 mKerningCount;
 
-			int mTechniqueId;
+			Graphics::SpriteBatch::TechniqueId mTechniqueId;
 		};
 
 	}

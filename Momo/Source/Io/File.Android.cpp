@@ -15,7 +15,7 @@ namespace Momo
 	{
 		static AAssetManager* gAssetManager = NULL;
 
-		static const char* kDebugPrefix = "Momo::Io::File";
+		static constexpr char* kDebugPrefix = "Momo::Io::File";
 
 		void File::Init(void* pData)
 		{

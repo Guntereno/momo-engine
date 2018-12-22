@@ -11,13 +11,12 @@ namespace Momo
 {
 	namespace Io
 	{
-		static const char* kDebugPrefix = "Momo::Io::File";
+		static constexpr char* kDebugPrefix = "Momo::Io::File";
 
 		void File::Init(void* pData)
 		{
 			LOGI("%s: Initialising", kDebugPrefix);
-
-			// Do nothing
+			UNUSED(pData); // Not needed on this platform
 		}
 
 		File::Handle File::Open(const char* fileName, Mode mode)
@@ -62,6 +61,7 @@ namespace Momo
 
 			int result = fclose(pFile);
 			ASSERT(result == 0);
+			UNUSED(result); // Not used on Release
 		}
 
 		size_t File::Read(File::Handle file, void* pBuf, size_t size)
@@ -103,19 +103,19 @@ namespace Momo
 			FILE* pFile = reinterpret_cast<FILE*>(file);
 
 			// store current pos
-			size_t initial = ftell(pFile);
+			long initial = ftell(pFile);
 
 			// seek to the end
 			result = fseek(pFile, 0L, SEEK_END);
 			ASSERT(result == 0);
 
-			size_t size = ftell(pFile);
+			long size = ftell(pFile);
 
 			// seek back to the initial
 			result = fseek(pFile, initial, SEEK_SET);
 			ASSERT(result == 0);
 
-			return size;
+			return (size_t)size;
 		}
 	}
 }

@@ -19,7 +19,7 @@ namespace Momo
 
 		void Camera::SetProjectionOrtho(const Rectangle& viewport, float near, float far)
 		{
-			mProjection.SetOrthographicProjection((float)viewport.width, (float)viewport.height, -1.0f, 1.0f);
+			mProjection.SetOrthographicProjection((float)viewport.mWidth, (float)viewport.mHeight, near, far);
 			mViewProjectionDirty = true;
 		}
 

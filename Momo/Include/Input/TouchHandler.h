@@ -14,7 +14,7 @@ namespace Momo
 		class TouchHandler
 		{
 		public:
-			static const int kMaxTouches = 5;
+			static constexpr int kMaxTouches = 5;
 
 			TouchHandler();
 

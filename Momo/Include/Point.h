@@ -17,27 +17,27 @@ namespace Momo
 			return zero;
 		}
 
-		int x;
-		int y;
+		int mX;
+		int mY;
 
 		void Set(int x, int y)
 		{
-			this->x = x;
-			this->y = y;
+			this->mX = x;
+			this->mY = y;
 		}
 
 		bool operator==(const Point &rhs)
 		{
 			return
-				(this->x == rhs.x) &&
-				(this->y == rhs.y);
+				(this->mX == rhs.mX) &&
+				(this->mY == rhs.mY);
 		}
 
 		bool operator!=(const Point &rhs)
 		{
 			return
-				(this->x != rhs.x) ||
-				(this->y != rhs.y);
+				(this->mX != rhs.mX) ||
+				(this->mY != rhs.mY);
 		}
 	};
 

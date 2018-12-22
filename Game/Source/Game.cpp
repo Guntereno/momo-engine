@@ -31,7 +31,7 @@ using namespace Momo;
 Game* Game::mspInstance = NULL;
 
 
-static const char* kFontNames[Game::kFontCount] =
+static constexpr char* kFontNames[Game::kFontCount] =
 {
 	"fonts/verdana_outline_nopack.fnt",
 };
@@ -153,7 +153,7 @@ void Game::Resize(unsigned int width, unsigned int height)
 {
 	GameBase::Resize(width, height);
 
-	static const int kScaleFactor = 3;
+	static constexpr int kScaleFactor = 3;
 	Character::SetBounds(mViewport);
 	Character::SetScaleFactor(kScaleFactor);
 
@@ -165,9 +165,9 @@ void Game::Resize(unsigned int width, unsigned int height)
 
 	Character::ResetCounters();
 
-	mMeshPos.x = mViewport.width * 0.5f;
-	mMeshPos.y = mViewport.height * 0.5f;
-	mMeshPos.z = 0.0f;
+	mMeshPos.mX = mViewport.mWidth * 0.5f;
+	mMeshPos.mY = mViewport.mHeight * 0.5f;
+	mMeshPos.mZ = 0.0f;
 }
 
 void Game::Update()
@@ -251,8 +251,8 @@ bool Game::HandleTouchEvent(const Momo::Input::Event& event)
 				break;
 			}
 
-			mMeshPos.x = (float)event.pos.x;
-			mMeshPos.y = (float)event.pos.y;
+			mMeshPos.mX = (float)event.pos.mX;
+			mMeshPos.mY = (float)event.pos.mY;
 		}
 		return true;
 	}
@@ -286,7 +286,7 @@ void Game::RenderOsd()
 	snprintf(buffer, kBufferLen, "Mario: %d\0", Character::GetKillCount(Character::kCharacterMarioSmall));
 	mSpriteBatch.DrawString(font, buffer, strlen(buffer), pos, kMarioColor);
 
-	pos.y += font.GetCommon()->lineHeight;
+	pos.mY += font.GetCommon()->lineHeight;
 
 	const Momo::Color kGoombaColor = { 0xFF3070c8 };
 	snprintf(buffer, kBufferLen, "Goomba: %d\0", Character::GetKillCount(Character::kCharacterMushroom));

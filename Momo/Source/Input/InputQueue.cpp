@@ -19,7 +19,7 @@ namespace Momo
 			Point::Zero()
 		};
 
-		InputQueue::InputQueue(int size) :
+		InputQueue::InputQueue(size_t size) :
 			mSize(size),
 			mQueue(NULL),
 			mpStart(NULL),
@@ -49,7 +49,7 @@ namespace Momo
 			else
 			{
 				++mpStart;
-				int offset = mpStart - mQueue;
+				size_t offset = (size_t)(mpStart - mQueue);
 				if (offset >= mSize)
 				{
 					mpStart = mQueue;

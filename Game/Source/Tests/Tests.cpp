@@ -15,7 +15,7 @@ namespace Tests
 	{
 		bool success = true;
 
-		static const char* kTestStrings[] =
+		static constexpr char* kTestStrings[] =
 		{
 			"Kelly Washington",
 			"Maria Diaz",
@@ -68,7 +68,7 @@ namespace Tests
 			"Debra Thomas",
 			"Joe Perez"
 		};
-		static const u32 kTestStringsCount = sizeof(kTestStrings) / sizeof(*kTestStrings);
+		static constexpr u32 kTestStringsCount = sizeof(kTestStrings) / sizeof(*kTestStrings);
 
 		u32 hashes[kTestStringsCount];
 
@@ -93,7 +93,7 @@ namespace Tests
 
 		// Create another list and check the hashes are contained in the table
 		// Order has been randomized
-		static const char* kTestStringsRand[] =
+		static constexpr char* kTestStringsRand[] =
 		{
 			"Melissa Evans",
 			"Katherine Phillips",
@@ -146,7 +146,7 @@ namespace Tests
 			"Tammy Nelson",
 			"Kathryn Harris",
 		};
-		static const u32 kTestStringsRandCount = sizeof(kTestStringsRand) / sizeof(*kTestStringsRand);
+		static constexpr u32 kTestStringsRandCount = sizeof(kTestStringsRand) / sizeof(*kTestStringsRand);
 
 		for (int i = 0; i < kTestStringsRandCount; ++i)
 		{
@@ -169,7 +169,7 @@ namespace Tests
 		}
 
 		// Ensure that another string hash isn't in the list
-		static const char* kTestStringsExcluded[] =
+		static constexpr char* kTestStringsExcluded[] =
 		{
 			"Amanda Perez",
 			"Harold Campbell",
@@ -185,7 +185,7 @@ namespace Tests
 			"Nicholas Turner",
 			"Lois Wilson"
 		};
-		static const u32 kTestStringsExcludedCount = sizeof(kTestStringsExcluded) / sizeof(*kTestStringsExcluded);
+		static constexpr u32 kTestStringsExcludedCount = sizeof(kTestStringsExcluded) / sizeof(*kTestStringsExcluded);
 
 		for (int i = 0; i < kTestStringsExcludedCount; ++i)
 		{

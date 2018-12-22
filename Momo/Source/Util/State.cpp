@@ -10,15 +10,15 @@ namespace Momo
 		State::State(IdString id) :
 			mId(id),
 			mFlags(0),
-			mStateRequest(IdString::kNull)
+			mStateRequest()
 		{
-
+			// Nothing
 		}
 
 		void State::Enter()
 		{
 			mFlags = 0;
-			mStateRequest = IdString::kNull;
+			mStateRequest = IdString();
 
 			EnterInternal();
 		}

@@ -15,20 +15,20 @@ namespace Momo
 		public:
 			static Event kNullEvent;
 
-			InputQueue(int size = 256);
+			InputQueue(size_t size = 256);
 			~InputQueue();
 
 			void Push(Event& event);
 			const Event& Pop();
 
-			short Count() const { return mCount; }
+			size_t Count() const { return mCount; }
 
 		private:
-			int mSize;
+			size_t mSize;
 			Event* mQueue;
 
 			Event* mpStart;
-			int mCount;
+			size_t mCount;
 		};
 
 	}

@@ -16,18 +16,18 @@ namespace Momo
 		public:
 			struct Header
 			{
-				u8  idLength;
-				u8  colourMapType;
-				u8  dataTypeCode;
-				u16 colourMapOrigin;
-				u16 colourMapLength;
-				u8  colourMapDepth;
-				u16 xOrigin;
-				u16 yOrigin;
-				u16 width;
-				u16 height;
-				u8  bitsPerPixel;
-				u8  imageDescriptor;
+				u8  mIdLength;
+				u8  mColourMapType;
+				u8  mDataTypeCode;
+				u16 mColourMapOrigin;
+				u16 mColourMapLength;
+				u8  mColourMapDepth;
+				u16 mXOrigin;
+				u16 mYOrigin;
+				u16 mWidth;
+				u16 mHeight;
+				u8  mBitsPerPixel;
+				u8  mImageDescriptor;
 			};
 
 			enum DataType
@@ -54,7 +54,7 @@ namespace Momo
 			bool Load(const char* pFileName);
 			bool Save(const char* pFileName);
 
-			bool Create(GLenum format, int width, int height, const u8* pRgbaData);
+			bool Create(GLenum format, u16 mWidth, u16 mHeight, const u8* pRgbaData);
 
 			const Header& GetHeader() { return mHeader; }
 

@@ -3,63 +3,63 @@
 
 #include "Momo.h"
 
-
 namespace Momo
 {
 
 	// POD type representing a Colour
 	struct Color
 	{
-		unsigned int value;
+		u32 mValue;
 
-		unsigned char R() const
+		u8 R() const
 		{
-			return value >> kRedShift;
+			return static_cast<u8>(mValue >> kRedShift);
 		}
 
-		unsigned char G() const
+		u8 G() const
 		{
-			return value >> kGreenShift;
+			return static_cast<u8>(mValue >> kGreenShift);
 		}
 
-		unsigned char B() const
+		u8 B() const
 		{
-			return value >> kBlueShift;
+			return static_cast<u8>(mValue >> kBlueShift);
 		}
 
-		unsigned char A() const
+		
+		u8 A() const
 		{
-			return value;
+			return static_cast<u8>(mValue);
 		}
 
-		void SetR(unsigned char value)
+		void SetR(u8 value)
 		{
-			this->value = (this->value & ~kRedMask) | ((unsigned int)value << kRedShift);
+			this->mValue = (this->mValue & ~kRedMask) | ((unsigned int)value << kRedShift);
 		}
 
-		void SetG(unsigned char value)
+		void SetG(u8 value)
 		{
-			this->value = (this->value & ~kGreenMask) | ((unsigned int)value << kGreenShift);
+			this->mValue = (this->mValue & ~kGreenMask) | ((unsigned int)value << kGreenShift);
 		}
 
-		void SetB(unsigned char value)
+		void SetB(u8 value)
 		{
-			this->value = (this->value & ~kBlueMask) | ((unsigned int)value << kBlueShift);
+			this->mValue = (this->mValue & ~kBlueMask) | ((unsigned int)value << kBlueShift);
 		}
 
-		void SetA(unsigned char value)
+		void SetA(u8 value)
 		{
-			this->value = (this->value & ~kAlphaMask) | ((unsigned int)value << kAlphaShift);
+			this->mValue = (this->mValue & ~kAlphaMask) | ((unsigned int)value << kAlphaShift);
 		}
 
 		void Set(const Color& color)
 		{
-			this->value = color.value;
+			this->mValue = color.mValue;
 		}
 
-		void Set(unsigned char r, unsigned char g, unsigned char b, unsigned char a = 255)
+		void Set(u8 r, u8 g, u8 b, u8 a = 255)
 		{
-			this->value = (r << kRedShift) | (g << kGreenShift) | (b << kBlueShift) | (a << kAlphaShift);
+			this->mValue = static_cast<u32>((r << kRedShift) | (g << kGreenShift) | (b << kBlueShift) | (a << kAlphaShift));
 		}
 
 		static Color Lerp(const Color& value1, const Color& value2, float t)
@@ -69,77 +69,77 @@ namespace Momo
 			else if (t < 0.0f)
 				return value1;
 
-			unsigned char r1 = value1.R();
-			unsigned char g1 = value1.G();
-			unsigned char b1 = value1.B();
-			unsigned char a1 = value1.A();
+			u8 r1 = value1.R();
+			u8 g1 = value1.G();
+			u8 b1 = value1.B();
+			u8 a1 = value1.A();
 
-			unsigned char r2 = value2.R();
-			unsigned char g2 = value2.G();
-			unsigned char b2 = value2.B();
-			unsigned char a2 = value2.A();
+			u8 r2 = value2.R();
+			u8 g2 = value2.G();
+			u8 b2 = value2.B();
+			u8 a2 = value2.A();
 
 			const int kFixedShift = 16;
 
-			unsigned int fixedT = (int)(t * (1 << kFixedShift));
+			u32 fixedT = static_cast<u32>(t * (1 << kFixedShift));
 
-			int fixedR = (r1 << kFixedShift) + ((r2 - r1) * fixedT);
-			int fixedG = (g1 << kFixedShift) + ((g2 - g1) * fixedT);
-			int fixedB = (b1 << kFixedShift) + ((b2 - b1) * fixedT);
-			int fixedA = (a1 << kFixedShift) + ((a2 - a1) * fixedT);
+			u32 fixedR = (r1 << kFixedShift) + ((r2 - r1) * fixedT);
+			u32 fixedG = (g1 << kFixedShift) + ((g2 - g1) * fixedT);
+			u32 fixedB = (b1 << kFixedShift) + ((b2 - b1) * fixedT);
+			u32 fixedA = (a1 << kFixedShift) + ((a2 - a1) * fixedT);
 
 			Color result;
 
-			result.SetR((unsigned char)(fixedR >> kFixedShift));
-			result.SetG((unsigned char)(fixedG >> kFixedShift));
-			result.SetB((unsigned char)(fixedB >> kFixedShift));
-			result.SetA((unsigned char)(fixedA >> kFixedShift));
+			result.SetR(static_cast<u8>(fixedR >> kFixedShift));
+			result.SetG(static_cast<u8>(fixedG >> kFixedShift));
+			result.SetB(static_cast<u8>(fixedB >> kFixedShift));
+			result.SetA(static_cast<u8>(fixedA >> kFixedShift));
 
 			return result;
 		}
 
-		static const int kRedShift = 0;
-		static const int kGreenShift = 8;
-		static const int kBlueShift = 16;
-		static const int kAlphaShift = 24;
+		static constexpr u32 kRedShift = 0U;
+		static constexpr u32 kGreenShift = 8U;
+		static constexpr u32 kBlueShift = 16U;
+		static constexpr u32 kAlphaShift = 24U;
 
-		static const int kRedMask = 0xFF << kRedShift;
-		static const int kGreenMask = 0xFF << kGreenShift;
-		static const int kBlueMask = 0xFF << kBlueShift;
-		static const int kAlphaMask = 0xFF << kAlphaShift;
+		static constexpr u32 kRedMask = 0xFFU << kRedShift;
+		static constexpr u32 kGreenMask = 0xFFU << kGreenShift;
+		static constexpr u32 kBlueMask = 0xFFU << kBlueShift;
+		static constexpr u32 kAlphaMask = 0xFFU << kAlphaShift;
 
 		static Color White()
 		{
 			Color color;
-			color.value = 0xFFFFFFFF;
+			color.mValue = 0xFFFFFFFFU;
 			return color;
 		}
 
 		static Color Black()
 		{
 			Color color;
-			color.value = 0xFF000000;
+			color.mValue = 0xFF000000U;
 			return color;
 		}
 
 		static Color Red()
 		{
 			Color color;
-			color.value = 0xFF0000FF;
+			color.mValue = 0xFF0000FFU;
 			return color;
 		}
 
 		static Color Green()
 		{
 			Color color;
-			color.value = 0xFF00FF00;
+			color.mValue = 0xFF00FF00U;
 			return color;
 		}
 
 		static Color Blue()
 		{
 			Color color;
-			color.value = 0xFFFF0000;
+			color.mValue = 0xFFFF0000U;
 			return color;
 		}
 	};

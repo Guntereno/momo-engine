@@ -9,6 +9,7 @@ Game::MushroomCallback::MushroomCallback(Game* pGame)
 
 void Game::MushroomCallback::Call(void* pSender)
 {
+	UNUSED(pSender);
 	for (int i = 0; i < Game::kNumCharacters; ++i)
 	{
 		Character& character = mpGame->mCharacters[i];

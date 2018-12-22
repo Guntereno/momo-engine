@@ -9,8 +9,8 @@ namespace Momo
 	namespace Graphics
 	{
 
-		static GLuint GetAttribute(GLuint programHandle, const char* pName);
-		static GLuint GetUniform(GLuint programHandle, const char* pName);
+		static GLint GetAttribute(GLuint programHandle, const char* pName);
+		static GLint GetUniform(GLuint programHandle, const char* pName);
 
 		Technique::Technique()
 		{
@@ -43,17 +43,17 @@ namespace Momo
 			return true;
 		}
 
-		GLuint GetAttribute(GLuint programHandle, const char* pName)
+		GLint GetAttribute(GLuint programHandle, const char* pName)
 		{
-			GL_CHECK(GLuint result = glGetAttribLocation(programHandle, pName))
+			GL_CHECK(GLint result = glGetAttribLocation(programHandle, pName))
 				LOGI("glGetAttribLocation(\"%s\") = %d\n", pName, result);
 
 			return result;
 		}
 
-		GLuint GetUniform(GLuint programHandle, const char* pName)
+		GLint GetUniform(GLuint programHandle, const char* pName)
 		{
-			GL_CHECK(GLuint result = glGetUniformLocation(programHandle, pName))
+			GL_CHECK(GLint result = glGetUniformLocation(programHandle, pName))
 				LOGI("glGetUniformLocation(\"%s\") = %d\n", pName, result);
 
 			return result;

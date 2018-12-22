@@ -4,9 +4,9 @@
 #include "Momo.h"
 
 #include "View.h"
-
 #include "ICallback.h"
 
+#include "Input/InputEvent.h"
 
 namespace Momo
 {
@@ -27,7 +27,7 @@ namespace Momo
 			DISALLOW_COPY_AND_ASSIGN(ButtonView);
 
 			ICallback* mpCallback;
-			u32 mTouchId;
+			Input::Event::Id mTouchId;
 		};
 
 	}

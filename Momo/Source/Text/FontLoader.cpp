@@ -63,14 +63,14 @@ namespace Momo
 			{
 				using namespace Graphics;
 
-				SpriteBatch::TechniqueId id = SpriteBatch::kTechniqueInvalid;
+				SpriteBatch::TechniqueId id = SpriteBatch::TechniqueId::Invalid;
 				if (mpFont->GetInfo()->outlineThickness > 0)
 				{
-					id = SpriteBatch::kTechniqueFontOutline;
+					id = SpriteBatch::TechniqueId::FontOutline;
 				}
 				else
 				{
-					id = SpriteBatch::kTechniqueFontNoOutline;
+					id = SpriteBatch::TechniqueId::FontNoOutline;
 				}
 
 				mpFont->mTechniqueId = id;
@@ -87,13 +87,18 @@ namespace Momo
 
 		bool FontLoader::ParseString(const char* pSource, const char* pName, char* pOutput, size_t outputLen)
 		{
-			strncpy(pOutput, pSource, outputLen);
+			UNUSED(pName); // Unused in Release
 
+			ASSERT_MSG((strlen(pSource) < outputLen),
+				"Output buffer not long enough to receive string '%s'!", pName);
+			strncpy(pOutput, pSource, outputLen);
 			return true;
 		}
 
 		bool FontLoader::ParseNumber(const char* pSource, const char* pName, int* pOutput)
 		{
+			UNUSED(pName); // Unused in Release
+
 			int processed = sscanf(pSource, "%d", pOutput);
 			if (processed != 1)
 			{
@@ -106,6 +111,8 @@ namespace Momo
 
 		bool FontLoader::ParseBoolean(const char* pSource, const char* pName, bool* pOutput)
 		{
+			UNUSED(pName); // Unused in Release
+
 			int value = 0;
 			int processed = sscanf(pSource, "%d", &value);
 			if (processed != 1)
@@ -119,11 +126,13 @@ namespace Momo
 
 		bool FontLoader::ParseVector(const char* pSource, const char* pName, u16* pOutput, size_t outputLen)
 		{
+			UNUSED(pName); // Not used in Release
+
 			const char* kSeparators = ",";
 
-			const size_t kBufferLen = 64;
-			char buffer[kBufferLen];
-			strncpy(buffer, pSource, kBufferLen);
+			const size_t kVectorBufferLen = 64;
+			char buffer[kVectorBufferLen];
+			strncpy(buffer, pSource, kVectorBufferLen);
 
 			char* pCurrent = strtok(buffer, kSeparators);
 
@@ -457,7 +466,7 @@ namespace Momo
 						result = ParseNumber(pValue, pKey, &value);
 						if (!result)
 							return false;
-						common.base = (u16)value;
+						common.base = (s16)value;
 					}
 					else if (strcmp(pKey, "scaleW") == 0)
 					{
@@ -556,7 +565,7 @@ namespace Momo
 			if (value < 0)
 				return false;
 
-			count = value;
+			count = (u32)value;
 
 			return true;
 		}
@@ -601,7 +610,7 @@ namespace Momo
 			if (valid)
 			{
 				Font::Page& page = mpFont->mpPages[id];
-				page.id = id;
+				page.id = (u16)id;
 
 				strncpy(mpTextureFiles[id], fileName, kFileNameMax);
 			}
@@ -634,25 +643,25 @@ namespace Momo
 					}
 					else if (strcmp(pKey, "x") == 0)
 					{
-						result = ParseNumber(pValue, pKey, &glyph.source.x);
+						result = ParseNumber(pValue, pKey, &glyph.source.mX);
 						if (!result)
 							return false;
 					}
 					else if (strcmp(pKey, "y") == 0)
 					{
-						result = ParseNumber(pValue, pKey, &glyph.source.y);
+						result = ParseNumber(pValue, pKey, &glyph.source.mY);
 						if (!result)
 							return false;
 					}
 					else if (strcmp(pKey, "width") == 0)
 					{
-						result = ParseNumber(pValue, pKey, &glyph.source.width);
+						result = ParseNumber(pValue, pKey, &glyph.source.mWidth);
 						if (!result)
 							return false;
 					}
 					else if (strcmp(pKey, "height") == 0)
 					{
-						result = ParseNumber(pValue, pKey, &glyph.source.height);
+						result = ParseNumber(pValue, pKey, &glyph.source.mHeight);
 						if (!result)
 							return false;
 					}
@@ -661,21 +670,21 @@ namespace Momo
 						result = ParseNumber(pValue, pKey, &value);
 						if (!result)
 							return false;
-						glyph.xOffset = (u16)value;
+						glyph.xOffset = (s16)value;
 					}
 					else if (strcmp(pKey, "yoffset") == 0)
 					{
 						result = ParseNumber(pValue, pKey, &value);
 						if (!result)
 							return false;
-						glyph.yOffset = (u16)value;
+						glyph.yOffset = (s16)value;
 					}
 					else if (strcmp(pKey, "xadvance") == 0)
 					{
 						result = ParseNumber(pValue, pKey, &value);
 						if (!result)
 							return false;
-						glyph.xAdvance = (u16)value;
+						glyph.xAdvance = (s16)value;
 					}
 					else if (strcmp(pKey, "page") == 0)
 					{
@@ -703,19 +712,19 @@ namespace Momo
 						switch (value)
 						{
 						case kChannelRed:
-							glyph.channel.x = 1.0f;
+							glyph.channel.mX = 1.0f;
 							break;
 
 						case kChannelGreen:
-							glyph.channel.y = 1.0f;
+							glyph.channel.mY = 1.0f;
 							break;
 
 						case kChannelBlue:
-							glyph.channel.z = 1.0f;
+							glyph.channel.mZ = 1.0f;
 							break;
 
 						case kChannelAlpha:
-							glyph.channel.w = 1.0f;
+							glyph.channel.mW = 1.0f;
 							break;
 
 						case kChannelAll:
@@ -798,12 +807,12 @@ namespace Momo
 
 		bool FontLoader::LoadTextures()
 		{
-			const size_t kBufferLen = 256;
+			const size_t kPathBufferLen = 256;
 
 			// Find last instance of a slash
 			size_t fileNameLen = strlen(mpFileName);
 			int slashPos = -1;
-			for (int i = fileNameLen; i >= 0; --i)
+			for (int i = (int)fileNameLen - 1; i >= 0; --i)
 			{
 				char curChar = mpFileName[i];
 				switch (curChar)
@@ -819,19 +828,19 @@ namespace Momo
 			}
 
 			// Create the folder part of the buffer
-			char pFolderBuffer[kBufferLen];
+			char pFolderBuffer[kPathBufferLen];
 			memset(pFolderBuffer, 0, sizeof(pFolderBuffer));
 			if (slashPos >= 0)
 			{
-				strncpy(pFolderBuffer, mpFileName, (slashPos + 1));
+				strncpy(pFolderBuffer, mpFileName, (size_t)(slashPos + 1));
 			}
 
-			char pFilenameBuffer[kBufferLen];
+			char pFilenameBuffer[kPathBufferLen];
 			ASSERT(mpFont != NULL);
 			for (unsigned i = 0; i < mpFont->mPageCount; ++i)
 			{
-				strncpy(pFilenameBuffer, pFolderBuffer, kBufferLen);
-				strncat(pFilenameBuffer, mpTextureFiles[i], kBufferLen);
+				strncpy(pFilenameBuffer, pFolderBuffer, sizeof(pFilenameBuffer));
+				strncat(pFilenameBuffer, mpTextureFiles[i], sizeof(pFilenameBuffer));
 
 				Font::Page& page = mpFont->mpPages[i];
 				page.pTexture = new Graphics::Texture();

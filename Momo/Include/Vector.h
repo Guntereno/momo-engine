@@ -12,20 +12,20 @@ namespace Momo
 	// POD type representing a 2D Vector
 	struct Vector2
 	{
-		float x;
-		float y;
+		float mX;
+		float mY;
 
 		void Set(float x, float y)
 		{
-			this->x = x;
-			this->y = y;
+			this->mX = x;
+			this->mY = y;
 		}
 
 
 		void Set(const Point& point)
 		{
-			this->x = (float)(point.x);
-			this->y = (float)(point.y);
+			this->mX = (float)(point.mX);
+			this->mY = (float)(point.mY);
 		}
 
 		static Vector2 Zero()
@@ -38,21 +38,21 @@ namespace Momo
 		bool operator==(const Vector2& rhs)
 		{
 			return
-				(this->x == rhs.x) &&
-				(this->y == rhs.y);
+				(this->mX == rhs.mX) &&
+				(this->mY == rhs.mY);
 		}
 
 		bool operator!=(const Vector2& rhs)
 		{
 			return
-				(this->x != rhs.x) ||
-				(this->y != rhs.y);
+				(this->mX != rhs.mX) ||
+				(this->mY != rhs.mY);
 		}
 
 		Vector2& operator+=(const Vector2& rhs)
 		{
-			this->x += rhs.x;
-			this->y += rhs.y;
+			this->mX += rhs.mX;
+			this->mY += rhs.mY;
 			return *this;
 		}
 	};
@@ -67,23 +67,23 @@ namespace Momo
 	// POD type representing a 3D Vector
 	struct Vector3
 	{
-		float x;
-		float y;
-		float z;
+		float mX;
+		float mY;
+		float mZ;
 
 		void Set(float x, float y, float z)
 		{
-			this->x = x;
-			this->y = y;
-			this->z = z;
+			this->mX = x;
+			this->mY = y;
+			this->mZ = z;
 		}
 
 
 		void Set(const Point& point)
 		{
-			this->x = (float)(point.x);
-			this->y = (float)(point.y);
-			this->z = 0.0f;
+			this->mX = (float)(point.mX);
+			this->mY = (float)(point.mY);
+			this->mZ = 0.0f;
 		}
 
 		static Vector3 Zero()
@@ -96,24 +96,24 @@ namespace Momo
 		bool operator==(const Vector3& rhs)
 		{
 			return
-				(this->x == rhs.x) &&
-				(this->y == rhs.y) &&
-				(this->z == rhs.z);
+				(this->mX == rhs.mX) &&
+				(this->mY == rhs.mY) &&
+				(this->mZ == rhs.mZ);
 		}
 
 		bool operator!=(const Vector3& rhs)
 		{
 			return
-				(this->x != rhs.x) ||
-				(this->y != rhs.y) ||
-				(this->z != rhs.z);
+				(this->mX != rhs.mX) ||
+				(this->mY != rhs.mY) ||
+				(this->mZ != rhs.mZ);
 		}
 
 		Vector3& operator+=(const Vector3& rhs)
 		{
-			this->x += rhs.x;
-			this->y += rhs.y;
-			this->z += rhs.z;
+			this->mX += rhs.mX;
+			this->mY += rhs.mY;
+			this->mZ += rhs.mZ;
 			return *this;
 		}
 	};
@@ -128,17 +128,17 @@ namespace Momo
 	// POD type representing a 4D Vector
 	struct Vector4
 	{
-		float x;
-		float y;
-		float z;
-		float w;
+		float mX;
+		float mY;
+		float mZ;
+		float mW;
 
 		void Set(float x, float y, float z, float w)
 		{
-			this->x = x;
-			this->y = y;
-			this->z = z;
-			this->w = w;
+			this->mX = x;
+			this->mY = y;
+			this->mZ = z;
+			this->mW = w;
 		}
 
 		static Vector4 Zero()
@@ -151,19 +151,19 @@ namespace Momo
 		bool operator==(const Vector4 &rhs)
 		{
 			return
-				(this->x == rhs.x) &&
-				(this->y == rhs.y) &&
-				(this->z == rhs.z) &&
-				(this->w == rhs.w);
+				(this->mX == rhs.mX) &&
+				(this->mY == rhs.mY) &&
+				(this->mZ == rhs.mZ) &&
+				(this->mW == rhs.mW);
 		}
 
 		bool operator!=(const Vector4 &rhs)
 		{
 			return
-				(this->x != rhs.x) ||
-				(this->y != rhs.y) ||
-				(this->z != rhs.z) ||
-				(this->w != rhs.w);
+				(this->mX != rhs.mX) ||
+				(this->mY != rhs.mY) ||
+				(this->mZ != rhs.mZ) ||
+				(this->mW != rhs.mW);
 		}
 	};
 

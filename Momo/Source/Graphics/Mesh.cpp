@@ -12,10 +12,11 @@ namespace Momo
 	namespace Graphics
 	{
 		Mesh::Renderer::Renderer() :
-			mpMesh(nullptr),
 			mpTechnique(nullptr),
-			mVertexBufferHandle(-1),
-			mIndexBufferHandle(-1)
+			mpMesh(nullptr),
+			mpTexture(nullptr),
+			mVertexBufferHandle(0),
+			mIndexBufferHandle(0)
 		{}
 
 		void Mesh::Renderer::Load(const Technique& technique, const Mesh& mesh, const Texture* pTexture)
@@ -27,12 +28,12 @@ namespace Momo
 			// Declare the vertex stream buffer
 			glGenBuffers(1, &mVertexBufferHandle);
 			glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferHandle);
-			glBufferData(GL_ARRAY_BUFFER, mesh.mVertexCount * sizeof(Vertex), mesh.mpVertexData, GL_STATIC_DRAW);
+			glBufferData(GL_ARRAY_BUFFER, (GLsizeiptr)(mesh.mVertexCount * sizeof(Vertex)), mesh.mpVertexData, GL_STATIC_DRAW);
 
 			// Declare the index stream buffer
 			glGenBuffers(1, &mIndexBufferHandle);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle);
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, mesh.mIndexCount * sizeof(GLushort), mesh.mpIndexData, GL_STATIC_DRAW);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, (GLsizeiptr)(mesh.mIndexCount * sizeof(GLushort)), mesh.mpIndexData, GL_STATIC_DRAW);
 
 			// Unbind
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -43,8 +44,8 @@ namespace Momo
 		{
 			ASSERT(mpMesh != NULL);
 			ASSERT(mpTechnique != NULL);
-			ASSERT(mVertexBufferHandle != -1);
-			ASSERT(mIndexBufferHandle != -1);
+			ASSERT(mVertexBufferHandle != 0);
+			ASSERT(mIndexBufferHandle != 0);
 
 			GL_CHECK(glUseProgram(mpTechnique->GetProgram().Handle()))
 
@@ -58,13 +59,13 @@ namespace Momo
 				GL_CHECK(glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferHandle))
 				GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle))
 
-				GL_CHECK(glEnableVertexAttribArray(mpTechnique->GetAttributes().color))
-				GL_CHECK(glEnableVertexAttribArray(mpTechnique->GetAttributes().position))
-				GL_CHECK(glEnableVertexAttribArray(mpTechnique->GetAttributes().textureCoord))
+				GL_CHECK(glEnableVertexAttribArray((GLuint)(mpTechnique->GetAttributes().color)))
+				GL_CHECK(glEnableVertexAttribArray((GLuint)(mpTechnique->GetAttributes().position)))
+				GL_CHECK(glEnableVertexAttribArray((GLuint)(mpTechnique->GetAttributes().textureCoord)))
 
 				// Enable the vertex attributes
 				GL_CHECK(glVertexAttribPointer(
-					mpTechnique->GetAttributes().color,
+					(GLuint)(mpTechnique->GetAttributes().color),
 					Vertex::kBytesPerColor,
 					GL_UNSIGNED_BYTE,
 					GL_TRUE,
@@ -72,7 +73,7 @@ namespace Momo
 					(void*)offsetof(struct Vertex, color)))
 
 				GL_CHECK(glVertexAttribPointer(
-					mpTechnique->GetAttributes().position,
+					(GLuint)(mpTechnique->GetAttributes().position),
 					Vertex::kFloatsPerPosition,
 					GL_FLOAT,
 					GL_FALSE,
@@ -80,7 +81,7 @@ namespace Momo
 					(void*)offsetof(struct Vertex, position)))
 
 				GL_CHECK(glVertexAttribPointer(
-					mpTechnique->GetAttributes().textureCoord,
+					(GLuint)(mpTechnique->GetAttributes().textureCoord),
 					Vertex::kFloatsPerUv,
 					GL_FLOAT,
 					GL_FALSE,
@@ -98,13 +99,13 @@ namespace Momo
 			GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle))
 				GL_CHECK(glDrawElements(
 					GL_TRIANGLES,
-					mpMesh->mIndexCount,
+					(GLsizei)(mpMesh->mIndexCount),
 					GL_UNSIGNED_SHORT,
 					NULL))
 
-			glDisableVertexAttribArray(mpTechnique->GetAttributes().color);
-			glDisableVertexAttribArray(mpTechnique->GetAttributes().position);
-			glDisableVertexAttribArray(mpTechnique->GetAttributes().textureCoord);
+			glDisableVertexAttribArray((GLuint)(mpTechnique->GetAttributes().color));
+			glDisableVertexAttribArray((GLuint)(mpTechnique->GetAttributes().position));
+			glDisableVertexAttribArray((GLuint)(mpTechnique->GetAttributes().textureCoord));
 		}
 
 

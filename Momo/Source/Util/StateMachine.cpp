@@ -73,7 +73,7 @@ namespace Momo
 					mCurrentState->Exit();
 
 					IdString request = mCurrentState->GetStateRequest();
-					if (request != IdString::kNull)
+					if (request != IdString())
 					{
 						State* pState = FindState(request);
 						if (pState == NULL)

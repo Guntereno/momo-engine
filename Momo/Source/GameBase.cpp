@@ -46,19 +46,19 @@ namespace Momo
 		mSpriteBatch.Load();
 	}
 
-	void GameBase::Resize(unsigned int width, unsigned int height)
+	void GameBase::Resize(u32 width, u32 height)
 	{
 		LOGI("GameBase::Resize(): w=%d h=%d", width, height);
 
-		mViewport.Set(0, 0, width, height);
+		mViewport.Set(0, 0, (s32)width, (s32)height);
 
 		mpViewContainer->SetFlags(Ui::View::kFlagFill);
 		mpViewContainer->Arrange(mViewport, true);
 
-		GL_CHECK(glViewport(0, 0, width, height))
+		GL_CHECK(glViewport(0, 0, (GLsizei)width, (GLsizei)height))
 
-			// Setup the view projection matrix
-			InitCamera();
+		// Setup the view projection matrix
+		InitCamera();
 	}
 
 	void GameBase::Update()
@@ -99,8 +99,8 @@ namespace Momo
 	{
 		Matrix view;
 		view.SetTranslation(
-			0.0f - (float)(mViewport.width / 2),
-			0.0f - (float)(mViewport.height / 2),
+			0.0f - (float)(mViewport.mWidth / 2),
+			0.0f - (float)(mViewport.mHeight / 2),
 			0.0f);
 		mCamera.SetView(view);
 		mCamera.SetProjectionOrtho(mViewport, -1.0f, 1.0f);
@@ -108,10 +108,10 @@ namespace Momo
 
 	void GameBase::OnTouchEvent(Input::Event::Type type, Input::Event::Id id, const Point& pos, const Point& delta)
 	{
-		LOGI("type:%s id:%d pos:%d,%d delta:%d,%d", Input::Event::ToString(type), id, pos.x, pos.y, delta.x, delta.y);
+		LOGI("type:%s id:%d pos:%d,%d delta:%d,%d", Input::Event::ToString(type), id, pos.mX, pos.mY, delta.mX, delta.mY);
 
 		Point screenPos = pos;
-		screenPos.y = mViewport.height - pos.y;
+		screenPos.mY = mViewport.mHeight - pos.mY;
 
 		Input::Event event = { type, id, screenPos, delta };
 		mpInputQueue->Push(event);

@@ -5,6 +5,7 @@
 
 #include "Point.h"
 
+#include <limits>
 
 namespace Momo
 {
@@ -13,7 +14,8 @@ namespace Momo
 
 		struct Event
 		{
-			typedef u8 Id;
+			using Id = u8;
+			static constexpr Id IdInvalid = std::numeric_limits<Id>::max();
 
 			enum Type
 			{

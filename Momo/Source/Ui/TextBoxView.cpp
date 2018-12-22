@@ -65,7 +65,8 @@ namespace Momo
 				const Text::TextWrapper::LineData* pData = mpTextWrapper->GetLine(i);
 				if (pData)
 				{
-					spriteBatch.DrawString(*mpFont, pData->pStart, (pData->pEnd - pData->pStart), pData->position, mColor);
+					spriteBatch.DrawString(*mpFont, pData->pStart,
+						(size_t)(pData->pEnd - pData->pStart), pData->position, mColor);
 				}
 			}
 		}

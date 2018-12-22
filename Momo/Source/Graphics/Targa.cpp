@@ -84,20 +84,20 @@ namespace Momo
 			}
 
 			// Read the header info
-			File::Read(file, &(mHeader.idLength), sizeof(u8));
-			File::Read(file, &(mHeader.colourMapType), sizeof(u8));
-			File::Read(file, &(mHeader.dataTypeCode), sizeof(u8));
-			File::Read(file, &(mHeader.colourMapOrigin), sizeof(u16));
-			File::Read(file, &(mHeader.colourMapLength), sizeof(u16));
-			File::Read(file, &(mHeader.colourMapDepth), sizeof(u8));
-			File::Read(file, &(mHeader.xOrigin), sizeof(u16));
-			File::Read(file, &(mHeader.yOrigin), sizeof(u16));
-			File::Read(file, &(mHeader.width), sizeof(u16));
-			File::Read(file, &(mHeader.height), sizeof(u16));
-			File::Read(file, &(mHeader.bitsPerPixel), sizeof(u8));
-			File::Read(file, &(mHeader.imageDescriptor), sizeof(u8));
+			File::Read(file, &(mHeader.mIdLength), sizeof(u8));
+			File::Read(file, &(mHeader.mColourMapType), sizeof(u8));
+			File::Read(file, &(mHeader.mDataTypeCode), sizeof(u8));
+			File::Read(file, &(mHeader.mColourMapOrigin), sizeof(u16));
+			File::Read(file, &(mHeader.mColourMapLength), sizeof(u16));
+			File::Read(file, &(mHeader.mColourMapDepth), sizeof(u8));
+			File::Read(file, &(mHeader.mXOrigin), sizeof(u16));
+			File::Read(file, &(mHeader.mYOrigin), sizeof(u16));
+			File::Read(file, &(mHeader.mWidth), sizeof(u16));
+			File::Read(file, &(mHeader.mHeight), sizeof(u16));
+			File::Read(file, &(mHeader.mBitsPerPixel), sizeof(u8));
+			File::Read(file, &(mHeader.mImageDescriptor), sizeof(u8));
 
-			switch (mHeader.dataTypeCode)
+			switch (mHeader.mDataTypeCode)
 			{
 			case 2:
 			case 3:
@@ -106,7 +106,7 @@ namespace Momo
 
 			default:
 				// Currently only supports 32bit uncompressed textures
-				BREAK_MSG("Unsupported TGA datatype %d in file %s!", mHeader.dataTypeCode, pFileName);
+				BREAK_MSG("Unsupported TGA datatype %d in file %s!", mHeader.mDataTypeCode, pFileName);
 				return false;
 			}
 
@@ -115,16 +115,15 @@ namespace Momo
 			{
 				delete[] mpDescriptor;
 			}
-			if (mHeader.idLength > 0)
+			if (mHeader.mIdLength > 0)
 			{
-				mpDescriptor = new char[mHeader.idLength];
+				mpDescriptor = new char[mHeader.mIdLength];
 				if (mpDescriptor == NULL)
 				{
-					BREAK_MSG("Unable to allocate %d bytes for tga %s!", mHeader.idLength, pFileName);
+					BREAK_MSG("Unable to allocate %d bytes for tga %s!", mHeader.mIdLength, pFileName);
 					return false;
 				}
-
-				File::Read(file, mpDescriptor, mHeader.idLength);
+				File::Read(file, mpDescriptor, mHeader.mIdLength);
 			}
 
 			// Calculate the size
@@ -156,23 +155,23 @@ namespace Momo
 
 			File::Handle file = Io::File::Open(pFileName, Io::File::kModeWrite);
 
-			File::Write(&mHeader.idLength, sizeof(u8), file);
-			File::Write(&mHeader.colourMapType, sizeof(u8), file);
-			File::Write(&mHeader.dataTypeCode, sizeof(u8), file);
-			File::Write(&mHeader.colourMapOrigin, sizeof(u16), file);
-			File::Write(&mHeader.colourMapLength, sizeof(u16), file);
-			File::Write(&mHeader.colourMapDepth, sizeof(u8), file);
-			File::Write(&mHeader.xOrigin, sizeof(u16), file);
-			File::Write(&mHeader.yOrigin, sizeof(u16), file);
-			File::Write(&mHeader.width, sizeof(u16), file);
-			File::Write(&mHeader.height, sizeof(u16), file);
-			File::Write(&mHeader.bitsPerPixel, sizeof(u8), file);
-			File::Write(&mHeader.imageDescriptor, sizeof(u8), file);
+			File::Write(&mHeader.mIdLength, sizeof(u8), file);
+			File::Write(&mHeader.mColourMapType, sizeof(u8), file);
+			File::Write(&mHeader.mDataTypeCode, sizeof(u8), file);
+			File::Write(&mHeader.mColourMapOrigin, sizeof(u16), file);
+			File::Write(&mHeader.mColourMapLength, sizeof(u16), file);
+			File::Write(&mHeader.mColourMapDepth, sizeof(u8), file);
+			File::Write(&mHeader.mXOrigin, sizeof(u16), file);
+			File::Write(&mHeader.mYOrigin, sizeof(u16), file);
+			File::Write(&mHeader.mWidth, sizeof(u16), file);
+			File::Write(&mHeader.mHeight, sizeof(u16), file);
+			File::Write(&mHeader.mBitsPerPixel, sizeof(u8), file);
+			File::Write(&mHeader.mImageDescriptor, sizeof(u8), file);
 
-			if (mHeader.idLength > 0)
+			if (mHeader.mIdLength > 0)
 			{
 				ASSERT(mpDescriptor != NULL);
-				File::Write(mpDescriptor, mHeader.idLength, file);
+				File::Write(mpDescriptor, mHeader.mIdLength, file);
 			}
 
 			File::Write(mpData, GetDataSize(), file);
@@ -182,7 +181,7 @@ namespace Momo
 			return true;
 		}
 
-		bool Targa::Create(GLenum format, int width, int height, const u8* pRgbaData)
+		bool Targa::Create(GLenum format, u16 width, u16 height, const u8* pRgbaData)
 		{
 			ASSERT(width > 0);
 			ASSERT(height > 0);
@@ -194,13 +193,13 @@ namespace Momo
 			{
 			case GL_RGBA:
 			{
-				mHeader.idLength = 0;
-				mHeader.dataTypeCode = kTypeUncompressedRgb;
-				mHeader.width = width;
-				mHeader.height = height;
-				mHeader.yOrigin = height;
-				mHeader.bitsPerPixel = 32;
-				mHeader.imageDescriptor = ImageDescriptorByte(0, true, kInterleaveNone);
+				mHeader.mIdLength = 0;
+				mHeader.mDataTypeCode = kTypeUncompressedRgb;
+				mHeader.mWidth = width;
+				mHeader.mHeight = height;
+				mHeader.mYOrigin = height;
+				mHeader.mBitsPerPixel = 32;
+				mHeader.mImageDescriptor = ImageDescriptorByte(0, true, kInterleaveNone);
 			}
 			break;
 
@@ -239,12 +238,12 @@ namespace Momo
 		int Targa::GetNumChannels()
 		{
 			const int kBitsPerByte = 8;
-			return mHeader.bitsPerPixel / kBitsPerByte;
+			return mHeader.mBitsPerPixel / kBitsPerByte;
 		}
 
 		size_t Targa::GetDataSize()
 		{
-			return (GetNumChannels() * mHeader.width * mHeader.height);
+			return static_cast<size_t>(GetNumChannels() * mHeader.mWidth * mHeader.mHeight);
 		}
 
 	}

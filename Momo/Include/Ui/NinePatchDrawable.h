@@ -18,7 +18,7 @@ namespace Momo
 		{
 		public:
 			NinePatchDrawable();
-			~NinePatchDrawable();
+			virtual ~NinePatchDrawable();
 
 			// override
 			virtual void Draw(Graphics::SpriteBatch& spriteBatch, const Rectangle& dest, StateId state, const Color& color) const;

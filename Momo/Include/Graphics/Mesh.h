@@ -36,9 +36,9 @@ namespace Momo
 
 			struct Vertex
 			{
-				static const int kFloatsPerPosition = 4;
-				static const int kFloatsPerUv = 2;
-				static const int kBytesPerColor = 4;
+				static constexpr int kFloatsPerPosition = 4;
+				static constexpr int kFloatsPerUv = 2;
+				static constexpr int kBytesPerColor = 4;
 
 				Color color;
 				Vector4 position;

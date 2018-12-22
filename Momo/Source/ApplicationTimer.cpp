@@ -7,10 +7,11 @@
 #include <sys/time.h>
 #endif
 
+#include <limits>
+
 namespace Momo
 {
-
-	static const u64 kTickInvalid = -1;
+	static constexpr u64 kTickInvalid = std::numeric_limits<u64>::max();
 
 	static u64 GetTime()
 	{

@@ -9,6 +9,7 @@
 #include "Point.h"
 
 #include <cstddef>
+#include <limits>
 
 
 //#define OUTPUT_VERTEX_INFO
@@ -19,7 +20,7 @@ namespace Momo
 	namespace Graphics
 	{
 
-		static const char* kShaderNames[2] =
+		static constexpr char* kShaderNames[2] =
 		{ "shaders/vpLineBatch.vp", "shaders/fpLineBatch.fp" };
 
 
@@ -41,6 +42,7 @@ namespace Momo
 			if (!gStaticsInitialised)
 			{
 				bool result = LoadTechnique();
+				UNUSED(result); // Unused in Release
 				ASSERT(result);
 
 				gStaticsInitialised = true;
@@ -53,13 +55,16 @@ namespace Momo
 
 			// Generate the index buffer
 			GLushort indices[kIndexMax];
-			for (int line = 0; line < kLineMax; ++line)
+			for (size_t line = 0; line < kLineMax; ++line)
 			{
-				GLushort startIndex = (line * (GLushort)kIndicesPerLine);
-				GLushort startVert = (line * (GLushort)kVertsPerLine);
+				size_t startIndex = (line * kIndicesPerLine);
+				ASSERT((startIndex + 1) < kIndexMax);
 
-				indices[startIndex + 0] = startVert + 0;
-				indices[startIndex + 1] = startVert + 1;
+				size_t startVert = (line * kVertsPerLine);
+				ASSERT((startVert + 1) < std::numeric_limits<GLushort>::max());
+				
+				indices[startIndex + 0] = (GLushort)(startVert + 0);
+				indices[startIndex + 1] = (GLushort)(startVert + 1);
 			}
 
 			glGenBuffers(1, &mIndexBufferHandle);
@@ -113,39 +118,40 @@ namespace Momo
 
 			GL_CHECK(glUseProgram(gTechnique.GetProgram().Handle()))
 
-				// Set the transform
-				glUniformMatrix4fv(gTechnique.GetUniforms().transform, 1, false, (GLfloat*)(&camera.GetViewProjection()));
+			// Set the transform
+			glUniformMatrix4fv(gTechnique.GetUniforms().transform, 1, false,
+				(GLfloat*)(&camera.GetViewProjection()));
 
 			// Send vertex data
 			glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferHandle);
 			GL_CHECK(glBufferSubData(
 				GL_ARRAY_BUFFER,
 				0,
-				mLineCount * kVertsPerLine * sizeof(Vertex),
+				(GLsizeiptr)(mLineCount * kVertsPerLine * sizeof(Vertex)),
 				mVertexData))
 
 				// Enable the vertex attributes
 				GL_CHECK(glVertexAttribPointer(
-					gTechnique.GetAttributes().color, Vertex::kBytesPerColor,
+					(GLuint)(gTechnique.GetAttributes().color), Vertex::kBytesPerColor,
 					GL_UNSIGNED_BYTE, GL_TRUE,
 					sizeof(Vertex),
 					(void*)offsetof(struct Vertex, color)))
 
 				GL_CHECK(glVertexAttribPointer(
-					gTechnique.GetAttributes().position, Vertex::kFloatsPerPosition,
+					(GLuint)(gTechnique.GetAttributes().position), Vertex::kFloatsPerPosition,
 					GL_FLOAT, GL_FALSE,
 					sizeof(Vertex),
 					(void*)offsetof(struct Vertex, position)))
 
-				GL_CHECK(glEnableVertexAttribArray(gTechnique.GetAttributes().color))
-				GL_CHECK(glEnableVertexAttribArray(gTechnique.GetAttributes().position))
+				GL_CHECK(glEnableVertexAttribArray((GLuint)(gTechnique.GetAttributes().color)))
+				GL_CHECK(glEnableVertexAttribArray((GLuint)(gTechnique.GetAttributes().position)))
 
 				// Draw indexed primitives
-				int indexCount = mLineCount * kIndicesPerLine;
+				size_t indexCount = mLineCount * kIndicesPerLine;
 			GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle))
 				GL_CHECK(glDrawElements(
 					GL_LINES,
-					indexCount,
+					(GLsizei)indexCount,
 					GL_UNSIGNED_SHORT,
 					(void*)(0)
 				))
@@ -190,10 +196,10 @@ namespace Momo
 				colors[1] = colorTo;
 			}
 
-			const int kFirstVert = mLineCount * kVertsPerLine;
+			const size_t kFirstVert = mLineCount * kVertsPerLine;
 			for (int i = 0; i < kVertsPerLine; ++i)
 			{
-				int vertIdx = kFirstVert + i;
+				size_t vertIdx = kFirstVert + i;
 
 				mVertexData[vertIdx].position = positions[i];
 				mVertexData[vertIdx].color = colors[i];
@@ -206,8 +212,8 @@ namespace Momo
 				);
 				LOGI("mVertexData[%d].position = { %.2f, %.2f }\n",
 					vertIdx,
-					mVertexData[vertIdx].position.x,
-					mVertexData[vertIdx].position.y
+					mVertexData[vertIdx].position.mX,
+					mVertexData[vertIdx].position.mY
 				);
 #endif
 			}

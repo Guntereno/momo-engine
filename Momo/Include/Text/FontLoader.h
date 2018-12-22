@@ -48,7 +48,7 @@ namespace Momo
 
 			Font* mpFont;
 
-			static const size_t kBufferLen = 512;
+			static constexpr size_t kBufferLen = 512;
 			char mpBuffer[kBufferLen];
 			size_t mBufferUsed;
 
@@ -57,7 +57,7 @@ namespace Momo
 			int mCurrentGlyphCount;
 			int mCurrentKerningCount;
 
-			static const size_t kFileNameMax = 128;
+			static constexpr size_t kFileNameMax = 128;
 			char mpTextureFiles[Font::kMaxPages][kFileNameMax];
 		};
 

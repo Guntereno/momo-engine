@@ -163,8 +163,8 @@ namespace Momo
 			Rectangle result = child;
 
 			// Move relative to parent
-			result.x += parent.x;
-			result.y += parent.y;
+			result.mX += parent.mX;
+			result.mY += parent.mY;
 
 			// Align horizontally
 			bool touchLeft = ((flags & kFlagTouchLeft) != 0);
@@ -173,16 +173,16 @@ namespace Momo
 			{
 				if (touchLeft && touchRight)
 				{
-					result.width = parent.width;
-					result.x = parent.Left();
+					result.mWidth = parent.mWidth;
+					result.mX = parent.Left();
 				}
 				else if (touchRight)
 				{
-					result.x = parent.Right() - child.width;
+					result.mX = parent.Right() - child.mWidth;
 				}
 				else // touchLeft
 				{
-					result.x = parent.Left();
+					result.mX = parent.Left();
 				}
 			}
 
@@ -193,16 +193,16 @@ namespace Momo
 			{
 				if (touchTop && touchBottom)
 				{
-					result.height = parent.height;
-					result.y = parent.Top();
+					result.mHeight = parent.mHeight;
+					result.mY = parent.Top();
 				}
 				else if (touchTop)
 				{
-					result.y = parent.Top() - child.height;
+					result.mY = parent.Top() - child.mHeight;
 				}
 				else // touchBottom
 				{
-					result.y = parent.Bottom();
+					result.mY = parent.Bottom();
 				}
 			}
 

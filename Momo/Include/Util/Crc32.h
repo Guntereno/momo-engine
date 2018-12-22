@@ -50,7 +50,7 @@
 #include "Momo.h"
 
 
-static const u32 kDefaultSeed = 0xef918ba5;
+static constexpr u32 kDefaultSeed = 0xef918ba5;
 
 u32 Crc32(const void *buf, size_t size, u32 crc = kDefaultSeed);
 

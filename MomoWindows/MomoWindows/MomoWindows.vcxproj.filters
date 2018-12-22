@@ -356,34 +356,31 @@
     <ClCompile Include="..\..\Momo\Source\Matrix.cpp">
       <Filter>Momo\Source</Filter>
     </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\AssertBreak.cpp">
+      <Filter>Momo\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\ApplicationTimer.cpp">
+      <Filter>Momo\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Vector.cpp">
+      <Filter>Momo\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\GameBase.cpp">
+      <Filter>Momo\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\GameTime.cpp">
+      <Filter>Momo\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\Momo\Source\Logger.cpp">
+      <Filter>Momo\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Main.cpp">
+      <Filter>Momo\Source</Filter>
+    </ClCompile>
     <ClCompile Include="Source\esUtil.c">
       <Filter>MomoWindows\Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\esUtil_win32.c">
-      <Filter>MomoWindows\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Main.cpp">
-      <Filter>MomoWindows\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="$(SolutionDir)..\Momo\Source\ApplicationTimer.cpp">
-      <Filter>MomoWindows\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="$(SolutionDir)..\Momo\Source\GameBase.cpp">
-      <Filter>MomoWindows\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="$(SolutionDir)..\Momo\Source\GameTime.cpp">
-      <Filter>MomoWindows\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="$(SolutionDir)..\Momo\Source\IdString.cpp">
-      <Filter>MomoWindows\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="$(SolutionDir)..\Momo\Source\Logger.cpp">
-      <Filter>MomoWindows\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="$(SolutionDir)..\Momo\Source\Vector.cpp">
-      <Filter>MomoWindows\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="$(SolutionDir)..\Momo\Source\AssertBreak.cpp">
       <Filter>MomoWindows\Source</Filter>
     </ClCompile>
   </ItemGroup>

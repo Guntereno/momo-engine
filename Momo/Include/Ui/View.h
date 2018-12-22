@@ -67,7 +67,11 @@ namespace Momo
 		protected:
 			virtual void DrawInternal(Graphics::SpriteBatch& spriteBatch);
 			virtual void DrawDebugInternal(Graphics::LineBatch& lineBatch);
-			virtual bool HandleInputEvent(const Input::Event& event) { return false; };
+			virtual bool HandleInputEvent(const Input::Event& event)
+			{
+				UNUSED(event);
+				return false;
+			};
 
 			StateId mState;
 

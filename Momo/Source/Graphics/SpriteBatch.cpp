@@ -19,7 +19,7 @@ namespace Momo
 	namespace Graphics
 	{
 
-		static const char* kShaderNames[SpriteBatch::kTechniqueCount][2] =
+		static constexpr char* kShaderNames[SpriteBatch::TechniqueId::Count][2] =
 		{
 			{ "shaders/vpSpriteBatch.vp", "shaders/fpSpriteBatchSprite.fp" },
 			{ "shaders/vpSpriteBatch.vp", "shaders/fpSpriteBatchFontNoOutline.fp" },
@@ -27,10 +27,10 @@ namespace Momo
 		};
 
 		static bool gStaticsInitialised = false;
-		static Technique gTechniques[SpriteBatch::kTechniqueCount];
+		static Technique gTechniques[SpriteBatch::TechniqueId::Count];
 		static Texture* gWhiteTexture = NULL;
 
-		static const Vector4 kChannelAll = { 0.0f, 0.0f, 0.0f, 0.0f };
+		static constexpr Vector4 kChannelAll = { 0.0f, 0.0f, 0.0f, 0.0f };
 
 		SpriteBatch::SpriteBatch() :
 			mVertexBufferHandle(0),
@@ -66,23 +66,24 @@ namespace Momo
 
 			// Generate the index buffer
 			GLushort indices[kIndexMax];
-			for (int sprite = 0; sprite < kSpriteMax; ++sprite)
+			for (GLushort sprite = 0; sprite < kSpriteMax; ++sprite)
 			{
-				GLushort startIndex = (sprite * (GLushort)kIndicesPerSprite);
-				GLushort startVert = (sprite * (GLushort)kVertsPerSprite);
+				GLushort startIndex = (GLushort)(sprite * kIndicesPerSprite);
+				GLushort startVert = (GLushort)(sprite * kVertsPerSprite);
 
-				indices[startIndex + 0] = startVert + 0;
-				indices[startIndex + 1] = startVert + 1;
-				indices[startIndex + 2] = startVert + 2;
+				indices[startIndex + 0] = startVert + 0U;
+				indices[startIndex + 1] = startVert + 1U;
+				indices[startIndex + 2] = startVert + 2U;
 
-				indices[startIndex + 3] = startVert + 0;
-				indices[startIndex + 4] = startVert + 2;
-				indices[startIndex + 5] = startVert + 3;
+				indices[startIndex + 3] = startVert + 0U;
+				indices[startIndex + 4] = startVert + 2U;
+				indices[startIndex + 5] = startVert + 3U;
 			}
 
 			glGenBuffers(1, &mIndexBufferHandle);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle);
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, kIndexMax * sizeof(GLushort), indices, GL_STATIC_DRAW);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, kIndexMax * sizeof(GLushort), indices,
+				GL_STATIC_DRAW);
 
 			// Unbind
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -99,25 +100,33 @@ namespace Momo
 
 		void SpriteBatch::Draw(const Texture* texture, const Rectangle& dest, const Color& color)
 		{
-			DrawInternal(SpriteBatch::kTechniqueSprite, kChannelAll, texture, dest, NULL, color, 0);
+			DrawInternal(SpriteBatch::TechniqueId::Sprite, kChannelAll, texture, dest, NULL, color,
+				DrawFlags::None);
 		}
 
-		void SpriteBatch::Draw(const Texture* texture, const Rectangle& dest, const Color& color, unsigned int flags)
+		void SpriteBatch::Draw(const Texture* texture, const Rectangle& dest, const Color& color,
+			DrawFlags flags)
 		{
-			DrawInternal(SpriteBatch::kTechniqueSprite, kChannelAll, texture, dest, NULL, color, flags);
+			DrawInternal(SpriteBatch::TechniqueId::Sprite, kChannelAll, texture, dest, NULL, color,
+				flags);
 		}
 
-		void SpriteBatch::Draw(const Texture* texture, const Rectangle& dest, const Rectangle& src, const Color& color)
+		void SpriteBatch::Draw(const Texture* texture, const Rectangle& dest, const Rectangle& src,
+			const Color& color)
 		{
-			DrawInternal(SpriteBatch::kTechniqueSprite, kChannelAll, texture, dest, &src, color, 0);
+			DrawInternal(SpriteBatch::TechniqueId::Sprite, kChannelAll, texture, dest, &src, color,
+				DrawFlags::None);
 		}
 
-		void SpriteBatch::Draw(const Texture* texture, const Rectangle& dest, const Rectangle& src, const Color& color, unsigned int flags)
+		void SpriteBatch::Draw(const Texture* texture, const Rectangle& dest, const Rectangle& src,
+			const Color& color, DrawFlags flags)
 		{
-			DrawInternal(SpriteBatch::kTechniqueSprite, kChannelAll, texture, dest, &src, color, flags);
+			DrawInternal(SpriteBatch::TechniqueId::Sprite, kChannelAll, texture, dest, &src,
+				color, flags);
 		}
 
-		void SpriteBatch::DrawString(const Text::Font& font, const char* pUtf8String, size_t strLen, const Point& point, const Color& color)
+		void SpriteBatch::DrawString(const Text::Font& font, const char* pUtf8String,
+			size_t strLen, const Point& point, const Color& color)
 		{
 			using namespace Text;
 
@@ -126,25 +135,25 @@ namespace Momo
 			Point cursor = point;
 
 			// TODO: utf8 decoding
-			char prevChar = 0, curChar = 0;
+			u16 prevChar = 0, curChar = 0;
 			for (unsigned i = 0; i < strLen; ++i)
 			{
 				prevChar = curChar;
-				curChar = pUtf8String[i];
+				curChar = (u16)(pUtf8String[i]);
 
 				if (i > 0)
 				{
 					const Font::Kerning* pKerning = font.GetKerning(prevChar, curChar);
 					if (pKerning != NULL)
 					{
-						cursor.x += pKerning->amount;
+						cursor.mX += pKerning->amount;
 					}
 				}
 
 				if (curChar == '\n')
 				{
-					cursor.x = point.x;
-					cursor.y -= pCommon->lineHeight;
+					cursor.mX = point.mX;
+					cursor.mY -= pCommon->lineHeight;
 				}
 				else
 				{
@@ -160,19 +169,21 @@ namespace Momo
 
 					Rectangle dest =
 					{
-						cursor.x + pGlyph->xOffset,
-						cursor.y + pCommon->lineHeight - pGlyph->yOffset - pGlyph->source.height,
-						pGlyph->source.width,
-						pGlyph->source.height
+						cursor.mX + pGlyph->xOffset,
+						cursor.mY + pCommon->lineHeight - pGlyph->yOffset - pGlyph->source.mHeight,
+						pGlyph->source.mWidth,
+						pGlyph->source.mHeight
 					};
 
 					// Greyscale textures should only use the red channel
-					static const Vector4 kRedOnly = { 1.0f, 0.0f, 0.0f, 0.0f };
-					Vector4 channel = (pPage->pTexture->Format() == GL_LUMINANCE) ? kRedOnly : pGlyph->channel;
+					static constexpr Vector4 kRedOnly = { 1.0f, 0.0f, 0.0f, 0.0f };
+					Vector4 channel = (pPage->pTexture->Format() == GL_LUMINANCE) ?
+						kRedOnly : pGlyph->channel;
 
-					DrawInternal((TechniqueId)font.GetTechniqueId(), channel, pPage->pTexture, dest, &pGlyph->source, color, 0);
+					DrawInternal((TechniqueId)font.GetTechniqueId(), channel, pPage->pTexture,
+						dest, &pGlyph->source, color, DrawFlags::None);
 
-					cursor.x += pGlyph->xAdvance;
+					cursor.mX += pGlyph->xAdvance;
 				}
 			}
 		}
@@ -186,60 +197,61 @@ namespace Momo
 			{
 				const BatchInfo& currentBatch = mBatchData[batch];
 
-				Technique& technique = gTechniques[currentBatch.technique];
+				Technique& technique = gTechniques[(size_t)currentBatch.technique];
 
 				GL_CHECK(glUseProgram(technique.GetProgram().Handle()))
 
-					// Set the transform
-					glUniformMatrix4fv(technique.GetUniforms().transform, 1, false, (GLfloat*)(&camera.GetViewProjection()));
+				// Set the transform
+				glUniformMatrix4fv(technique.GetUniforms().transform, 1, false,
+					(GLfloat*)(&camera.GetViewProjection()));
 
 				// Send vertex data
 				glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferHandle);
 				GL_CHECK(glBufferSubData(
 					GL_ARRAY_BUFFER,
 					0,
-					mSpriteCount * kVertsPerSprite * sizeof(Vertex),
+					(GLsizeiptr)(mSpriteCount * kVertsPerSprite * sizeof(Vertex)),
 					mVertexData))
 
-					// Enable the vertex attributes
-					GL_CHECK(glVertexAttribPointer(
-						technique.GetAttributes().color, Vertex::kBytesPerColor,
-						GL_UNSIGNED_BYTE, GL_TRUE,
-						sizeof(Vertex),
-						(void*)offsetof(struct Vertex, color)))
+				// Enable the vertex attributes
+				GL_CHECK(glVertexAttribPointer(
+					(GLuint)(technique.GetAttributes().color), Vertex::kBytesPerColor,
+					GL_UNSIGNED_BYTE, GL_TRUE,
+					sizeof(Vertex),
+					(void*)offsetof(struct Vertex, color)))
 
-					GL_CHECK(glVertexAttribPointer(
-						technique.GetAttributes().position, Vertex::kFloatsPerPosition,
-						GL_FLOAT, GL_FALSE,
-						sizeof(Vertex),
-						(void*)offsetof(struct Vertex, position)))
+				GL_CHECK(glVertexAttribPointer(
+					(GLuint)(technique.GetAttributes().position), Vertex::kFloatsPerPosition,
+					GL_FLOAT, GL_FALSE,
+					sizeof(Vertex),
+					(void*)offsetof(struct Vertex, position)))
 
-					GL_CHECK(glVertexAttribPointer(
-						technique.GetAttributes().textureCoord, Vertex::kFloatsPerUv,
-						GL_FLOAT, GL_FALSE,
-						sizeof(Vertex),
-						(void*)offsetof(struct Vertex, uv)))
+				GL_CHECK(glVertexAttribPointer(
+					(GLuint)(technique.GetAttributes().textureCoord), Vertex::kFloatsPerUv,
+					GL_FLOAT, GL_FALSE,
+					sizeof(Vertex),
+					(void*)offsetof(struct Vertex, uv)))
 
-					GL_CHECK(glVertexAttribPointer(
-						technique.GetAttributes().channel, Vertex::kFloatsPerChannel,
-						GL_FLOAT, GL_FALSE,
-						sizeof(Vertex),
-						(void*)offsetof(struct Vertex, channel)))
+				GL_CHECK(glVertexAttribPointer(
+					(GLuint)(technique.GetAttributes().channel), Vertex::kFloatsPerChannel,
+					GL_FLOAT, GL_FALSE,
+					sizeof(Vertex),
+					(void*)offsetof(struct Vertex, channel)))
 
-					GL_CHECK(glEnableVertexAttribArray(technique.GetAttributes().color))
-					GL_CHECK(glEnableVertexAttribArray(technique.GetAttributes().position))
-					GL_CHECK(glEnableVertexAttribArray(technique.GetAttributes().textureCoord))
-					GL_CHECK(glEnableVertexAttribArray(technique.GetAttributes().channel))
+				GL_CHECK(glEnableVertexAttribArray((GLuint)(technique.GetAttributes().color)))
+				GL_CHECK(glEnableVertexAttribArray((GLuint)(technique.GetAttributes().position)))
+				GL_CHECK(glEnableVertexAttribArray((GLuint)(technique.GetAttributes().textureCoord)))
+				GL_CHECK(glEnableVertexAttribArray((GLuint)(technique.GetAttributes().channel)))
 
-					// Set the active texture unit to texture unit 0.
-					glActiveTexture(GL_TEXTURE0);
+				// Set the active texture unit to texture unit 0.
+				glActiveTexture(GL_TEXTURE0);
 				glUniform1i(technique.GetUniforms().texture, 0);
 
 				// Bind the texture for this batch
 				glBindTexture(GL_TEXTURE_2D, currentBatch.pTexture->Handle());
 
 				// Draw indexed primitives
-				int batchIndexCount = currentBatch.count * kIndicesPerSprite;
+				GLsizei batchIndexCount = (GLsizei)(currentBatch.count * kIndicesPerSprite);
 				GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle))
 					GL_CHECK(glDrawElements(
 						GL_TRIANGLES,
@@ -248,7 +260,7 @@ namespace Momo
 						(void*)(currentIndex * sizeof(GLushort))
 					))
 
-					currentIndex += batchIndexCount;
+				currentIndex += batchIndexCount;
 			}
 
 			mInBeginEndBlock = false;
@@ -260,7 +272,7 @@ namespace Momo
 
 			bool result;
 
-			for (int i = 0; i < kTechniqueCount; ++i)
+			for (int i = 0; i < (int)(TechniqueId::Count); ++i)
 			{
 				Technique& technique = gTechniques[i];
 
@@ -279,7 +291,9 @@ namespace Momo
 			return true;
 		}
 
-		void SpriteBatch::DrawInternal(TechniqueId techniqueId, const Vector4& channel, const Texture* pTexture, const Rectangle& dest, const Rectangle* src, const Color& color, unsigned int flags)
+		void SpriteBatch::DrawInternal(TechniqueId techniqueId, const Vector4& channel,
+			const Texture* pTexture, const Rectangle& dest, const Rectangle* src,
+			const Color& color, DrawFlags flags)
 		{
 			if (pTexture == NULL)
 			{
@@ -296,12 +310,9 @@ namespace Momo
 			}
 
 			// Create a new batch or increase batch size if needed
-			if
-				(
-				(mBatchCount == 0) ||
-					(pTexture != mBatchData[mBatchCount - 1].pTexture) ||
-					(techniqueId != mBatchData[mBatchCount - 1].technique)
-					)
+			if((mBatchCount == 0) ||
+				(pTexture != mBatchData[mBatchCount - 1].pTexture) ||
+				(techniqueId != mBatchData[mBatchCount - 1].technique))
 			{
 				BatchInfo& newBatch = mBatchData[mBatchCount];
 				newBatch.pTexture = pTexture;
@@ -335,7 +346,7 @@ namespace Momo
 
 				if (src == NULL)
 				{
-					if (flags & kFlagFlipX)
+					if ((u32)flags & (u32)(DrawFlags::FlipX))
 					{
 						left = 1.0f;
 						right = 0.0f;
@@ -346,7 +357,7 @@ namespace Momo
 						right = 1.0f;
 					}
 
-					if (flags & kFlagFlipY)
+					if ((flags & DrawFlags::FlipY) != DrawFlags::None)
 					{
 						top = 1.0f;
 						bottom = 0.0f;
@@ -364,7 +375,7 @@ namespace Momo
 					float unflippedTop = (float)src->Top() / pTexture->Height();
 					float unflippedBottom = (float)src->Bottom() / pTexture->Height();
 
-					if (flags & kFlagFlipX)
+					if ((flags & DrawFlags::FlipX) != DrawFlags::None)
 					{
 						left = unflippedRight;
 						right = unflippedLeft;
@@ -375,7 +386,7 @@ namespace Momo
 						right = unflippedRight;
 					}
 
-					if (flags & kFlagFlipY)
+					if ((flags & DrawFlags::FlipY) != DrawFlags::None)
 					{
 						top = unflippedBottom;
 						bottom = unflippedTop;
@@ -393,10 +404,10 @@ namespace Momo
 				uvs[3].Set(right, bottom);
 			}
 
-			const int kFirstVert = mSpriteCount * kVertsPerSprite;
-			for (int i = 0; i < kVertsPerSprite; ++i)
+			const size_t kFirstVert = mSpriteCount * kVertsPerSprite;
+			for (size_t i = 0; i < kVertsPerSprite; ++i)
 			{
-				int vertIdx = kFirstVert + i;
+				size_t vertIdx = kFirstVert + i;
 
 				mVertexData[vertIdx].position = positions[i];
 				mVertexData[vertIdx].uv = uvs[i];
@@ -411,13 +422,13 @@ namespace Momo
 				);
 				LOGI("mVertexData[%d].position = { %.2f, %.2f }\n",
 					vertIdx,
-					mVertexData[vertIdx].position.x,
-					mVertexData[vertIdx].position.y
+					mVertexData[vertIdx].position.mX,
+					mVertexData[vertIdx].position.mY
 				);
 				LOGI("mVertexData[%d].uv = { %.2f, %.2f }\n",
 					vertIdx,
-					mVertexData[vertIdx].uv.x,
-					mVertexData[vertIdx].uv.y
+					mVertexData[vertIdx].uv.mX,
+					mVertexData[vertIdx].uv.mY
 				);
 #endif
 			}

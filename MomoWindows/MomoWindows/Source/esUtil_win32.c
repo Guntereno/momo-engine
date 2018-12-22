@@ -2,7 +2,11 @@
 //
 //    This file contains the Win32 implementation of the windowing functions.
 
-///
+#if defined(_MSC_VER)
+#pragma warning(disable: 4255) // 'EnableMouseInPointerForThread': no function prototype given : converting '()' to '(void)'
+#endif
+
+//
 // Includes
 //
 
@@ -33,7 +37,7 @@ LRESULT WINAPI ESWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 	case WM_SIZE:
 	{
-		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
+		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWLP_USERDATA);
 		if (esContext) {
 			esContext->width = LOWORD(lParam);
 			esContext->height = HIWORD(lParam);
@@ -47,7 +51,7 @@ LRESULT WINAPI ESWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 	case WM_PAINT:
 	{
-		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
+		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWLP_USERDATA);
 
 		if (esContext && esContext->drawFunc)
 			esContext->drawFunc(esContext);
@@ -64,7 +68,7 @@ LRESULT WINAPI ESWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_CHAR:
 	{
 		POINT      point;
-		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
+		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWLP_USERDATA);
 
 		GetCursorPos(&point);
 
@@ -76,7 +80,7 @@ LRESULT WINAPI ESWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 	case WM_LBUTTONDOWN:
 	{
-		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
+		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWLP_USERDATA);
 
 		WORD x = LOWORD(lParam);
 		WORD y = HIWORD(lParam);
@@ -89,7 +93,7 @@ LRESULT WINAPI ESWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 	case WM_MOUSEMOVE:
 	{
-		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
+		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWLP_USERDATA);
 
 		WORD x = LOWORD(lParam);
 		WORD y = HIWORD(lParam);
@@ -106,7 +110,7 @@ LRESULT WINAPI ESWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 	case WM_LBUTTONUP:
 	{
-		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
+		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWLP_USERDATA);
 
 		WORD x = LOWORD(lParam);
 		WORD y = HIWORD(lParam);
@@ -119,7 +123,7 @@ LRESULT WINAPI ESWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 	case WM_TIMER:
 	{
-		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
+		ESContext *esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWLP_USERDATA);
 
 		if (wParam == MOUSELEAVE)
 		{
@@ -204,7 +208,7 @@ GLboolean WinCreate(ESContext *esContext, LPCTSTR title)
 
 	// Set the ESContext* to the GWL_USERDATA so that it is available to the
 	// ESWindowProc
-	SetWindowLongPtr(esContext->hWnd, GWL_USERDATA, (LONG)(LONG_PTR)esContext);
+	SetWindowLongPtr(esContext->hWnd, GWLP_USERDATA, (LONG)(LONG_PTR)esContext);
 
 	if (esContext->hWnd == NULL)
 		return GL_FALSE;

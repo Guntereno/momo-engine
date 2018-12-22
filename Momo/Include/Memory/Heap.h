@@ -13,7 +13,7 @@ namespace Momo
 		class Heap
 		{
 		public:
-			static const u32 kDefaultAlignment = 32;
+			static constexpr u32 kDefaultAlignment = 32;
 
 			virtual void* Allocate(size_t size) = 0;
 			virtual void Free(void* pBlock) = 0;
