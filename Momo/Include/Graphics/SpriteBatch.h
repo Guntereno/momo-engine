@@ -60,7 +60,7 @@ namespace Momo
 			static constexpr size_t kVertsPerSprite = 4;
 			static constexpr size_t kIndicesPerSprite = 6;
 
-			static constexpr size_t kSpriteMax = std::numeric_limits<u16>::max();
+			static constexpr size_t kSpriteMax = 8192;
 			static constexpr size_t kVertexMax = kSpriteMax * kVertsPerSprite;
 			static constexpr size_t kIndexMax = kSpriteMax * kIndicesPerSprite;
 
