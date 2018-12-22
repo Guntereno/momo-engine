@@ -14,6 +14,13 @@ namespace Momo
 		class State
 		{
 		public:
+			enum class Flags
+			{
+				Complete = 1 << 0,
+
+				None = 0
+			};
+
 			State(IdString id);
 			virtual ~State() {};
 
@@ -27,11 +34,6 @@ namespace Momo
 			Momo::IdString GetStateRequest() const { return mStateRequest; }
 
 		protected:
-			enum Flag
-			{
-				kFlagComplete = 1 << 0
-			};
-
 			virtual void EnterInternal() {};
 			virtual void UpdateInternal(const GameTime& gameTime) = 0;
 			virtual void ExitInternal() {};
@@ -44,10 +46,12 @@ namespace Momo
 
 			IdString mId;
 
-			s16 mFlags;
+			Flags mFlags;
 			IdString mStateRequest;
 		};
 
+
+		FLAG_OPS(State::Flags)
 	}
 }
 

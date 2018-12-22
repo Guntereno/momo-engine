@@ -9,7 +9,7 @@ namespace Momo
 	{
 		State::State(IdString id) :
 			mId(id),
-			mFlags(0),
+			mFlags(Flags::None),
 			mStateRequest()
 		{
 			// Nothing
@@ -17,7 +17,7 @@ namespace Momo
 
 		void State::Enter()
 		{
-			mFlags = 0;
+			mFlags = Flags::None;
 			mStateRequest = IdString();
 
 			EnterInternal();
@@ -35,13 +35,13 @@ namespace Momo
 
 		bool State::IsActive()
 		{
-			return ((mFlags & kFlagComplete) != 0);
+			return ((mFlags & Flags::Complete) != Flags::None);
 		}
 
 		void State::RequestState(IdString id)
 		{
 			mStateRequest = id;
-			mFlags |= kFlagComplete;
+			mFlags |= Flags::Complete;
 		}
 	}
 }
