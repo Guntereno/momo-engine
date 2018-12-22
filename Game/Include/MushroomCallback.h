@@ -10,16 +10,16 @@
 class Game::MushroomCallback : public Momo::Ui::ICallback
 {
 public:
-	MushroomCallback() {}
-	virtual ~MushroomCallback() {}
+    MushroomCallback() {}
+    virtual ~MushroomCallback() {}
 
-	MushroomCallback(Game* pGame);
-	void Call(void* pSender);
+    MushroomCallback(Game* pGame);
+    void Call(void* pSender);
 
 private:
-	DISALLOW_COPY_AND_ASSIGN(MushroomCallback);
+    DISALLOW_COPY_AND_ASSIGN(MushroomCallback);
 
-	Game* mpGame;
+    Game* mpGame;
 };
 
 #endif //GAME_MUSHROOMCALLBACK_INCLUDED

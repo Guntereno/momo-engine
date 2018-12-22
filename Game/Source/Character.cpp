@@ -17,26 +17,26 @@ const float kFrameTime = 1.0f / 10.0f; // 10 fps
 
 static constexpr Rectangle kFrames[] =
 {
-	{0, 0, 16, 32},
-	{16, 0, 16, 32},
-	{32, 0, 16, 32},
-	{48, 0, 16, 32},
-	{0, 32, 16, 16},
-	{16, 32, 16, 16},
-	{32, 32, 16, 16},
-	{48, 32, 16, 16},
-	{0, 48, 16, 16},
-	{16, 48, 16, 16},
-	{32, 48, 16, 16},
-	{48, 48, 16, 16},
+    {0, 0, 16, 32},
+    {16, 0, 16, 32},
+    {32, 0, 16, 32},
+    {48, 0, 16, 32},
+    {0, 32, 16, 16},
+    {16, 32, 16, 16},
+    {32, 32, 16, 16},
+    {48, 32, 16, 16},
+    {0, 48, 16, 16},
+    {16, 48, 16, 16},
+    {32, 48, 16, 16},
+    {48, 48, 16, 16},
 };
 
 static constexpr int kFrameCount[Character::kCharacterCount] = { 3, 3, 2 };
 static constexpr int kAnimFrames[Character::kCharacterCount][3] =
 {
-	{ 0, 1, 2 },
-	{ 4, 5, 6 },
-	{ 8, 9, 10 }
+    { 0, 1, 2 },
+    { 4, 5, 6 },
+    { 8, 9, 10 }
 };
 static constexpr int kDeadFrames[Character::kCharacterCount] = { 4, 11, 10 };
 
@@ -50,234 +50,234 @@ int Character::msScaleFactor = 1;
 
 void Character::ResetCounters()
 {
-	for (int i = 0; i < Character::kCharacterCount; ++i)
-	{
-		gKillCounts[i] = 0;
-	}
+    for (int i = 0; i < Character::kCharacterCount; ++i)
+    {
+        gKillCounts[i] = 0;
+    }
 }
 
 int Character::GetKillCount(Type type)
 {
-	return gKillCounts[type];
+    return gKillCounts[type];
 }
 
 Character::Character() :
-	mType(kCharacterMarioBig),
-	mFrameTimer(0.0f),
-	mFrame(0),
-	mDirection(kDirectionRight)
+    mType(kCharacterMarioBig),
+    mFrameTimer(0.0f),
+    mFrame(0),
+    mDirection(kDirectionRight)
 {
-	mPosition.Set(0.0f, 0.0f);
-	mVelocity.Set(0.0f, 0.0f);
+    mPosition.Set(0.0f, 0.0f);
+    mVelocity.Set(0.0f, 0.0f);
 }
 
 void Character::Init()
 {
-	mState = kStateAlive;
+    mState = kStateAlive;
 
-	static const int kRowHeight = 32 * msScaleFactor;
-	const int kRowCount = msBounds.mHeight / kRowHeight;
+    static const int kRowHeight = 32 * msScaleFactor;
+    const int kRowCount = msBounds.mHeight / kRowHeight;
 
-	SetType((Character::Type)(rand() % Character::kCharacterCount));
-	Vector2 position;
-	position.Set
-	(
-		(float)(rand() % (msBounds.mWidth - 16)),
-		(float)((rand() % kRowCount) * kRowHeight)
-	);
-	SetPosition(position);
-	SetDirection((Character::Direction)(rand() % 2));
+    SetType((Character::Type)(rand() % Character::kCharacterCount));
+    Vector2 position;
+    position.Set
+    (
+        (float)(rand() % (msBounds.mWidth - 16)),
+        (float)((rand() % kRowCount) * kRowHeight)
+    );
+    SetPosition(position);
+    SetDirection((Character::Direction)(rand() % 2));
 
-	float ratio = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
-	mFrameTimer = ratio * kFrameTime;
+    float ratio = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
+    mFrameTimer = ratio * kFrameTime;
 
-	mFrame = rand() % kFrameCount[mType];
+    mFrame = rand() % kFrameCount[mType];
 }
 
 void Character::Update(const GameTime& gameTime)
 {
-	switch (mState)
-	{
-	case kStateAlive:
-	{
-		float frameDelta = gameTime.GetDeltaSeconds();
-		mFrameTimer += frameDelta;
-		while (mFrameTimer > kFrameTime)
-		{
-			if (++mFrame >= kFrameCount[mType])
-				mFrame = 0;
+    switch (mState)
+    {
+        case kStateAlive:
+        {
+            float frameDelta = gameTime.GetDeltaSeconds();
+            mFrameTimer += frameDelta;
+            while (mFrameTimer > kFrameTime)
+            {
+                if (++mFrame >= kFrameCount[mType])
+                    mFrame = 0;
 
-			mFrameTimer -= kFrameTime;
-		}
+                mFrameTimer -= kFrameTime;
+            }
 
-		float distance = kSpeeds[mType] * frameDelta;
-		switch (mDirection)
-		{
-		case kDirectionRight:
-		{
-			mPosition.mX += distance;
-			Rectangle bounds = CurrentBounds();
-			if (bounds.Right() > msBounds.Right())
-			{
-				mDirection = kDirectionLeft;
-			}
-		}
-		break;
+            float distance = kSpeeds[mType] * frameDelta;
+            switch (mDirection)
+            {
+                case kDirectionRight:
+                {
+                    mPosition.mX += distance;
+                    Rectangle bounds = CurrentBounds();
+                    if (bounds.Right() > msBounds.Right())
+                    {
+                        mDirection = kDirectionLeft;
+                    }
+                }
+                break;
 
-		case kDirectionLeft:
-		{
-			mPosition.mX -= distance;
-			Rectangle bounds = CurrentBounds();
-			if (bounds.Left() < msBounds.Left())
-			{
-				mDirection = kDirectionRight;
-			}
-		}
-		break;
+                case kDirectionLeft:
+                {
+                    mPosition.mX -= distance;
+                    Rectangle bounds = CurrentBounds();
+                    if (bounds.Left() < msBounds.Left())
+                    {
+                        mDirection = kDirectionRight;
+                    }
+                }
+                break;
 
-		default:
-			ASSERT(false);
-		}
-	}
-	break;
+                default:
+                    ASSERT(false);
+            }
+        }
+        break;
 
-	case kStateDying:
-	{
-		float frameDelta = gameTime.GetDeltaSeconds();
-		mFrameTimer += frameDelta;
+        case kStateDying:
+        {
+            float frameDelta = gameTime.GetDeltaSeconds();
+            mFrameTimer += frameDelta;
 
-		// Small mario falls
-		if (mType == kCharacterMarioSmall)
-		{
-			static constexpr Vector2 kGravity = { 0.0f, -200.0f };
-			mVelocity += kGravity * frameDelta;
-			mPosition += mVelocity * frameDelta;
-		}
+            // Small mario falls
+            if (mType == kCharacterMarioSmall)
+            {
+                static constexpr Vector2 kGravity = { 0.0f, -200.0f };
+                mVelocity += kGravity * frameDelta;
+                mPosition += mVelocity * frameDelta;
+            }
 
-		static constexpr float kDeathLength = 2.0f;
-		if (mFrameTimer > kDeathLength)
-		{
-			if (mType == kCharacterMarioBig)
-			{
-				mType = kCharacterMarioSmall;
-				mState = kStateAlive;
-			}
-			else
-			{
-				mState = kStateDead;
-			}
-		}
-	}
-	break;
+            static constexpr float kDeathLength = 2.0f;
+            if (mFrameTimer > kDeathLength)
+            {
+                if (mType == kCharacterMarioBig)
+                {
+                    mType = kCharacterMarioSmall;
+                    mState = kStateAlive;
+                }
+                else
+                {
+                    mState = kStateDead;
+                }
+            }
+        }
+        break;
 
-	case kStateDead:
-		// Do nothing
-		break;
-	}
+        case kStateDead:
+            // Do nothing
+            break;
+    }
 }
 
 void Character::Draw(Graphics::SpriteBatch& spriteBatch)
 {
-	using namespace Graphics;
+    using namespace Graphics;
 
-	if (mState == kStateDead)
-		return;
+    if (mState == kStateDead)
+        return;
 
-	ASSERT(mspTexture != NULL);
+    ASSERT(mspTexture != NULL);
 
-	SpriteBatch::DrawFlags flags =
-		(mDirection == kDirectionLeft) ?
-		SpriteBatch::DrawFlags::FlipX :
-		SpriteBatch::DrawFlags::None;
+    SpriteBatch::DrawFlags flags =
+        (mDirection == kDirectionLeft) ?
+        SpriteBatch::DrawFlags::FlipX :
+        SpriteBatch::DrawFlags::None;
 
-	Rectangle source, dest;
+    Rectangle source, dest;
 
-	switch (mState)
-	{
-	case kStateAlive:
-	{
-		source = CurrentSource();
-		dest = CurrentBounds();
-	}
-	break;
+    switch (mState)
+    {
+        case kStateAlive:
+        {
+            source = CurrentSource();
+            dest = CurrentBounds();
+        }
+        break;
 
-	case kStateDying:
-	{
-		int deadFrame = kDeadFrames[mType];
-		if (mType == kCharacterMarioBig)
-		{
-			// Big mario flashes between big and small
-			static constexpr float kFlashTime = 0.2f;
-			if (fmod(mFrameTimer, kFlashTime) < (0.5f * kFlashTime))
-			{
-				source = kFrames[deadFrame];
-				dest.Set(
-					(int)mPosition.mX,
-					(int)mPosition.mY,
-					source.mWidth * msScaleFactor,
-					source.mHeight * msScaleFactor);
-			}
-			else
-			{
-				source = CurrentSource();
-				dest = CurrentBounds();
-			}
-		}
-		else
-		{
-			source = kFrames[deadFrame];
-			dest = CurrentBounds();
-		}
-	}
-	break;
+        case kStateDying:
+        {
+            int deadFrame = kDeadFrames[mType];
+            if (mType == kCharacterMarioBig)
+            {
+                // Big mario flashes between big and small
+                static constexpr float kFlashTime = 0.2f;
+                if (fmod(mFrameTimer, kFlashTime) < (0.5f * kFlashTime))
+                {
+                    source = kFrames[deadFrame];
+                    dest.Set(
+                        (int)mPosition.mX,
+                        (int)mPosition.mY,
+                        source.mWidth * msScaleFactor,
+                        source.mHeight * msScaleFactor);
+                }
+                else
+                {
+                    source = CurrentSource();
+                    dest = CurrentBounds();
+                }
+            }
+            else
+            {
+                source = kFrames[deadFrame];
+                dest = CurrentBounds();
+            }
+        }
+        break;
 
-	case kStateDead:
-		// Do nothing
-		break;
-	}
-	spriteBatch.Draw(mspTexture, dest, source, Color::White(), flags);
+        case kStateDead:
+            // Do nothing
+            break;
+    }
+    spriteBatch.Draw(mspTexture, dest, source, Color::White(), flags);
 }
 
 void Character::OnHit()
 {
-	if (mState == kStateAlive)
-	{
-		++gKillCounts[mType];
+    if (mState == kStateAlive)
+    {
+        ++gKillCounts[mType];
 
-		mState = kStateDying;
-		mFrameTimer = 0.0f;
+        mState = kStateDying;
+        mFrameTimer = 0.0f;
 
-		// Small mario is launched in the air
-		if (mType == kCharacterMarioSmall)
-		{
-			static constexpr Vector2 kInitialVelocity = { 0.0f, 100.0f };
-			mVelocity = kInitialVelocity;
-		}
-	}
+        // Small mario is launched in the air
+        if (mType == kCharacterMarioSmall)
+        {
+            static constexpr Vector2 kInitialVelocity = { 0.0f, 100.0f };
+            mVelocity = kInitialVelocity;
+        }
+    }
 }
 
 const Rectangle& Character::CurrentSource()
 {
-	return kFrames[kAnimFrames[mType][mFrame]];
+    return kFrames[kAnimFrames[mType][mFrame]];
 }
 
 Rectangle Character::CurrentBounds()
 {
-	const Rectangle& source = CurrentSource();
-	Rectangle destination;
-	destination.Set(
-		(int)mPosition.mX,
-		(int)mPosition.mY,
-		source.mWidth * msScaleFactor,
-		source.mHeight * msScaleFactor);
+    const Rectangle& source = CurrentSource();
+    Rectangle destination;
+    destination.Set(
+        (int)mPosition.mX,
+        (int)mPosition.mY,
+        source.mWidth * msScaleFactor,
+        source.mHeight * msScaleFactor);
 
-	return destination;
+    return destination;
 }
 
 void Character::Mushroom()
 {
-	if (mType == kCharacterMarioSmall)
-	{
-		mType = kCharacterMarioBig;
-	}
+    if (mType == kCharacterMarioSmall)
+    {
+        mType = kCharacterMarioBig;
+    }
 }
