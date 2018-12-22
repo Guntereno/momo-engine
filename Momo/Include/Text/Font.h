@@ -12,7 +12,6 @@ namespace Momo
 {
 	namespace Text
 	{
-
 		class Font
 		{
 		public:
@@ -50,16 +49,18 @@ namespace Momo
 				static constexpr int kPaddingCount = 4;
 				static constexpr int kSpacingCount = 2;
 
-				enum Flags
+				enum class Flags : u8
 				{
-					kFlagBold = 0x1,
-					kFlagItalic = 0x2,
-					kFlagUnicode = 0x4,
-					kFlagSmooth = 0x8
+					Bold = 1 << 0,
+					Italic = 1 << 2,
+					Unicode = 1 << 3,
+					Smooth = 1 << 4,
+
+					None = 0
 				};
 
 				char pName[kStrLen];
-				u8 flags;
+				Flags flags;
 				u16 size;
 				char pCharset[kStrLen];
 				u16 stretchH;
@@ -71,23 +72,23 @@ namespace Momo
 
 			struct Common
 			{
-				enum ChannelContents
+				enum class ChannelContents : u8
 				{
-					kChannelGlyph = 0,
-					kChannelOutline = 1,
-					kChannelGlyphAndOutline = 2,
-					kChannelZero = 3,
-					kChannel1 = 4
+					Glyph,
+					Outline,
+					GlyphAndOutline,
+					Zero,
+					One
 				};
 
-				enum Channel
+				enum class Channel : u8
 				{
-					kChannelBlue,
-					kChannelGreen,
-					kChannelRed,
-					kChannelAlpha,
+					Blue,
+					Green,
+					Red,
+					Alpha,
 
-					kChannelCount
+					Count
 				};
 
 				u16 lineHeight;
@@ -96,7 +97,7 @@ namespace Momo
 				u16 scaleH;
 				u16 pages;
 				bool packed;
-				u8 channelContents[kChannelCount];
+				ChannelContents channelContents[Channel::Count];
 			};
 
 			Font();
@@ -129,6 +130,7 @@ namespace Momo
 			Graphics::SpriteBatch::TechniqueId mTechniqueId;
 		};
 
+		FLAG_OPS(Font::Info::Flags)
 	}
 }
 

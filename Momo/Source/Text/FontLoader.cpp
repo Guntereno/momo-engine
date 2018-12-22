@@ -329,7 +329,7 @@ namespace Momo
 			bool boolValue;
 
 			Font::Info& info = mpFont->mInfo;
-			info.flags = 0;
+			info.flags = Font::Info::Flags::None;
 
 			bool shouldContinue;
 			do
@@ -360,7 +360,7 @@ namespace Momo
 							return false;
 
 						if (boolValue)
-							info.flags |= info.kFlagBold;
+							info.flags |= info.Flags::Bold;
 					}
 					else if (strcmp(pKey, "italic") == 0)
 					{
@@ -369,7 +369,7 @@ namespace Momo
 							return false;
 
 						if (boolValue)
-							info.flags |= info.kFlagItalic;
+							info.flags |= info.Flags::Italic;
 					}
 					else if (strcmp(pKey, "charset") == 0)
 					{
@@ -384,7 +384,7 @@ namespace Momo
 							return false;
 
 						if (boolValue)
-							info.flags |= info.kFlagUnicode;
+							info.flags |= info.Flags::Unicode;
 					}
 					else if (strcmp(pKey, "stretchH") == 0)
 					{
@@ -400,7 +400,7 @@ namespace Momo
 							return false;
 
 						if (boolValue)
-							info.flags |= info.kFlagUnicode;
+							info.flags |= info.Flags::Unicode;
 					}
 					else if (strcmp(pKey, "aa") == 0)
 					{
@@ -500,28 +500,32 @@ namespace Momo
 						result = ParseNumber(pValue, pKey, &value);
 						if (!result)
 							return false;
-						common.channelContents[Font::Common::kChannelAlpha] = (u8)value;
+						common.channelContents[(int)Font::Common::Channel::Alpha] =
+							(Font::Common::ChannelContents)value;
 					}
 					else if (strcmp(pKey, "redChnl") == 0)
 					{
 						result = ParseNumber(pValue, pKey, &value);
 						if (!result)
 							return false;
-						common.channelContents[Font::Common::kChannelRed] = (u8)value;
+						common.channelContents[(int)Font::Common::Channel::Red] =
+							(Font::Common::ChannelContents)value;
 					}
 					else if (strcmp(pKey, "greenChnl") == 0)
 					{
 						result = ParseNumber(pValue, pKey, &value);
 						if (!result)
 							return false;
-						common.channelContents[Font::Common::kChannelGreen] = (u8)value;
+						common.channelContents[(int)Font::Common::Channel::Green] =
+							(Font::Common::ChannelContents)value;
 					}
 					else if (strcmp(pKey, "blueChnl") == 0)
 					{
 						result = ParseNumber(pValue, pKey, &value);
 						if (!result)
 							return false;
-						common.channelContents[Font::Common::kChannelBlue] = (u8)value;
+						common.channelContents[(int)Font::Common::Channel::Blue] =
+							(Font::Common::ChannelContents)value;
 					}
 					else
 					{
