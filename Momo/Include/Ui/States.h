@@ -9,12 +9,12 @@ namespace Momo
 	namespace Ui
 	{
 
-		enum StateId
+		enum class StateId : u8
 		{
-			kStateDefault,
-			kStatePressed,
+			Default,
+			Pressed,
 
-			kStateCount
+			Count
 		};
 
 	}

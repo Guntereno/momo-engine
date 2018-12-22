@@ -26,7 +26,7 @@ namespace Momo
 
 			void Draw(Graphics::SpriteBatch& spriteBatch, const Rectangle& dest)
 			{
-				Draw(spriteBatch, dest, kStateDefault, Color::White());
+				Draw(spriteBatch, dest, StateId::Default, Color::White());
 			}
 
 		private:

@@ -19,7 +19,7 @@ namespace Momo
 
 		ImageDrawable::~ImageDrawable()
 		{
-			for (int i = 0; i < kStateCount; ++i)
+			for (int i = 0; i < (int)StateId::Count; ++i)
 			{
 				if (mStates[i] != NULL)
 				{
@@ -31,13 +31,13 @@ namespace Momo
 		void ImageDrawable::Draw(Graphics::SpriteBatch& spriteBatch, const Rectangle& dest, StateId state, const Color& color) const
 		{
 			const State* pState = NULL;
-			if (mStates[state] != NULL)
+			if (mStates[(int)state] != NULL)
 			{
-				pState = mStates[state];
+				pState = mStates[(int)state];
 			}
 			else
 			{
-				pState = mStates[kStateDefault];
+				pState = mStates[(int)StateId::Default];
 			}
 
 			if (pState == NULL)
@@ -58,17 +58,17 @@ namespace Momo
 
 		void ImageDrawable::SetState(StateId id, const Graphics::Texture* pTexture, const Rectangle& src)
 		{
-			if (mStates[id] != NULL)
+			if (mStates[(int)id] != NULL)
 			{
 				BREAK_MSG("State %d already assigned!", id);
-				delete (mStates[id]);
+				delete (mStates[(int)id]);
 			}
 
 			State* pState = new State();
 			pState->pTexture = pTexture;
 			pState->src = src;
 
-			mStates[id] = pState;
+			mStates[(int)id] = pState;
 		}
 
 	}

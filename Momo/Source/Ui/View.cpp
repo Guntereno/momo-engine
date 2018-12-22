@@ -13,7 +13,7 @@ namespace Momo
 	{
 
 		View::View() :
-			mState(kStateDefault),
+			mState(StateId::Default),
 			mpSibling(NULL),
 			mpChild(NULL),
 			mColor(Color::White()),

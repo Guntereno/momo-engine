@@ -40,7 +40,7 @@ namespace Momo
 					if (mTouchId == Input::Event::IdInvalid)
 					{
 						mTouchId = event.id;
-						mState = kStatePressed;
+						mState = StateId::Pressed;
 					}
 				}
 			}
@@ -51,7 +51,7 @@ namespace Momo
 				// Moved out of region
 				if (isMyTouch && (!containsPos))
 				{
-					mState = kStateDefault;
+					mState = StateId::Default;
 					consumed = true;
 				}
 			}
@@ -62,7 +62,7 @@ namespace Momo
 				if (isMyTouch)
 				{
 					// Only trigger when up occurs within the region
-					if ((mState == kStatePressed) && containsPos)
+					if ((mState == StateId::Pressed) && containsPos)
 					{
 						if (mpCallback != NULL)
 						{
@@ -71,7 +71,7 @@ namespace Momo
 					}
 
 					mTouchId = Input::Event::IdInvalid;
-					mState = kStateDefault;
+					mState = StateId::Default;
 				}
 			}
 			break;

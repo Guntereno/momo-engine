@@ -24,7 +24,7 @@ TestView::TestView()
 	Momo::Rectangle inner = { 24, 20, 16, 25 };
 	mpNinePatch->SetState
 	(
-		kStateDefault,
+		StateId::Default,
 		mpNinePatchTexture,
 		outer,
 		inner
@@ -40,13 +40,13 @@ TestView::TestView()
 		mpImages[i] = new ImageDrawable();
 	}
 
-	mpImages[kImageToad]->SetState(kStateDefault, mpTextures[kTextureToad], Momo::Rectangle::Zero());
-	mpImages[kImageToad]->SetState(kStatePressed, mpTextures[kTextureToadPressed], Momo::Rectangle::Zero());
+	mpImages[kImageToad]->SetState(StateId::Default, mpTextures[kTextureToad], Momo::Rectangle::Zero());
+	mpImages[kImageToad]->SetState(StateId::Pressed, mpTextures[kTextureToadPressed], Momo::Rectangle::Zero());
 
 	// Create a null drawable for rendering plain coloured quads
 	mpNullImage = new ImageDrawable();
 
-	mpNullImage->SetState(kStateDefault, NULL, Momo::Rectangle::Zero());
+	mpNullImage->SetState(StateId::Default, NULL, Momo::Rectangle::Zero());
 
 	struct ViewParams
 	{

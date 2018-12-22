@@ -37,7 +37,7 @@ namespace Momo
 				Rectangle inside;
 			};
 
-			const State* mStates[kStateCount];
+			const State* mStates[StateId::Count];
 		};
 
 	}
