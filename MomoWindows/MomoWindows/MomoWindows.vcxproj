@@ -76,16 +76,29 @@
     <Import Project="$(SolutionDir)..\PropertySheets\Win32.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(ProjectDir)Out\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)Int\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(ProjectDir)Out\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)Int\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(ProjectDir)Out\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)Int\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(ProjectDir)Out\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)Int\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>EnableAllWarnings</WarningLevel>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(ProjectDir)Include;$(SolutionDir)..\Momo\Include;$(SolutionDir)..\Game\Include;$(SolutionDir)..\Contrib\angle\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GL_GLEXT_PROTOTYPES=1;NOMINMAX=1;_HAS_EXCEPTIONS=0;WIN32_LEAN_AND_MEAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GL_GLEXT_PROTOTYPES=1;EGL_EGL_PROTOTYPES=1;NOMINMAX=1;_HAS_EXCEPTIONS=0;WIN32_LEAN_AND_MEAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4514;4710;4820;4711;5045;5027;4626;4625</DisableSpecificWarnings>
       <ExceptionHandling>false</ExceptionHandling>
@@ -93,11 +106,11 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d9.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libEGL.lib;libGLESv2.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Contrib\angle\lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d9.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libEGL.dll.lib;libGLESv2.dll.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)Lib\*.dll" "$(OutDir)"
+      <Command>xcopy /y "$(SolutionDir)..\Contrib\angle\lib\$(Platform)\$(Configuration)\*.dll" "$(OutDir)"
 xcopy "$(SolutionDir)..\Assets" "$(OutDir)" /E /R /D /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -107,7 +120,7 @@ xcopy "$(SolutionDir)..\Assets" "$(OutDir)" /E /R /D /Y</Command>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(ProjectDir)Include;$(SolutionDir)..\Momo\Include;$(SolutionDir)..\Game\Include;$(SolutionDir)..\Contrib\angle\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GL_GLEXT_PROTOTYPES=1;NOMINMAX=1;_HAS_EXCEPTIONS=0;WIN32_LEAN_AND_MEAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GL_GLEXT_PROTOTYPES=1;EGL_EGL_PROTOTYPES=1;NOMINMAX=1;_HAS_EXCEPTIONS=0;WIN32_LEAN_AND_MEAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4514;4710;4820;4711;5045;5027;4626;4625</DisableSpecificWarnings>
       <ExceptionHandling>false</ExceptionHandling>
@@ -115,11 +128,11 @@ xcopy "$(SolutionDir)..\Assets" "$(OutDir)" /E /R /D /Y</Command>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d9.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libEGL.lib;libGLESv2.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Contrib\angle\lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d9.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libEGL.dll.lib;libGLESv2.dll.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)Lib\*.dll" "$(OutDir)"
+      <Command>xcopy /y "$(SolutionDir)..\Contrib\angle\lib\$(Platform)\$(Configuration)\*.dll" "$(OutDir)"
 xcopy "$(SolutionDir)..\Assets" "$(OutDir)" /E /R /D /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -131,7 +144,7 @@ xcopy "$(SolutionDir)..\Assets" "$(OutDir)" /E /R /D /Y</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GL_GLEXT_PROTOTYPES=1;NOMINMAX=1;_HAS_EXCEPTIONS=0;WIN32_LEAN_AND_MEAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GL_GLEXT_PROTOTYPES=1;EGL_EGL_PROTOTYPES=1;NOMINMAX=1;_HAS_EXCEPTIONS=0;WIN32_LEAN_AND_MEAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4514;4710;4820;4711;5045;5027;4626;4625</DisableSpecificWarnings>
       <ExceptionHandling>false</ExceptionHandling>
@@ -141,11 +154,11 @@ xcopy "$(SolutionDir)..\Assets" "$(OutDir)" /E /R /D /Y</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d9.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libEGL.lib;libGLESv2.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Contrib\angle\lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d9.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libEGL.dll.lib;libGLESv2.dll.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)Lib\*.dll" "$(OutDir)"
+      <Command>xcopy /y "$(SolutionDir)..\Contrib\angle\lib\$(Platform)\$(Configuration)\*.dll" "$(OutDir)"
 xcopy "$(SolutionDir)..\Assets" "$(OutDir)" /E /R /D /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -157,7 +170,7 @@ xcopy "$(SolutionDir)..\Assets" "$(OutDir)" /E /R /D /Y</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GL_GLEXT_PROTOTYPES=1;NOMINMAX=1;_HAS_EXCEPTIONS=0;WIN32_LEAN_AND_MEAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GL_GLEXT_PROTOTYPES=1;EGL_EGL_PROTOTYPES=1;NOMINMAX=1;_HAS_EXCEPTIONS=0;WIN32_LEAN_AND_MEAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4514;4710;4820;4711;5045;5027;4626;4625</DisableSpecificWarnings>
       <ExceptionHandling>false</ExceptionHandling>
@@ -167,11 +180,11 @@ xcopy "$(SolutionDir)..\Assets" "$(OutDir)" /E /R /D /Y</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d9.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libEGL.lib;libGLESv2.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Contrib\angle\lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d9.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libEGL.dll.lib;libGLESv2.dll.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)Lib\*.dll" "$(OutDir)"
+      <Command>xcopy /y "$(SolutionDir)..\Contrib\angle\lib\$(Platform)\$(Configuration)\*.dll" "$(OutDir)"
 xcopy "$(SolutionDir)..\Assets" "$(OutDir)" /E /R /D /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -280,6 +293,7 @@ xcopy "$(SolutionDir)..\Assets" "$(OutDir)" /E /R /D /Y</Command>
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\.editorconfig" />
     <None Include="..\..\Assets\shaders\fpLineBatch.fp" />
     <None Include="..\..\Assets\shaders\fpMesh.fp" />
     <None Include="..\..\Assets\shaders\fpSpriteBatchFontNoOutline.fp" />

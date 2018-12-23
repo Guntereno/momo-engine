@@ -77,6 +77,4 @@ _pkginfo.txt
 !*.[Cc]ache/
 
 # Specic overrides for this project
-!MomoWindows/Lib/*.lib
-!MomoWindows/Lib/*.dll
-!MomoWindows/Lib/*.pdb
+!/Contrib/angle/lib/*/*/*
