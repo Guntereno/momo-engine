@@ -6,18 +6,18 @@
 
 namespace Momo
 {
-	namespace Ui
-	{
+namespace Ui
+{
 
-		enum class StateId : u8
-		{
-			Default,
-			Pressed,
+enum class StateId : u8
+{
+    Default,
+    Pressed,
 
-			Count
-		};
+    Count
+};
 
-	}
+}
 }
 
 #endif //MOMO_UI_STATES_INCLUDED

@@ -8,25 +8,25 @@
 
 namespace Momo
 {
-	namespace Input
-	{
+namespace Input
+{
 
-		class TouchHandler
-		{
-		public:
-			static constexpr int kMaxTouches = 5;
+class TouchHandler
+{
+public:
+    static constexpr int kMaxTouches = 5;
 
-			TouchHandler();
+    TouchHandler();
 
-			int GetNumTouches() const { return mNumTouches; }
-			const Point& GetTouch(int index) const { return mTouches[index]; }
+    int GetNumTouches() const { return mNumTouches; }
+    const Point& GetTouch(int index) const { return mTouches[index]; }
 
-		private:
-			Point mTouches[kMaxTouches];
-			int mNumTouches;
-		};
+private:
+    Point mTouches[kMaxTouches];
+    int mNumTouches;
+};
 
-	}
+}
 }
 
 #endif //MOMO_INPUT_TOUCHHANDLER_INCLUDED

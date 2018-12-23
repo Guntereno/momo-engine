@@ -4,16 +4,16 @@
 
 namespace Momo
 {
-	namespace Ui
-	{
+namespace Ui
+{
 
-		class ICallback
-		{
-		public:
-			virtual void Call(void* pSender) = 0;
-		};
+class ICallback
+{
+public:
+    virtual void Call(void* pSender) = 0;
+};
 
-	}
+}
 }
 
 #endif

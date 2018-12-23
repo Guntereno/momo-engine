@@ -4,19 +4,19 @@
 
 #ifdef ANDROID
 
-	// Nothing
+// Nothing
 
 #else
 
-	#include <cstdarg>
+#include <cstdarg>
 
-	void LoggerPrint(const char* fmt, ...)
-	{
-		va_list arg;
-		va_start(arg, fmt);
-		vprintf(fmt, arg);
-		va_end(arg);
-		printf("\n");
-	};
+void LoggerPrint(const char* fmt, ...)
+{
+    va_list arg;
+    va_start(arg, fmt);
+    vprintf(fmt, arg);
+    va_end(arg);
+    printf("\n");
+};
 
 #endif

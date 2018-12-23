@@ -11,35 +11,35 @@
 
 namespace Momo
 {
-	namespace Ui
-	{
+namespace Ui
+{
 
-		class ImageDrawable : public Drawable
-		{
-		public:
-			ImageDrawable();
-			virtual ~ImageDrawable();
+class ImageDrawable : public Drawable
+{
+public:
+    ImageDrawable();
+    virtual ~ImageDrawable();
 
-			// override
-			virtual void Draw(Graphics::SpriteBatch& spriteBatch, const Rectangle& dest, StateId state, const Color& color) const;
+    // override
+    virtual void Draw(Graphics::SpriteBatch& spriteBatch, const Rectangle& dest, StateId state, const Color& color) const;
 
-			// pTexture - Can specify NULL to use no texture
-			// src - Use Rectangle::Zero() to render the whole texture
-			void SetState(StateId id, const Graphics::Texture* pTexture, const Rectangle& src);
+    // pTexture - Can specify NULL to use no texture
+    // src - Use Rectangle::Zero() to render the whole texture
+    void SetState(StateId id, const Graphics::Texture* pTexture, const Rectangle& src);
 
-		private:
-			DISALLOW_COPY_AND_ASSIGN(ImageDrawable);
+private:
+    DISALLOW_COPY_AND_ASSIGN(ImageDrawable);
 
-			struct State
-			{
-				const Graphics::Texture* pTexture;
-				Rectangle src;
-			};
+    struct State
+    {
+        const Graphics::Texture* pTexture;
+        Rectangle src;
+    };
 
-			const State* mStates[StateId::Count];
-		};
+    const State* mStates[StateId::Count];
+};
 
-	}
+}
 }
 
 #endif //MOMO_UI_IMAGEDRAWABLE_INCLUDED

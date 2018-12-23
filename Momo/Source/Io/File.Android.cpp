@@ -11,101 +11,101 @@
 
 namespace Momo
 {
-	namespace Io
-	{
-		static AAssetManager* gAssetManager = NULL;
+namespace Io
+{
+static AAssetManager* gAssetManager = NULL;
 
-		static constexpr char* kDebugPrefix = "Momo::Io::File";
+static constexpr char* kDebugPrefix = "Momo::Io::File";
 
-		void File::Init(void* pData)
-		{
-			LOGI("%s: Initialising", kDebugPrefix);
+void File::Init(void* pData)
+{
+    LOGI("%s: Initialising", kDebugPrefix);
 
-			ASSERT(pData != NULL);
-			gAssetManager = static_cast<AAssetManager*>(pData);
-		}
+    ASSERT(pData != NULL);
+    gAssetManager = static_cast<AAssetManager*>(pData);
+}
 
-		File::Handle File::Open(const char* fileName, Mode mode)
-		{
-			ASSERT(gAssetManager != NULL);
-			ASSERT(fileName != NULL);
+File::Handle File::Open(const char* fileName, Mode mode)
+{
+    ASSERT(gAssetManager != NULL);
+    ASSERT(fileName != NULL);
 
-			switch (mode)
-			{
-			case kModeRead:
-			{
-				LOGI("%s: Opening file %s with manager 0x%x", kDebugPrefix, fileName, (u32)gAssetManager);
+    switch (mode)
+    {
+        case kModeRead:
+        {
+            LOGI("%s: Opening file %s with manager 0x%x", kDebugPrefix, fileName, (u32)gAssetManager);
 
-				AAsset* pAsset = AAssetManager_open(gAssetManager, fileName, AASSET_MODE_UNKNOWN);
+            AAsset* pAsset = AAssetManager_open(gAssetManager, fileName, AASSET_MODE_UNKNOWN);
 
-				LOGI("%s: File %s has handle 0x%x", kDebugPrefix, fileName, (u32)pAsset);
+            LOGI("%s: File %s has handle 0x%x", kDebugPrefix, fileName, (u32)pAsset);
 
-				return reinterpret_cast<Handle>(pAsset);
-			}
+            return reinterpret_cast<Handle>(pAsset);
+        }
 
-			case kModeWrite:
-				BREAK_MSG("File writing currently unsupported on Android!");
-				break;
+        case kModeWrite:
+            BREAK_MSG("File writing currently unsupported on Android!");
+            break;
 
-			default:
-				BREAK_MSG("Unhandled file mode %d!", mode);
-				break;
-			}
+        default:
+            BREAK_MSG("Unhandled file mode %d!", mode);
+            break;
+    }
 
-			return NULL;
-		}
+    return NULL;
+}
 
-		void File::Close(File::Handle file)
-		{
-			if (file == NULL)
-				return;
+void File::Close(File::Handle file)
+{
+    if (file == NULL)
+        return;
 
-			ASSERT(gAssetManager != NULL);
+    ASSERT(gAssetManager != NULL);
 
-			AAsset* pAsset = reinterpret_cast<AAsset*>(file);
+    AAsset* pAsset = reinterpret_cast<AAsset*>(file);
 
-			LOGI("%s: Closing file handle 0x%x", kDebugPrefix, (u32)pAsset);
+    LOGI("%s: Closing file handle 0x%x", kDebugPrefix, (u32)pAsset);
 
-			AAsset_close(pAsset);
-		}
+    AAsset_close(pAsset);
+}
 
-		size_t File::Read(File::Handle file, void* pBuf, size_t size)
-		{
-			if (file == NULL)
-				return 0;
+size_t File::Read(File::Handle file, void* pBuf, size_t size)
+{
+    if (file == NULL)
+        return 0;
 
-			ASSERT(gAssetManager != NULL);
+    ASSERT(gAssetManager != NULL);
 
-			ASSERT(pBuf != NULL);
+    ASSERT(pBuf != NULL);
 
-			AAsset* pAsset = reinterpret_cast<AAsset*>(file);
+    AAsset* pAsset = reinterpret_cast<AAsset*>(file);
 
-			//LOGI("%s: Reading up to %d bytes from handle 0x%x", kDebugPrefix, size, pAsset);
+    //LOGI("%s: Reading up to %d bytes from handle 0x%x", kDebugPrefix, size, pAsset);
 
-			size_t read = AAsset_read(pAsset, pBuf, size);
+    size_t read = AAsset_read(pAsset, pBuf, size);
 
-			//LOGI("%s: Read %d bytes from handle 0x%x", kDebugPrefix, read, pAsset);
+    //LOGI("%s: Read %d bytes from handle 0x%x", kDebugPrefix, read, pAsset);
 
-			return read;
-		}
+    return read;
+}
 
-		size_t File::Write(const void* pBuf, size_t size, Handle file)
-		{
-			BREAK_MSG("File writing not supported on Android!");
-			return 0;
-		}
+size_t File::Write(const void* pBuf, size_t size, Handle file)
+{
+    BREAK_MSG("File writing not supported on Android!");
+    return 0;
+}
 
-		size_t File::GetSize(Handle file)
-		{
-			ASSERT(gAssetManager != NULL);
+size_t File::GetSize(Handle file)
+{
+    ASSERT(gAssetManager != NULL);
 
-			AAsset* pAsset = reinterpret_cast<AAsset*>(file);
+    AAsset* pAsset = reinterpret_cast<AAsset*>(file);
 
-			ASSERT(pAsset != NULL);
+    ASSERT(pAsset != NULL);
 
-			return AAsset_getLength(pAsset);
-		}
-	}
+    return AAsset_getLength(pAsset);
+}
+}
 }
 
 #endif // ANDROID

@@ -6,20 +6,20 @@
 
 namespace Momo
 {
-	namespace Memory
-	{
+namespace Memory
+{
 
-		// Base interface for all memory heaps
-		class Heap
-		{
-		public:
-			static constexpr u32 kDefaultAlignment = 32;
+// Base interface for all memory heaps
+class Heap
+{
+public:
+    static constexpr u32 kDefaultAlignment = 32;
 
-			virtual void* Allocate(size_t size) = 0;
-			virtual void Free(void* pBlock) = 0;
-		};
+    virtual void* Allocate(size_t size) = 0;
+    virtual void Free(void* pBlock) = 0;
+};
 
-	}
+}
 }
 
 #endif // MOMO_MEMORY_HEAP_INCLUDED

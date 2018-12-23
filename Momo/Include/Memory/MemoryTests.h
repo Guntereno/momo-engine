@@ -6,12 +6,12 @@
 
 namespace Momo
 {
-	namespace Memory
-	{
+namespace Memory
+{
 
-		bool PerformTests();
+bool PerformTests();
 
-	}
+}
 }
 
 #endif //MOMO_MEMORY_MEMORYTESTS_INCLUDED

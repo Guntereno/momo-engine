@@ -11,33 +11,33 @@
 namespace Momo
 {
 
-	class IdString
-	{
-	public:
-		// Assumes null terminated string
-		IdString(const char* pString)
-		{
-			mHash = Crc32(pString, strlen(pString));
-		}
+class IdString
+{
+public:
+    // Assumes null terminated string
+    IdString(const char* pString)
+    {
+        mHash = Crc32(pString, strlen(pString));
+    }
 
-		IdString()
-		{
-			mHash = 0;
-		}
+    IdString()
+    {
+        mHash = 0;
+    }
 
-		bool operator==(const IdString& rhs)
-		{
-			return (this->mHash == rhs.mHash);
-		}
+    bool operator==(const IdString& rhs)
+    {
+        return (this->mHash == rhs.mHash);
+    }
 
-		bool operator!=(const IdString& rhs)
-		{
-			return (this->mHash != rhs.mHash);
-		}
+    bool operator!=(const IdString& rhs)
+    {
+        return (this->mHash != rhs.mHash);
+    }
 
-	private:
-		u32 mHash;
-	};
+private:
+    u32 mHash;
+};
 
 }
 

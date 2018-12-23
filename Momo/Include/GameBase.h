@@ -16,45 +16,45 @@
 namespace Momo
 {
 
-	class GameBase
-	{
-	public:
-		GameBase();
-		virtual ~GameBase();
+class GameBase
+{
+public:
+    GameBase();
+    virtual ~GameBase();
 
-		virtual void Init();
-		virtual void Resize(u32 mWidth, u32 mHeight);
-		virtual void Update();
-		virtual void Draw() = 0;
-		virtual void DrawDebug() = 0;
-		virtual void Destroy();
-		virtual void Pause();
-		virtual void UnPause();
-		virtual bool HandleTouchEvent(const Input::Event& event)
-		{
-			UNUSED(event);
-			return false;
-		};
+    virtual void Init();
+    virtual void Resize(u32 mWidth, u32 mHeight);
+    virtual void Update();
+    virtual void Draw() = 0;
+    virtual void DrawDebug() = 0;
+    virtual void Destroy();
+    virtual void Pause();
+    virtual void UnPause();
+    virtual bool HandleTouchEvent(const Input::Event& event)
+    {
+        UNUSED(event);
+        return false;
+    };
 
-		void OnTouchEvent(Input::Event::Type type, Input::Event::Id id, const Point& pos, const Point& delta);
+    void OnTouchEvent(Input::Event::Type type, Input::Event::Id id, const Point& pos, const Point& delta);
 
-	protected:
-		void InitCamera();
+protected:
+    void InitCamera();
 
-		ApplicationTimer mAppTimer;
-		GameTime mGameTime;
+    ApplicationTimer mAppTimer;
+    GameTime mGameTime;
 
-		Rectangle mViewport;
-		Graphics::Camera mCamera;
-		Graphics::SpriteBatch mSpriteBatch;
-		Graphics::LineBatch mLineBatch;
+    Rectangle mViewport;
+    Graphics::Camera mCamera;
+    Graphics::SpriteBatch mSpriteBatch;
+    Graphics::LineBatch mLineBatch;
 
-		Ui::View* mpViewContainer;
-		Input::InputQueue* mpInputQueue;
+    Ui::View* mpViewContainer;
+    Input::InputQueue* mpInputQueue;
 
-	private:
-		DISALLOW_COPY_AND_ASSIGN(GameBase);
-	};
+private:
+    DISALLOW_COPY_AND_ASSIGN(GameBase);
+};
 
 }
 

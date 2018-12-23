@@ -11,46 +11,46 @@
 
 namespace Momo
 {
-	static constexpr u64 kTickInvalid = std::numeric_limits<u64>::max();
+static constexpr u64 kTickInvalid = std::numeric_limits<u64>::max();
 
-	static u64 GetTime()
-	{
+static u64 GetTime()
+{
 #ifdef ANDROID
-		struct timeval now;
-		gettimeofday(&now, NULL);
-		return (long)(now.tv_sec * 1000 + now.tv_usec / 1000);
+    struct timeval now;
+    gettimeofday(&now, NULL);
+    return (long)(now.tv_sec * 1000 + now.tv_usec / 1000);
 #elif WIN32
-		return GetTickCount64();
+    return GetTickCount64();
 #endif
-	}
+}
 
-	ApplicationTimer::ApplicationTimer()
-	{
-		Init();
-	}
+ApplicationTimer::ApplicationTimer()
+{
+    Init();
+}
 
-	void ApplicationTimer::Init()
-	{
-		mPreviousTick = kTickInvalid;
-		mCurrentTick = 0;
-		mPaused = false;
-	}
+void ApplicationTimer::Init()
+{
+    mPreviousTick = kTickInvalid;
+    mCurrentTick = 0;
+    mPaused = false;
+}
 
-	void ApplicationTimer::Update()
-	{
-		u64 tick = GetTime();
+void ApplicationTimer::Update()
+{
+    u64 tick = GetTime();
 
-		if (mPreviousTick != kTickInvalid)
-		{
-			u64 delta = tick - mPreviousTick;
+    if (mPreviousTick != kTickInvalid)
+    {
+        u64 delta = tick - mPreviousTick;
 
-			if (!mPaused)
-			{
-				mCurrentTick += delta;
-			}
-		}
+        if (!mPaused)
+        {
+            mCurrentTick += delta;
+        }
+    }
 
-		mPreviousTick = tick;
-	}
+    mPreviousTick = tick;
+}
 
 }

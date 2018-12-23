@@ -15,94 +15,94 @@
 
 namespace Momo
 {
-	namespace Graphics
-	{
+namespace Graphics
+{
 
-		class SpriteBatch
-		{
-		public:
-			enum class DrawFlags : u32
-			{
-				None = 0,
-				FlipX = 1 << 0,
-				FlipY = 1 << 1
-			};
-			
-			enum class TechniqueId : u32
-			{
-				Sprite,
-				FontNoOutline,
-				FontOutline,
+class SpriteBatch
+{
+public:
+    enum class DrawFlags : u32
+    {
+        None = 0,
+        FlipX = 1 << 0,
+        FlipY = 1 << 1
+    };
 
-				Count,
+    enum class TechniqueId : u32
+    {
+        Sprite,
+        FontNoOutline,
+        FontOutline,
 
-				Invalid
-			};
+        Count,
 
-			SpriteBatch();
+        Invalid
+    };
 
-			void Load();
+    SpriteBatch();
 
-			void Begin();
+    void Load();
 
-			void Draw(const Texture* texture, const Rectangle& dest, const Color& color);
-			void Draw(const Texture* texture, const Rectangle& dest, const Color& color, DrawFlags flags);
-			void Draw(const Texture* texture, const Rectangle& dest, const Rectangle& src, const Color& color);
-			void Draw(const Texture* texture, const Rectangle& dest, const Rectangle& src, const Color& color, DrawFlags flags);
+    void Begin();
 
-			void DrawString(const Text::Font& font, const char* pUtf8String, size_t strLen, const Point& point, const Color& color);
+    void Draw(const Texture* texture, const Rectangle& dest, const Color& color);
+    void Draw(const Texture* texture, const Rectangle& dest, const Color& color, DrawFlags flags);
+    void Draw(const Texture* texture, const Rectangle& dest, const Rectangle& src, const Color& color);
+    void Draw(const Texture* texture, const Rectangle& dest, const Rectangle& src, const Color& color, DrawFlags flags);
 
-			void End(const Camera& camera);
+    void DrawString(const Text::Font& font, const char* pUtf8String, size_t strLen, const Point& point, const Color& color);
 
-		private:
-			DISALLOW_COPY_AND_ASSIGN(SpriteBatch);
+    void End(const Camera& camera);
 
-			static constexpr size_t kVertsPerSprite = 4;
-			static constexpr size_t kIndicesPerSprite = 6;
+private:
+    DISALLOW_COPY_AND_ASSIGN(SpriteBatch);
 
-			static constexpr size_t kSpriteMax = 8192;
-			static constexpr size_t kVertexMax = kSpriteMax * kVertsPerSprite;
-			static constexpr size_t kIndexMax = kSpriteMax * kIndicesPerSprite;
+    static constexpr size_t kVertsPerSprite = 4;
+    static constexpr size_t kIndicesPerSprite = 6;
 
-			static constexpr size_t kTrianglesPerSprite = 2;
+    static constexpr size_t kSpriteMax = 8192;
+    static constexpr size_t kVertexMax = kSpriteMax * kVertsPerSprite;
+    static constexpr size_t kIndexMax = kSpriteMax * kIndicesPerSprite;
 
-			struct Vertex
-			{
-				static constexpr int kFloatsPerPosition = 2;
-				static constexpr int kFloatsPerUv = 2;
-				static constexpr int kFloatsPerChannel = 4;
-				static constexpr int kBytesPerColor = 4;
+    static constexpr size_t kTrianglesPerSprite = 2;
 
-				Color color;
-				Vector2 position;
-				Vector2 uv;
-				Vector4 channel;
-			};
+    struct Vertex
+    {
+        static constexpr int kFloatsPerPosition = 2;
+        static constexpr int kFloatsPerUv = 2;
+        static constexpr int kFloatsPerChannel = 4;
+        static constexpr int kBytesPerColor = 4;
 
-			struct BatchInfo
-			{
-				const Texture* pTexture;
-				size_t count;
-				TechniqueId technique;
-			};
+        Color color;
+        Vector2 position;
+        Vector2 uv;
+        Vector4 channel;
+    };
 
-			bool LoadTechniques();
+    struct BatchInfo
+    {
+        const Texture* pTexture;
+        size_t count;
+        TechniqueId technique;
+    };
 
-			void DrawInternal(TechniqueId techniqueId, const Vector4& channel, const Texture* pTexture, const Rectangle& dest, const Rectangle* src, const Color& color, DrawFlags flags);
+    bool LoadTechniques();
 
-			GLuint mVertexBufferHandle;
-			GLuint mIndexBufferHandle;
+    void DrawInternal(TechniqueId techniqueId, const Vector4& channel, const Texture* pTexture, const Rectangle& dest, const Rectangle* src, const Color& color, DrawFlags flags);
 
-			Vertex mVertexData[kVertexMax];
-			BatchInfo mBatchData[kSpriteMax];
+    GLuint mVertexBufferHandle;
+    GLuint mIndexBufferHandle;
 
-			bool mInBeginEndBlock;
-			size_t mSpriteCount;
-			size_t mBatchCount;
-		};
+    Vertex mVertexData[kVertexMax];
+    BatchInfo mBatchData[kSpriteMax];
 
-		FLAG_OPS(SpriteBatch::DrawFlags)
-	}
+    bool mInBeginEndBlock;
+    size_t mSpriteCount;
+    size_t mBatchCount;
+};
+
+FLAG_OPS(SpriteBatch::DrawFlags)
+}
 }
 
 #endif //MOMO_GRAPHICS_SPRITEBATCH_INCLUDED

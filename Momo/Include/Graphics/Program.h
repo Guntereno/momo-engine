@@ -8,30 +8,30 @@
 
 namespace Momo
 {
-	namespace Graphics
-	{
+namespace Graphics
+{
 
-		class Program
-		{
-		public:
-			Program() :
-				mHandle(0)
-			{}
+class Program
+{
+public:
+    Program() :
+        mHandle(0)
+    {}
 
-			inline GLuint Handle() const { return mHandle; }
+    inline GLuint Handle() const { return mHandle; }
 
-			bool Load(const char* pVertexSource, const char* pFragmentSource);
-			bool LoadFiles(const char* pVertexFileName, const char* pFragmentFileName);
+    bool Load(const char* pVertexSource, const char* pFragmentSource);
+    bool LoadFiles(const char* pVertexFileName, const char* pFragmentFileName);
 
-		private:
-			DISALLOW_COPY_AND_ASSIGN(Program);
+private:
+    DISALLOW_COPY_AND_ASSIGN(Program);
 
-			GLuint LoadShader(GLenum shaderType, const char* pSource);
+    GLuint LoadShader(GLenum shaderType, const char* pSource);
 
-			GLuint mHandle;
-		};
+    GLuint mHandle;
+};
 
-	}
+}
 }
 
 #endif //MOMO_GRAPHICS_PROGRAM_INCLUDED

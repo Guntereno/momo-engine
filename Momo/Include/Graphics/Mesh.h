@@ -11,60 +11,60 @@
 
 namespace Momo
 {
-	namespace Graphics
-	{
+namespace Graphics
+{
 
-		class Mesh
-		{
-		public:
-			class Renderer
-			{
-			public:
-				Renderer();
+class Mesh
+{
+public:
+    class Renderer
+    {
+    public:
+        Renderer();
 
-				void Load(const Technique& technique, const Mesh& mesh, const Texture* pTexture);
-				void Draw(const Camera& camera, const Matrix& world);
+        void Load(const Technique& technique, const Mesh& mesh, const Texture* pTexture);
+        void Draw(const Camera& camera, const Matrix& world);
 
-			private:
-				const Technique* mpTechnique;
-				const Mesh* mpMesh;
-				const Texture* mpTexture;
+    private:
+        const Technique* mpTechnique;
+        const Mesh* mpMesh;
+        const Texture* mpTexture;
 
-				GLuint mVertexBufferHandle;
-				GLuint mIndexBufferHandle;
-			};
+        GLuint mVertexBufferHandle;
+        GLuint mIndexBufferHandle;
+    };
 
-			struct Vertex
-			{
-				static constexpr int kFloatsPerPosition = 4;
-				static constexpr int kFloatsPerUv = 2;
-				static constexpr int kBytesPerColor = 4;
+    struct Vertex
+    {
+        static constexpr int kFloatsPerPosition = 4;
+        static constexpr int kFloatsPerUv = 2;
+        static constexpr int kBytesPerColor = 4;
 
-				Color color;
-				Vector4 position;
-				Vector2 uv;
-			};
+        Color color;
+        Vector4 position;
+        Vector2 uv;
+    };
 
-			Mesh();
-			Mesh(const Vertex* pVertexData, size_t vertexCount, const GLushort* pIndexData, size_t indexCount);
+    Mesh();
+    Mesh(const Vertex* pVertexData, size_t vertexCount, const GLushort* pIndexData, size_t indexCount);
 
-			virtual ~Mesh();
+    virtual ~Mesh();
 
-			void Load(const Vertex* pVertexData, size_t vertexCount, const GLushort* pIndexData, size_t indexCount);
+    void Load(const Vertex* pVertexData, size_t vertexCount, const GLushort* pIndexData, size_t indexCount);
 
-			void DeleteBuffers();
+    void DeleteBuffers();
 
-		private:
-			DISALLOW_COPY_AND_ASSIGN(Mesh);
+private:
+    DISALLOW_COPY_AND_ASSIGN(Mesh);
 
-			const Vertex* mpVertexData;
-			size_t mVertexCount;
-			
-			const GLushort* mpIndexData;
-			size_t mIndexCount;
-		};
+    const Vertex* mpVertexData;
+    size_t mVertexCount;
 
-	}
+    const GLushort* mpIndexData;
+    size_t mIndexCount;
+};
+
+}
 }
 
 #endif //MOMO_GRAPHICS_MESH_INCLUDED

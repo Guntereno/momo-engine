@@ -24,9 +24,9 @@ extern "C"
 {
 # endif
 
-	void AssertPrint(const char* file, long line, const char* expression);
-	void AssertPrintMessage(const char* file, long line, const char* expression, const char* message, ...);
-	void BreakPrintMessage(const char* file, long line, const char* message, ...);
+    void AssertPrint(const char* file, long line, const char* expression);
+    void AssertPrintMessage(const char* file, long line, const char* expression, const char* message, ...);
+    void BreakPrintMessage(const char* file, long line, const char* message, ...);
 
 # ifdef __cplusplus
 }

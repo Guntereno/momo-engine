@@ -11,130 +11,130 @@
 
 TestView::TestView()
 {
-	using namespace Momo::Ui;
+    using namespace Momo::Ui;
 
-	Momo::Offset margin;
-	margin.Set(15);
-	SetMargin(margin);
+    Momo::Offset margin;
+    margin.Set(15);
+    SetMargin(margin);
 
-	mpNinePatchTexture = new Momo::Graphics::Texture();
+    mpNinePatchTexture = new Momo::Graphics::Texture();
 
-	mpNinePatch = new Momo::Ui::NinePatchDrawable();
-	Momo::Rectangle outer = { 0, 7, 57, 57 };
-	Momo::Rectangle inner = { 24, 20, 16, 25 };
-	mpNinePatch->SetState
-	(
-		StateId::Default,
-		mpNinePatchTexture,
-		outer,
-		inner
-	);
+    mpNinePatch = new Momo::Ui::NinePatchDrawable();
+    Momo::Rectangle outer = { 0, 7, 57, 57 };
+    Momo::Rectangle inner = { 24, 20, 16, 25 };
+    mpNinePatch->SetState
+    (
+        StateId::Default,
+        mpNinePatchTexture,
+        outer,
+        inner
+    );
 
-	for (int i = 0; i < kTextureCount; ++i)
-	{
-		mpTextures[i] = new Momo::Graphics::Texture();
-	}
+    for (int i = 0; i < kTextureCount; ++i)
+    {
+        mpTextures[i] = new Momo::Graphics::Texture();
+    }
 
-	for (int i = 0; i < kImageCount; ++i)
-	{
-		mpImages[i] = new ImageDrawable();
-	}
+    for (int i = 0; i < kImageCount; ++i)
+    {
+        mpImages[i] = new ImageDrawable();
+    }
 
-	mpImages[kImageToad]->SetState(StateId::Default, mpTextures[kTextureToad], Momo::Rectangle::Zero());
-	mpImages[kImageToad]->SetState(StateId::Pressed, mpTextures[kTextureToadPressed], Momo::Rectangle::Zero());
+    mpImages[kImageToad]->SetState(StateId::Default, mpTextures[kTextureToad], Momo::Rectangle::Zero());
+    mpImages[kImageToad]->SetState(StateId::Pressed, mpTextures[kTextureToadPressed], Momo::Rectangle::Zero());
 
-	// Create a null drawable for rendering plain coloured quads
-	mpNullImage = new ImageDrawable();
+    // Create a null drawable for rendering plain coloured quads
+    mpNullImage = new ImageDrawable();
 
-	mpNullImage->SetState(StateId::Default, NULL, Momo::Rectangle::Zero());
+    mpNullImage->SetState(StateId::Default, NULL, Momo::Rectangle::Zero());
 
-	struct ViewParams
-	{
-		Drawable* pImage;
-		Momo::Color color;
-		Momo::Ui::View::Flags flags;
-		Momo::Rectangle area;
-		Momo::Offset padding;
-	};
+    struct ViewParams
+    {
+        Drawable* pImage;
+        Momo::Color color;
+        Momo::Ui::View::Flags flags;
+        Momo::Rectangle area;
+        Momo::Offset padding;
+    };
 
-	mpMushroomButtonView = new ButtonView();
-	mpOsdView = new View();
+    mpMushroomButtonView = new ButtonView();
+    mpOsdView = new View();
 
-	const int kViewCount = 2;
-	Momo::Ui::View* pViews[kViewCount] = { mpMushroomButtonView, mpOsdView };
-	ViewParams params[kViewCount] =
-	{
-		{
-			mpImages[kTextureToad],
-			Momo::Color::White(),
-			View::Flags::TouchRight | View::Flags::TouchTop,
-			{0, 0, 128, 128},
-			{{0, 0, 0, 0}}
-		},
-		{
-			mpNinePatch,
-			Momo::Color::White(),
-			View::Flags::TouchRight,
-			{0, 0, 250, 200},
-			{{10, 10, 10, 10}}
-		},
-	};
+    const int kViewCount = 2;
+    Momo::Ui::View* pViews[kViewCount] = { mpMushroomButtonView, mpOsdView };
+    ViewParams params[kViewCount] =
+    {
+        {
+            mpImages[kTextureToad],
+            Momo::Color::White(),
+            View::Flags::TouchRight | View::Flags::TouchTop,
+            {0, 0, 128, 128},
+            {{0, 0, 0, 0}}
+        },
+        {
+            mpNinePatch,
+            Momo::Color::White(),
+            View::Flags::TouchRight,
+            {0, 0, 250, 200},
+            {{10, 10, 10, 10}}
+        },
+    };
 
-	for (int i = 0; i < kViewCount; ++i)
-	{
-		pViews[i]->SetBackground(params[i].pImage);
-		pViews[i]->SetColor(params[i].color);
-		pViews[i]->SetFlags(params[i].flags);
-		pViews[i]->SetArea(params[i].area);
-		pViews[i]->SetPadding(params[i].padding);
-		AddChild(pViews[i]);
-	}
+    for (int i = 0; i < kViewCount; ++i)
+    {
+        pViews[i]->SetBackground(params[i].pImage);
+        pViews[i]->SetColor(params[i].color);
+        pViews[i]->SetFlags(params[i].flags);
+        pViews[i]->SetArea(params[i].area);
+        pViews[i]->SetPadding(params[i].padding);
+        AddChild(pViews[i]);
+    }
 
-	mpTextBox = new TextBoxView(128);
-	mpTextBox->SetColor(Momo::Color::White());
-	mpTextBox->SetText("This is some test text to test the text. Is it working?");
-	mpTextBox->SetAlignment(Momo::Text::Alignment::HCenter | Momo::Text::Alignment::VCenter);
-	mpOsdView->AddChild(mpTextBox);
+    mpTextBox = new TextBoxView(128);
+    mpTextBox->SetColor(Momo::Color::White());
+    mpTextBox->SetText("This is some test text to test the text. Is it working?");
+    mpTextBox->SetAlignment(Momo::Text::Alignment::HCenter | Momo::Text::Alignment::VCenter);
+    mpOsdView->AddChild(mpTextBox);
 }
 
 TestView::~TestView()
 {
-	Flush();
+    Flush();
 }
 
 void TestView::Load()
 {
-	const char* kNinePatchFileName = "wwf_9patch.tga";
-	mpNinePatchTexture->LoadTga(kNinePatchFileName);
+    const char* kNinePatchFileName = "wwf_9patch.tga";
+    mpNinePatchTexture->LoadTga(kNinePatchFileName);
 
-	const char* kFileNames[kTextureCount] =
-	{
-		"toad.tga",
-		"toad_pressed.tga"
-	};
-	for (int i = 0; i < kTextureCount; ++i)
-	{
-		mpTextures[i]->LoadTga(kFileNames[i]);
-	}
+    const char* kFileNames[kTextureCount] =
+    {
+        "toad.tga",
+        "toad_pressed.tga"
+    };
+    for (int i = 0; i < kTextureCount; ++i)
+    {
+        mpTextures[i]->LoadTga(kFileNames[i]);
+    }
 
-	const Momo::Text::Font* pFont = Game::GetInstance()->GetFont(Game::kFontVerdana);
-	mpTextBox->SetFont(*pFont);
+    const Momo::Text::Font* pFont = Game::GetInstance()->GetFont(Game::kFontVerdana);
+    mpTextBox->SetFont(*pFont);
 
-	mpMushroomButtonView->RegisterCallback(reinterpret_cast<Momo::Ui::ICallback*>(Game::GetInstance()->GetMushroomCallback()));
+    mpMushroomButtonView->RegisterCallback(reinterpret_cast<Momo::Ui::ICallback*>(Game::GetInstance()->GetMushroomCallback()));
 
 }
 
 void TestView::Flush()
 {
-	delete mpTextBox;
-	mpTextBox = NULL;
+    delete mpTextBox;
+    mpTextBox = NULL;
 
-	delete mpMushroomButtonView;
-	mpMushroomButtonView = NULL;
+    delete mpMushroomButtonView;
+    mpMushroomButtonView = NULL;
 
-	delete mpOsdView;
-	mpOsdView = NULL;
+    delete mpOsdView;
+    mpOsdView = NULL;
 
-	delete mpNullImage;
-	mpNullImage = NULL;
+    delete mpNullImage;
+    mpNullImage = NULL;
 }

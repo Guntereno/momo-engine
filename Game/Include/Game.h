@@ -17,62 +17,62 @@
 class Game : public Momo::GameBase
 {
 public:
-	enum FontId
-	{
-		kFontVerdana,
+    enum FontId
+    {
+        kFontVerdana,
 
-		kFontCount
-	};
+        kFontCount
+    };
 
-	static Game* GetInstance() { return mspInstance; }
+    static Game* GetInstance() { return mspInstance; }
 
-	Game();
-	virtual ~Game();
+    Game();
+    virtual ~Game();
 
-	virtual void Init();
-	virtual void Resize(unsigned int width, unsigned int height);
-	virtual void Update();
-	virtual void Draw();
-	virtual void DrawDebug();
-	virtual void Destroy();
-	virtual void Pause();
-	virtual void UnPause();
-	virtual bool HandleTouchEvent(const Momo::Input::Event& event);
+    virtual void Init();
+    virtual void Resize(unsigned int width, unsigned int height);
+    virtual void Update();
+    virtual void Draw();
+    virtual void DrawDebug();
+    virtual void Destroy();
+    virtual void Pause();
+    virtual void UnPause();
+    virtual bool HandleTouchEvent(const Momo::Input::Event& event);
 
-	const Momo::Text::Font* GetFont(FontId fontId);
+    const Momo::Text::Font* GetFont(FontId fontId);
 
-	class MushroomCallback;
-	MushroomCallback* GetMushroomCallback() { return mpMushroomCallback; }
+    class MushroomCallback;
+    MushroomCallback* GetMushroomCallback() { return mpMushroomCallback; }
 
 private:
-	static constexpr int kNumCharacters = 512;
+    static constexpr int kNumCharacters = 512;
 
-	static Game* mspInstance;
+    static Game* mspInstance;
 
-	MushroomCallback* mpMushroomCallback;
+    MushroomCallback* mpMushroomCallback;
 
-	void DoTests();
-	void LoadGraphics();
-	void Init3dCamera();
-	void LoadMesh();
+    void DoTests();
+    void LoadGraphics();
+    void Init3dCamera();
+    void LoadMesh();
 
-	void RenderCharacters();
-	void RenderOsd();
-	void RenderMesh();
+    void RenderCharacters();
+    void RenderOsd();
+    void RenderMesh();
 
-	Momo::Graphics::Texture mTexture;
-	Character mCharacters[kNumCharacters];
-	Momo::Text::Font mFonts[kFontCount];
-	int mCurrentFont;
+    Momo::Graphics::Texture mTexture;
+    Character mCharacters[kNumCharacters];
+    Momo::Text::Font mFonts[kFontCount];
+    int mCurrentFont;
 
-	TestView mTestView;
+    TestView mTestView;
 
-	Momo::Graphics::Camera mCamera3d;
-	Momo::Graphics::Mesh mMesh;
-	Momo::Graphics::Technique mMeshTechnique;
-	Momo::Graphics::Mesh::Renderer mMeshRenderer;
+    Momo::Graphics::Camera mCamera3d;
+    Momo::Graphics::Mesh mMesh;
+    Momo::Graphics::Technique mMeshTechnique;
+    Momo::Graphics::Mesh::Renderer mMeshRenderer;
 
-	Momo::Vector3 mMeshPos;
+    Momo::Vector3 mMeshPos;
 };
 
 #endif // GAME_GAME_INCLUDED

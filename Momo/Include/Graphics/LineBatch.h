@@ -13,60 +13,60 @@
 
 namespace Momo
 {
-	namespace Graphics
-	{
+namespace Graphics
+{
 
-		class LineBatch
-		{
-		public:
-			LineBatch();
+class LineBatch
+{
+public:
+    LineBatch();
 
-			void Load();
+    void Load();
 
-			void Begin();
+    void Begin();
 
-			void Draw(const Point& from, const Point& to, const Color& color);
-			void Draw(const Point& from, const Point& to, const Color& colorFrom, const Color& colorTo);
-			void DrawRectangle(const Rectangle& rect, const Color& color);
+    void Draw(const Point& from, const Point& to, const Color& color);
+    void Draw(const Point& from, const Point& to, const Color& colorFrom, const Color& colorTo);
+    void DrawRectangle(const Rectangle& rect, const Color& color);
 
-			void End(const Camera& camera);
+    void End(const Camera& camera);
 
-		private:
-			DISALLOW_COPY_AND_ASSIGN(LineBatch);
+private:
+    DISALLOW_COPY_AND_ASSIGN(LineBatch);
 
-			static constexpr size_t kVertsPerLine = 2;
-			static constexpr size_t kIndicesPerLine = 2;
+    static constexpr size_t kVertsPerLine = 2;
+    static constexpr size_t kIndicesPerLine = 2;
 
-			static constexpr size_t kLineMax = 8192;
-			static constexpr size_t kVertexMax = kLineMax * kVertsPerLine;
-			static constexpr size_t kIndexMax = kLineMax * kIndicesPerLine;
+    static constexpr size_t kLineMax = 8192;
+    static constexpr size_t kVertexMax = kLineMax * kVertsPerLine;
+    static constexpr size_t kIndexMax = kLineMax * kIndicesPerLine;
 
-			struct Vertex
-			{
-				static constexpr int kFloatsPerPosition = 2;
-				static constexpr int kFloatsPerChannel = 4;
-				static constexpr int kBytesPerColor = 4;
+    struct Vertex
+    {
+        static constexpr int kFloatsPerPosition = 2;
+        static constexpr int kFloatsPerChannel = 4;
+        static constexpr int kBytesPerColor = 4;
 
-				Color color;
-				Vector2 position;
-			};
+        Color color;
+        Vector2 position;
+    };
 
-			bool LoadTechnique();
+    bool LoadTechnique();
 
-			void DrawInternal(const Point& from, const Point& to, const Color& colorFrom, const Color& colorTo);
+    void DrawInternal(const Point& from, const Point& to, const Color& colorFrom, const Color& colorTo);
 
-			GLuint mVertexBufferHandle;
-			GLuint mIndexBufferHandle;
+    GLuint mVertexBufferHandle;
+    GLuint mIndexBufferHandle;
 
-			Vertex mVertexData[kVertexMax];
+    Vertex mVertexData[kVertexMax];
 
-			bool mInBeginEndBlock;
-			size_t mLineCount;
+    bool mInBeginEndBlock;
+    size_t mLineCount;
 
-			const Camera* mpCamera;
-		};
+    const Camera* mpCamera;
+};
 
-	}
+}
 }
 
 #endif //MOMO_GRAPHICS_LINEBATCH_INCLUDED

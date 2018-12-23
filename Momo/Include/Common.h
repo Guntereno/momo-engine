@@ -6,8 +6,8 @@
 // A macro to disallow the copy constructor and operator= functions
 // This must be used in the private: declarations for a class
 #define DISALLOW_COPY_AND_ASSIGN(TypeName) \
-  TypeName(const TypeName&);               \
-  void operator=(const TypeName&)
+    TypeName(const TypeName&);             \
+    void operator=(const TypeName&)
 
 // Macro to compile time asser that a type is POD
 #ifdef MOMO_DEBUG
@@ -23,19 +23,19 @@
 #define FLAG_OPS(enumType)                                      \
 inline enumType operator|(enumType a, enumType b)               \
 {                                                               \
-	return static_cast<enumType>(                               \
-		static_cast<std::underlying_type<enumType>::type>(a) |  \
-		static_cast<std::underlying_type<enumType>::type>(b));  \
+    return static_cast<enumType>(                               \
+        static_cast<std::underlying_type<enumType>::type>(a) |  \
+        static_cast<std::underlying_type<enumType>::type>(b));  \
 }                                                               \
 inline enumType operator&(enumType a, enumType b)               \
 {                                                               \
-	return static_cast<enumType>(                               \
-		static_cast<std::underlying_type<enumType>::type>(a) &  \
-		static_cast<std::underlying_type<enumType>::type>(b));  \
+    return static_cast<enumType>(                               \
+        static_cast<std::underlying_type<enumType>::type>(a) &  \
+        static_cast<std::underlying_type<enumType>::type>(b));  \
 }                                                               \
 inline enumType& operator|=(enumType& a, enumType b)            \
 {                                                               \
-	return a = a | b;                                           \
+    return a = a | b;                                           \
 }
 
 #endif //MOMO_COMMON_INCLUDED

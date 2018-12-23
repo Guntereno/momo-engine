@@ -9,44 +9,44 @@
 
 namespace Momo
 {
-	namespace Input
-	{
+namespace Input
+{
 
-		struct Event
-		{
-			using Id = u8;
-			static constexpr Id IdInvalid = std::numeric_limits<Id>::max();
+struct Event
+{
+    using Id = u8;
+    static constexpr Id IdInvalid = std::numeric_limits<Id>::max();
 
-			enum class Type : u8
-			{
-				None,
-				Down,
-				Move,
-				Up
-			};
+    enum class Type : u8
+    {
+        None,
+        Down,
+        Move,
+        Up
+    };
 
-			Type type;
-			Id id;
-			const Point pos;
-			const Point delta;
+    Type type;
+    Id id;
+    const Point pos;
+    const Point delta;
 
-			static const char* ToString(Event::Type type)
-			{
-				switch (type)
-				{
-				case Type::None: return "None";
-				case Type::Down: return "Down";
-				case Type::Move: return "Move";
-				case Type::Up: return "Up";
+    static const char* ToString(Event::Type type)
+    {
+        switch (type)
+        {
+            case Type::None: return "None";
+            case Type::Down: return "Down";
+            case Type::Move: return "Move";
+            case Type::Up: return "Up";
 
-				default:
-					BREAK_MSG("Invalid type %d!", type);
-					return "Invalid";
-				}
-			}
-		};
+            default:
+                BREAK_MSG("Invalid type %d!", type);
+                return "Invalid";
+        }
+    }
+};
 
-	}
+}
 }
 
 #endif //MOMO_INPUT_TOUCHEVENT_INCLUDED

@@ -10,54 +10,54 @@
 
 namespace Momo
 {
-	namespace Graphics
-	{
+namespace Graphics
+{
 
-		class Technique
-		{
-		public:
-			struct Attributes
-			{
-				GLint position;
-				GLint textureCoord;
-				GLint color;
-				GLint channel;
-			};
+class Technique
+{
+public:
+    struct Attributes
+    {
+        GLint position;
+        GLint textureCoord;
+        GLint color;
+        GLint channel;
+    };
 
-			struct Uniforms
-			{
-				GLint transform;
-				GLint texture;
-			};
+    struct Uniforms
+    {
+        GLint transform;
+        GLint texture;
+    };
 
-			Technique();
+    Technique();
 
-			bool Load(const char* pVertexFileName, const char* pFragmentFileName);
+    bool Load(const char* pVertexFileName, const char* pFragmentFileName);
 
-			inline const Attributes& GetAttributes() const
-			{
-				return attributes;
-			}
+    inline const Attributes& GetAttributes() const
+    {
+        return attributes;
+    }
 
-			inline const Uniforms& GetUniforms() const
-			{
-				return uniforms;
-			}
+    inline const Uniforms& GetUniforms() const
+    {
+        return uniforms;
+    }
 
-			inline const Program& GetProgram() const
-			{
-				return program;
-			}
+    inline const Program& GetProgram() const
+    {
+        return program;
+    }
 
-		private:
-			DISALLOW_COPY_AND_ASSIGN(Technique);
+private:
+    DISALLOW_COPY_AND_ASSIGN(Technique);
 
-			Program program;
-			Attributes attributes;
-			Uniforms uniforms;
-		};
+    Program program;
+    Attributes attributes;
+    Uniforms uniforms;
+};
 
-	}
+}
 }
 
 #endif //MOMO_GRAPHICS_TECHNIQUE_INCLUDED

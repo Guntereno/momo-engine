@@ -9,31 +9,31 @@
 
 namespace Momo
 {
-	namespace Ui
-	{
+namespace Ui
+{
 
-		class Drawable
-		{
-		public:
-			Drawable() {}
+class Drawable
+{
+public:
+    Drawable() {}
 
-			virtual void Draw(Graphics::SpriteBatch& spriteBatch, const Rectangle& dest, StateId state, const Color& color) const = 0;
+    virtual void Draw(Graphics::SpriteBatch& spriteBatch, const Rectangle& dest, StateId state, const Color& color) const = 0;
 
-			void Draw(Graphics::SpriteBatch& spriteBatch, const Rectangle& dest, StateId state)
-			{
-				Draw(spriteBatch, dest, state, Color::White());
-			}
+    void Draw(Graphics::SpriteBatch& spriteBatch, const Rectangle& dest, StateId state)
+    {
+        Draw(spriteBatch, dest, state, Color::White());
+    }
 
-			void Draw(Graphics::SpriteBatch& spriteBatch, const Rectangle& dest)
-			{
-				Draw(spriteBatch, dest, StateId::Default, Color::White());
-			}
+    void Draw(Graphics::SpriteBatch& spriteBatch, const Rectangle& dest)
+    {
+        Draw(spriteBatch, dest, StateId::Default, Color::White());
+    }
 
-		private:
-			DISALLOW_COPY_AND_ASSIGN(Drawable);
-		};
+private:
+    DISALLOW_COPY_AND_ASSIGN(Drawable);
+};
 
-	}
+}
 }
 
 #endif //MOMO_UI_DRAWABLE_INCLUDED

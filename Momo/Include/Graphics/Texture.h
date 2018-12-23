@@ -8,36 +8,36 @@
 
 namespace Momo
 {
-	namespace Graphics
-	{
+namespace Graphics
+{
 
-		class Texture
-		{
-		public:
-			Texture() :
-				mHandle(0),
-				mWidth(0),
-				mHeight(0)
-			{}
+class Texture
+{
+public:
+    Texture() :
+        mHandle(0),
+        mWidth(0),
+        mHeight(0)
+    {}
 
-			inline int Width() const { return mWidth; }
-			inline int Height() const { return mHeight; }
-			inline GLuint Handle() const { return mHandle; }
-			inline GLenum Format() const { return mFormat; }
+    inline int Width() const { return mWidth; }
+    inline int Height() const { return mHeight; }
+    inline GLuint Handle() const { return mHandle; }
+    inline GLenum Format() const { return mFormat; }
 
-			void Load(GLsizei mWidth, GLsizei mHeight, GLenum format, const void* data);
-			bool LoadTga(const char* pFileName);
+    void Load(GLsizei mWidth, GLsizei mHeight, GLenum format, const void* data);
+    bool LoadTga(const char* pFileName);
 
-		private:
-			DISALLOW_COPY_AND_ASSIGN(Texture);
+private:
+    DISALLOW_COPY_AND_ASSIGN(Texture);
 
-			GLuint mHandle;
-			int mWidth;
-			int mHeight;
-			GLenum mFormat;
-		};
+    GLuint mHandle;
+    int mWidth;
+    int mHeight;
+    GLenum mFormat;
+};
 
-	}
+}
 }
 
 #endif //MOMO_GRAPHICS_TEXTURE_INCLUDED

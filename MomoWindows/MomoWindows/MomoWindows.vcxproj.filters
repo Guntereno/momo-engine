@@ -413,5 +413,6 @@
     <None Include="..\..\Assets\shaders\vpMesh.vp">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="..\..\.editorconfig" />
   </ItemGroup>
 </Project>
