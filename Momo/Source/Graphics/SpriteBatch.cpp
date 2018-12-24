@@ -199,52 +199,52 @@ void SpriteBatch::End(const Camera& camera)
 
         Technique& technique = gTechniques[(size_t)currentBatch.technique];
 
-        GL_CHECK(glUseProgram(technique.GetProgram().Handle()))
+        GL_CHECK(glUseProgram(technique.GetProgram().Handle()));
 
-            // Set the transform
-            glUniformMatrix4fv(technique.GetUniforms().transform, 1, false,
-            (GLfloat*)(&camera.GetViewProjection()));
+        // Set the transform
+        GL_CHECK(glUniformMatrix4fv(technique.GetUniforms().transform, 1, false,
+            (GLfloat*)(&camera.GetViewProjection())));
 
         // Send vertex data
-        glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferHandle);
+        GL_CHECK(glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferHandle));
         GL_CHECK(glBufferSubData(
             GL_ARRAY_BUFFER,
             0,
             (GLsizeiptr)(mSpriteCount * kVertsPerSprite * sizeof(Vertex)),
-            mVertexData))
+            mVertexData));
 
-            // Enable the vertex attributes
-            GL_CHECK(glVertexAttribPointer(
+        // Enable the vertex attributes
+        GL_CHECK(glVertexAttribPointer(
             (GLuint)(technique.GetAttributes().color), Vertex::kBytesPerColor,
-                GL_UNSIGNED_BYTE, GL_TRUE,
-                sizeof(Vertex),
-                (void*)offsetof(struct Vertex, color)))
+            GL_UNSIGNED_BYTE, GL_TRUE,
+            sizeof(Vertex),
+            (void*)offsetof(struct Vertex, color)));
 
-            GL_CHECK(glVertexAttribPointer(
+        GL_CHECK(glVertexAttribPointer(
             (GLuint)(technique.GetAttributes().position), Vertex::kFloatsPerPosition,
-                GL_FLOAT, GL_FALSE,
-                sizeof(Vertex),
-                (void*)offsetof(struct Vertex, position)))
+            GL_FLOAT, GL_FALSE,
+            sizeof(Vertex),
+            (void*)offsetof(struct Vertex, position)));
 
-            GL_CHECK(glVertexAttribPointer(
+        GL_CHECK(glVertexAttribPointer(
             (GLuint)(technique.GetAttributes().textureCoord), Vertex::kFloatsPerUv,
-                GL_FLOAT, GL_FALSE,
-                sizeof(Vertex),
-                (void*)offsetof(struct Vertex, uv)))
+            GL_FLOAT, GL_FALSE,
+            sizeof(Vertex),
+            (void*)offsetof(struct Vertex, uv)));
 
-            GL_CHECK(glVertexAttribPointer(
+        GL_CHECK(glVertexAttribPointer(
             (GLuint)(technique.GetAttributes().channel), Vertex::kFloatsPerChannel,
-                GL_FLOAT, GL_FALSE,
-                sizeof(Vertex),
-                (void*)offsetof(struct Vertex, channel)))
+            GL_FLOAT, GL_FALSE,
+            sizeof(Vertex),
+            (void*)offsetof(struct Vertex, channel)));
 
-            GL_CHECK(glEnableVertexAttribArray((GLuint)(technique.GetAttributes().color)))
-            GL_CHECK(glEnableVertexAttribArray((GLuint)(technique.GetAttributes().position)))
-            GL_CHECK(glEnableVertexAttribArray((GLuint)(technique.GetAttributes().textureCoord)))
-            GL_CHECK(glEnableVertexAttribArray((GLuint)(technique.GetAttributes().channel)))
+        GL_CHECK(glEnableVertexAttribArray((GLuint)(technique.GetAttributes().color)));
+        GL_CHECK(glEnableVertexAttribArray((GLuint)(technique.GetAttributes().position)));
+        GL_CHECK(glEnableVertexAttribArray((GLuint)(technique.GetAttributes().textureCoord)));
+        GL_CHECK(glEnableVertexAttribArray((GLuint)(technique.GetAttributes().channel)));
 
-            // Set the active texture unit to texture unit 0.
-            glActiveTexture(GL_TEXTURE0);
+        // Set the active texture unit to texture unit 0.
+        glActiveTexture(GL_TEXTURE0);
         glUniform1i(technique.GetUniforms().texture, 0);
 
         // Bind the texture for this batch
@@ -252,15 +252,15 @@ void SpriteBatch::End(const Camera& camera)
 
         // Draw indexed primitives
         GLsizei batchIndexCount = (GLsizei)(currentBatch.count * kIndicesPerSprite);
-        GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle))
-            GL_CHECK(glDrawElements(
-                GL_TRIANGLES,
-                batchIndexCount,
-                GL_UNSIGNED_SHORT,
-                (void*)(currentIndex * sizeof(GLushort))
-            ))
+        GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle));
+        GL_CHECK(glDrawElements(
+            GL_TRIANGLES,
+            batchIndexCount,
+            GL_UNSIGNED_SHORT,
+            (void*)(currentIndex * sizeof(GLushort))
+        ));
 
-            currentIndex += batchIndexCount;
+        currentIndex += batchIndexCount;
     }
 
     mInBeginEndBlock = false;

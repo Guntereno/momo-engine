@@ -116,10 +116,10 @@ void LineBatch::End(const Camera& camera)
     //LOGI("LineBatch::End()");
     ASSERT(mInBeginEndBlock);
 
-    GL_CHECK(glUseProgram(gTechnique.GetProgram().Handle()))
+    GL_CHECK(glUseProgram(gTechnique.GetProgram().Handle()));
 
-        // Set the transform
-        glUniformMatrix4fv(gTechnique.GetUniforms().transform, 1, false,
+    // Set the transform
+    glUniformMatrix4fv(gTechnique.GetUniforms().transform, 1, false,
         (GLfloat*)(&camera.GetViewProjection()));
 
     // Send vertex data
@@ -128,35 +128,35 @@ void LineBatch::End(const Camera& camera)
         GL_ARRAY_BUFFER,
         0,
         (GLsizeiptr)(mLineCount * kVertsPerLine * sizeof(Vertex)),
-        mVertexData))
+        mVertexData));
 
-        // Enable the vertex attributes
-        GL_CHECK(glVertexAttribPointer(
+    // Enable the vertex attributes
+    GL_CHECK(glVertexAttribPointer(
         (GLuint)(gTechnique.GetAttributes().color), Vertex::kBytesPerColor,
-            GL_UNSIGNED_BYTE, GL_TRUE,
-            sizeof(Vertex),
-            (void*)offsetof(struct Vertex, color)))
+        GL_UNSIGNED_BYTE, GL_TRUE,
+        sizeof(Vertex),
+        (void*)offsetof(struct Vertex, color)));
 
-        GL_CHECK(glVertexAttribPointer(
+    GL_CHECK(glVertexAttribPointer(
         (GLuint)(gTechnique.GetAttributes().position), Vertex::kFloatsPerPosition,
-            GL_FLOAT, GL_FALSE,
-            sizeof(Vertex),
-            (void*)offsetof(struct Vertex, position)))
+        GL_FLOAT, GL_FALSE,
+        sizeof(Vertex),
+        (void*)offsetof(struct Vertex, position)));
 
-        GL_CHECK(glEnableVertexAttribArray((GLuint)(gTechnique.GetAttributes().color)))
-        GL_CHECK(glEnableVertexAttribArray((GLuint)(gTechnique.GetAttributes().position)))
+    GL_CHECK(glEnableVertexAttribArray((GLuint)(gTechnique.GetAttributes().color)));
+    GL_CHECK(glEnableVertexAttribArray((GLuint)(gTechnique.GetAttributes().position)));;
 
-        // Draw indexed primitives
-        size_t indexCount = mLineCount * kIndicesPerLine;
-    GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle))
-        GL_CHECK(glDrawElements(
-            GL_LINES,
-            (GLsizei)indexCount,
-            GL_UNSIGNED_SHORT,
-            (void*)(0)
-        ))
+    // Draw indexed primitives
+    size_t indexCount = mLineCount * kIndicesPerLine;
+    GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle));
+    GL_CHECK(glDrawElements(
+        GL_LINES,
+        (GLsizei)indexCount,
+        GL_UNSIGNED_SHORT,
+        (void*)(0)
+    ));
 
-        mInBeginEndBlock = false;
+    mInBeginEndBlock = false;
 }
 
 bool LineBatch::LoadTechnique()

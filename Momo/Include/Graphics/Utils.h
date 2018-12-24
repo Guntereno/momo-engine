@@ -9,9 +9,15 @@
 #include <GLES2/gl2.h>
 #include <cstdlib>
 
-
-#define GL_CHECK(_statement) _statement;Graphics::Utils::CheckGlError(__FILE__, __LINE__, #_statement);
-
+#if defined MOMO_DEBUG
+# define GL_CHECK(_statement)                                        \
+do{                                                                 \
+    _statement;                                                     \
+    Graphics::Utils::CheckGlError(__FILE__, __LINE__, #_statement); \
+} while(false)
+#else
+# define GL_CHECK(_statement) _statement;(void)0
+#endif
 
 namespace Momo
 {

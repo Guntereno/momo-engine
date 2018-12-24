@@ -18,26 +18,26 @@ void Texture::Load(GLsizei width, GLsizei height, GLenum format, const void* dat
     mHeight = height;
     mFormat = format;
 
-    GL_CHECK(glGenTextures(1, &textureHandle))
+    GL_CHECK(glGenTextures(1, &textureHandle));
 
-        if (textureHandle != 0)
-        {
-            // Use tightly packed data
-            glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    if (textureHandle != 0)
+    {
+        // Use tightly packed data
+        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-            // Bind to the texture in OpenGL
-            glBindTexture(GL_TEXTURE_2D, textureHandle);
+        // Bind to the texture in OpenGL
+        glBindTexture(GL_TEXTURE_2D, textureHandle);
 
-            // Set filtering
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        // Set filtering
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-            // Load the bitmap into the bound texture.
-            glTexImage2D(GL_TEXTURE_2D, 0, (GLint)mFormat, mWidth, mHeight, 0, mFormat,
-                GL_UNSIGNED_BYTE, data);
-        }
+        // Load the bitmap into the bound texture.
+        glTexImage2D(GL_TEXTURE_2D, 0, (GLint)mFormat, mWidth, mHeight, 0, mFormat,
+            GL_UNSIGNED_BYTE, data);
+    }
 
     mHandle = textureHandle;
 }

@@ -47,65 +47,66 @@ void Mesh::Renderer::Draw(const Camera& camera, const Matrix& world)
     ASSERT(mVertexBufferHandle != 0);
     ASSERT(mIndexBufferHandle != 0);
 
-    GL_CHECK(glUseProgram(mpTechnique->GetProgram().Handle()))
+    GL_CHECK(glUseProgram(mpTechnique->GetProgram().Handle()));
 
-        // Set the transform
-        Matrix transform;
+    // Set the transform
+    Matrix transform;
     //Matrix::Multiply(camera.GetViewProjection(), world, transform);
     transform = camera.GetViewProjection() * world;
-    GL_CHECK(glUniformMatrix4fv(mpTechnique->GetUniforms().transform, 1, false, (GLfloat*)(&transform)))
+    GL_CHECK(glUniformMatrix4fv(mpTechnique->GetUniforms().transform, 1, false,
+        (GLfloat*)(&transform)));
 
-        // Send vertex data
-        GL_CHECK(glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferHandle))
-        GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle))
+    // Send vertex data
+    GL_CHECK(glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferHandle));
+    GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle));
 
-        GL_CHECK(glEnableVertexAttribArray((GLuint)(mpTechnique->GetAttributes().color)))
-        GL_CHECK(glEnableVertexAttribArray((GLuint)(mpTechnique->GetAttributes().position)))
-        GL_CHECK(glEnableVertexAttribArray((GLuint)(mpTechnique->GetAttributes().textureCoord)))
+    GL_CHECK(glEnableVertexAttribArray((GLuint)(mpTechnique->GetAttributes().color)));
+    GL_CHECK(glEnableVertexAttribArray((GLuint)(mpTechnique->GetAttributes().position)));
+    GL_CHECK(glEnableVertexAttribArray((GLuint)(mpTechnique->GetAttributes().textureCoord)));
 
-        // Enable the vertex attributes
-        GL_CHECK(glVertexAttribPointer(
+    // Enable the vertex attributes
+    GL_CHECK(glVertexAttribPointer(
         (GLuint)(mpTechnique->GetAttributes().color),
-            Vertex::kBytesPerColor,
-            GL_UNSIGNED_BYTE,
-            GL_TRUE,
-            sizeof(Vertex),
-            (void*)offsetof(struct Vertex, color)))
+        Vertex::kBytesPerColor,
+        GL_UNSIGNED_BYTE,
+        GL_TRUE,
+        sizeof(Vertex),
+        (void*)offsetof(struct Vertex, color)));
 
-        GL_CHECK(glVertexAttribPointer(
+    GL_CHECK(glVertexAttribPointer(
         (GLuint)(mpTechnique->GetAttributes().position),
-            Vertex::kFloatsPerPosition,
-            GL_FLOAT,
-            GL_FALSE,
-            sizeof(Vertex),
-            (void*)offsetof(struct Vertex, position)))
+        Vertex::kFloatsPerPosition,
+        GL_FLOAT,
+        GL_FALSE,
+        sizeof(Vertex),
+        (void*)offsetof(struct Vertex, position)));
 
-        GL_CHECK(glVertexAttribPointer(
+    GL_CHECK(glVertexAttribPointer(
         (GLuint)(mpTechnique->GetAttributes().textureCoord),
-            Vertex::kFloatsPerUv,
-            GL_FLOAT,
-            GL_FALSE,
-            sizeof(Vertex),
-            (void*)offsetof(struct Vertex, uv)))
+        Vertex::kFloatsPerUv,
+        GL_FLOAT,
+        GL_FALSE,
+        sizeof(Vertex),
+        (void*)offsetof(struct Vertex, uv)));
 
-        // Set the active texture unit to texture unit 0.
-        glActiveTexture(GL_TEXTURE0);
-    glUniform1i(mpTechnique->GetUniforms().texture, 0);
+    // Set the active texture unit to texture unit 0.
+    GL_CHECK(glActiveTexture(GL_TEXTURE0));
+    GL_CHECK(glUniform1i(mpTechnique->GetUniforms().texture, 0));
 
     // Bind the texture for this batch
-    glBindTexture(GL_TEXTURE_2D, mpTexture->Handle());
+    GL_CHECK(glBindTexture(GL_TEXTURE_2D, mpTexture->Handle()));
 
     // Draw indexed primitives
-    GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle))
-        GL_CHECK(glDrawElements(
-            GL_TRIANGLES,
-            (GLsizei)(mpMesh->mIndexCount),
-            GL_UNSIGNED_SHORT,
-            NULL))
+    GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferHandle));
+    GL_CHECK(glDrawElements(
+        GL_TRIANGLES,
+        (GLsizei)(mpMesh->mIndexCount),
+        GL_UNSIGNED_SHORT,
+        NULL));
 
-        glDisableVertexAttribArray((GLuint)(mpTechnique->GetAttributes().color));
-    glDisableVertexAttribArray((GLuint)(mpTechnique->GetAttributes().position));
-    glDisableVertexAttribArray((GLuint)(mpTechnique->GetAttributes().textureCoord));
+    GL_CHECK(glDisableVertexAttribArray((GLuint)(mpTechnique->GetAttributes().color)));
+    GL_CHECK(glDisableVertexAttribArray((GLuint)(mpTechnique->GetAttributes().position)));
+    GL_CHECK(glDisableVertexAttribArray((GLuint)(mpTechnique->GetAttributes().textureCoord)));
 }
 
 

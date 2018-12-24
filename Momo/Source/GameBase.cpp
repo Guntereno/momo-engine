@@ -12,8 +12,13 @@ namespace Momo
 
 static void PrintGLString(const char *name, GLenum s)
 {
+#if defined MOMO_DEBUG
     const char *v = (const char *)glGetString(s);
     LOGI("GL %s = %s\n", name, v);
+#else
+    UNUSED(name);
+    UNUSED(s);
+#endif
 }
 
 GameBase::GameBase() :
@@ -55,10 +60,10 @@ void GameBase::Resize(u32 width, u32 height)
     mpViewContainer->SetFlags(Ui::View::Flags::Fill);
     mpViewContainer->Arrange(mViewport, true);
 
-    GL_CHECK(glViewport(0, 0, (GLsizei)width, (GLsizei)height))
+    GL_CHECK(glViewport(0, 0, (GLsizei)width, (GLsizei)height));
 
-        // Setup the view projection matrix
-        InitCamera();
+    // Setup the view projection matrix
+    InitCamera();
 }
 
 void GameBase::Update()

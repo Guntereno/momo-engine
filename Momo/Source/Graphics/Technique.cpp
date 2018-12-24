@@ -45,16 +45,18 @@ bool Technique::Load(const char* pVertexFileName, const char* pFragmentFileName)
 
 GLint GetAttribute(GLuint programHandle, const char* pName)
 {
-    GL_CHECK(GLint result = glGetAttribLocation(programHandle, pName))
-        LOGI("glGetAttribLocation(\"%s\") = %d\n", pName, result);
+    GLint result;
+    GL_CHECK(result = glGetAttribLocation(programHandle, pName));
+    LOGI("glGetAttribLocation(\"%s\") = %d\n", pName, result);
 
     return result;
 }
 
 GLint GetUniform(GLuint programHandle, const char* pName)
 {
-    GL_CHECK(GLint result = glGetUniformLocation(programHandle, pName))
-        LOGI("glGetUniformLocation(\"%s\") = %d\n", pName, result);
+    GLint result;
+    GL_CHECK(result = glGetUniformLocation(programHandle, pName));;
+    LOGI("glGetUniformLocation(\"%s\") = %d\n", pName, result);
 
     return result;
 }
